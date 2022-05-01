@@ -15,11 +15,21 @@ function App() {
       console.log(err)
     }
   }
-  
+
+
+  // const getPlayers = async () => {
+  //   try {
+  //     const players = await fetch("localhost")
+  //   }
+  // }
+
+
   useEffect(() => {
     getLeague();
     // eslint-disable-next-line 
   }, [])
+
+
 
   return (
     <div className="App">

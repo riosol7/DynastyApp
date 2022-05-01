@@ -1,3 +1,6 @@
+// =============================
+//         DEPENDENCIES
+// =============================
 require("./db")
 require("dotenv").config()
 const express = require("express");
@@ -7,6 +10,9 @@ const methodOverride = require("method-override");
 
 const port = process.env.PORT || 5000;
 
+// =============================
+//         CORS/MIDDLEWARE
+// =============================
 const whiteList = ["http://localhost:3000"];
 
 const corsOptions = {
@@ -19,9 +25,16 @@ const corsOptions = {
     },
 };
 
+// =============================
+//         CONTROLLERS
+// =============================
+const playerController = require("./controllers/player");
+
 app.use(methodOverride("_method"));
 app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use("/player", playerController);
 
 
 app.listen(port, () => {
