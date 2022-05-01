@@ -30,27 +30,28 @@ playerController.get("/rosters", async (req, res) => {
         //         })
         //     )
         // }
+
+        let mappedRosters = rosters.map(async (roster) => {
+            const found = await Player.find({"player_id": roster.players})
+            console.log("found", found)
+            return found
+        })
         
-        let mappedRosters = rosters.map((roster) => 
-       
-                roster.players.map( async (player, req, res) => {
+        // let mappedRosters = rosters.map((roster) => {
+        //     try{
+        //         roster.players.map( async (player) => {
+        //             const foundPlayer = await Player.find({ "player_id": player})
+        //             console.log("foundPlayer", foundPlayer)
+        //             return foundPlayer
 
-                        const foundPlayer = await Player.find({ "player_id": player})
-                        console.log("foundPlayer", foundPlayer)
-                        Promise.resolve(foundPlayer)
-                        return foundPlayer
-                
-
-                }
-                    
-                    //    foundPlayers.find(foundPlayer => foundPlayer.player_id = player)
-                )
-    
-        )
-
-
-        console.log("mappedRosters", mappedRosters)
-        res.status(200).json(mappedRosters)
+        //         })
+        //     } catch (err) {
+        //         console.log(err)
+        //     }
+        // })
+        const promise = await Promise.all(mappedRosters)
+        console.log("mappedRosters", promise)
+        res.status(200).json(promise)
     } catch (err) {
         res.status(400).json({
             error: err.message
