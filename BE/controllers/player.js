@@ -1,3 +1,4 @@
+const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
 const Player = require("../models/Player")
 const playerController = require("express").Router({ mergeParams: true });
 
@@ -14,8 +15,9 @@ playerController.get("/all" , async (req, res) => {
 
 playerController.get("/rosters", async (req, res) => {
     try {
-        const rosters = req.body
-        let mappedRosters = rosters.map(async (roster) => {
+        const getRosters = await fetch("https://api.sleeper.app/v1/league/786065005090189312/rosters")
+        const parsedRosters = await getRosters.json()
+        let mappedRosters = parsedRosters.map(async (roster) => {
             const foundPlayers = await Player.find({"player_id": roster.players})
             const foundStarters = await Player.find({"player_id": roster.starters})
             const foundReserve = await Player.find({"player_id": roster.reserve})
