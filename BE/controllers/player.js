@@ -21,6 +21,9 @@ playerController.get("/rosters", async (req, res) => {
         const getUsers = await fetch("https://api.sleeper.app/v1/league/786065005090189312/users")
         const parsedUsers = await getUsers.json()
 
+        const getKCT = await fetch("https://sheetdb.io/api/v1/gultqvcl60sw9")
+        const parsedKCT = await getKCT.json()
+
         let mappedRosters = parsedRosters.map(async (roster) => {
             const foundPlayers = await Player.find({"player_id": roster.players})
             const foundStarters = await Player.find({"player_id": roster.starters})
@@ -28,6 +31,7 @@ playerController.get("/rosters", async (req, res) => {
             const foundTaxi = await Player.find({"player_id": roster.taxi})
 
             let foundUser = parsedUsers.find(user => user.user_id === roster.owner_id)
+            // let foundKCTPlayer = parsedKCT.find(player => player.Player === roster)
 
             return {...roster, 
                 owner_id:foundUser,
@@ -38,8 +42,34 @@ playerController.get("/rosters", async (req, res) => {
             }
         })
         const promise = await Promise.all(mappedRosters)
-        console.log("mappedRosters", promise)
-        res.status(200).json(promise)
+        // console.log("mappedRosters:", promise)
+
+        if(promise){
+            let updatedRosters = promise.map((roster) => {
+                let KCTv = roster.players.map(player => {
+                 
+                        let foundKCTPlayer = parsedKCT.find((KCTplayer) => KCTplayer.Player === player.full_name)
+                        // console.log("foundKCTPlayer:",foundKCTPlayer)
+                        return {
+                            ...player,
+                            KCT:foundKCTPlayer
+                        }
+        
+                })  
+                // const updatedKCTv = await Promise.all(KCTv)
+                // console.log("updatedKCTv:", updatedKCTv)
+                return {
+                    ...roster,
+                    players: KCTv
+                }
+            })
+            // const updatedPromise = await Promise.all(updatedRosters)
+            console.log("updatedRosters:", updatedRosters)
+            res.status(200).json(updatedRosters)
+        } else {
+            res.status(200).json(promise)
+
+        }
 
     } catch (err) {
         res.status(400).json({

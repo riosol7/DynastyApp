@@ -7,8 +7,7 @@ function App() {
 
   const getRosters = async () => {
     try{
-      // const rosters = await fetch("http://localhost:5000/player/rosters")
-      const rosters = await fetch("https://api.sleeper.app/v1/league/786065005090189312/users")
+      const rosters = await fetch("http://localhost:5000/player/rosters")
       const parsedRosters = await rosters.json()
       setData(parsedRosters)
       console.log(data)
@@ -21,7 +20,6 @@ function App() {
     getRosters();
     // eslint-disable-next-line 
   }, [])
-
 
   return (
     <div className="App">
