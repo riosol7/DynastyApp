@@ -11,7 +11,7 @@ const methodOverride = require("method-override");
 const port = process.env.PORT || 5000;
 
 // =============================
-//         CORS/MIDDLEWARE
+//        CORS/MIDDLEWARE
 // =============================
 const whiteList = ["http://localhost:3000"];
 

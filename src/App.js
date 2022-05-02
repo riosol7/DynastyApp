@@ -5,30 +5,22 @@ function App() {
 
   const [data, setData] = useState([])
 
-  const getLeague = async () => {
+  const getRosters = async () => {
     try{
-      const league =await fetch("https://api.sleeper.app/v1/league/786065005090189312/rosters")
-      const parsedLeague = await league.json()
-      setData(parsedLeague)
+      // const rosters = await fetch("http://localhost:5000/player/rosters")
+      const rosters = await fetch("https://api.sleeper.app/v1/league/786065005090189312/users")
+      const parsedRosters = await rosters.json()
+      setData(parsedRosters)
       console.log(data)
     } catch (err) {
       console.log(err)
     }
   }
 
-
-  // const getPlayers = async () => {
-  //   try {
-  //     const players = await fetch("localhost")
-  //   }
-  // }
-
-
   useEffect(() => {
-    getLeague();
+    getRosters();
     // eslint-disable-next-line 
   }, [])
-
 
 
   return (
