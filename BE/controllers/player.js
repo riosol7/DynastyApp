@@ -23,7 +23,17 @@ playerController.get("/rosters", async (req, res) => {
 
         const getKCT = await fetch("https://sheetdb.io/api/v1/gultqvcl60sw9")
         const parsedKCT = await getKCT.json()
-        // console.log("parsedKCT:",parsedKCT)
+
+        let rankings = parsedKCT.map(async kct => {
+            const foundPlayers = await Player.find({"full_name":kct.player, "position": kct.position})
+            // console.log("foundPlayer",foundPlayers)
+            return {
+                ...kct,
+                foundPlayers
+            }
+        })
+        const testing = await Promise.all(rankings)
+        console.log("testing",testing)
 
         // let testRosters = parsedRosters.map(async (roster) => {
         //     const foundPlayers = await Player.find({"player_id": roster.players})
@@ -65,7 +75,7 @@ playerController.get("/rosters", async (req, res) => {
                     kct: value
                 }
             })
-            console.log("kctRankings:", kctRankings)
+            // console.log("kctRankings:", kctRankings)
 
 
             return {...roster, 
@@ -112,7 +122,7 @@ playerController.get("/rosters", async (req, res) => {
         //     // console.log("updatedRosters:", updatedRosters)
         //     res.status(200).json(updatedRosters)
         // } else {
-            res.status(200).json(promise)
+            res.status(200).json(testing)
 
         // }
 
