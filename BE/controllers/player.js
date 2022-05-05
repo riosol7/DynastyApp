@@ -94,6 +94,11 @@ playerController.get("/rosters", async (req, res) => {
                 reserve:foundReserve,
                 taxi:foundTaxi,
                 kct:{
+                    owner:{
+                        avatar:foundUser ? foundUser.avatar : "8fcf0e0e6a75e96a591d2a4a4a400f41",
+                        display_name:foundUser ? foundUser.display_name : undefined,
+                        team_name:foundUser ? foundUser.metadata.team_name : undefined
+                    },
                     teamTotal:teamTotal,
                     qb:{
                         total:qbTotal,
@@ -115,7 +120,6 @@ playerController.get("/rosters", async (req, res) => {
             } 
         })
         const promise = await Promise.all(mappedRosters)
-        // let totalRoster = promise.sort((a, b) => parseFloat(a.kct.teamTotal) - parseFloat(b.kct.teamTotal));
         let teamRank = promise.sort((a, b) => parseFloat(b.kct.teamTotal) - parseFloat(a.kct.teamTotal)).map(roster => roster.kct);
         let qbRank = promise.sort((a, b) => parseFloat(b.kct.qb.total) - parseFloat(a.kct.qb.total)).map(roster => roster.kct);
         let rbRank = promise.sort((a, b) => parseFloat(b.kct.rb.total) - parseFloat(a.kct.rb.total)).map(roster => roster.kct);
