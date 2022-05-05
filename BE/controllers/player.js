@@ -60,7 +60,7 @@ playerController.get("/rosters", async (req, res) => {
             years_exp:1
         }
 
-        let mappedRosters = parsedRosters.map(async (roster) => {
+        let mappedRosters = parsedRosters.map(async (roster, idx) => {
             const foundPlayers = await Player.find({"player_id": roster.players}, filtered)
             const kctRankings = await KCT.find({"player_id": roster.players})
             const foundStarters = await KCT.find({"player_id": roster.starters})
@@ -102,9 +102,21 @@ playerController.get("/rosters", async (req, res) => {
             } 
         })
         const promise = await Promise.all(mappedRosters)
+        let totalRoster = promise.sort((a, b) => parseFloat(b.teamTotal) - parseFloat(a.teamTotal));
+        let qbRank = promise.sort((a, b) => parseFloat(b.qbTotal) - parseFloat(a.qbTotal)).map(roster => roster.kct);
+        let rbRank = promise.sort((a, b) => parseFloat(b.rbTotal) - parseFloat(a.rbTotal)).map(roster => roster.kct);
+        let wrRank = promise.sort((a, b) => parseFloat(b.wrTotal) - parseFloat(a.wrTotal)).map(roster => roster.kct);
+        let teRank = promise.sort((a, b) => parseFloat(b.teTotal) - parseFloat(a.teTotal)).map(roster => roster.kct);
 
-        res.status(200).json(promise)
-        // console.log("promise:", promise)
+        let rankings = {
+            totalRoster: totalRoster,
+            qbRank: qbRank,
+            rbRank: rbRank,
+            wrRank: wrRank,
+            teRank: teRank
+        }
+        
+        res.status(200).json(rankings)
     } catch (err) {
         res.status(400).json({
             error: err.message

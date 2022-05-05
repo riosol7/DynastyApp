@@ -15,7 +15,7 @@ function App() {
       console.log(err)
     }
   }
-
+  
   useEffect(() => {
     getRosters();
     // eslint-disable-next-line 
