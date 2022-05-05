@@ -115,14 +115,16 @@ playerController.get("/rosters", async (req, res) => {
             } 
         })
         const promise = await Promise.all(mappedRosters)
-        let totalRoster = promise.sort((a, b) => parseFloat(b.kct.teamTotal) - parseFloat(a.kct.teamTotal));
+        // let totalRoster = promise.sort((a, b) => parseFloat(a.kct.teamTotal) - parseFloat(b.kct.teamTotal));
+        let teamRank = promise.sort((a, b) => parseFloat(b.kct.teamTotal) - parseFloat(a.kct.teamTotal)).map(roster => roster.kct);
         let qbRank = promise.sort((a, b) => parseFloat(b.kct.qb.total) - parseFloat(a.kct.qb.total)).map(roster => roster.kct);
         let rbRank = promise.sort((a, b) => parseFloat(b.kct.rb.total) - parseFloat(a.kct.rb.total)).map(roster => roster.kct);
         let wrRank = promise.sort((a, b) => parseFloat(b.kct.wr.total) - parseFloat(a.kct.wr.total)).map(roster => roster.kct);
         let teRank = promise.sort((a, b) => parseFloat(b.kct.te.total) - parseFloat(a.kct.te.total)).map(roster => roster.kct);
 
         let rankings = {
-            totalRoster: totalRoster,
+            totalRoster: promise,
+            teamRank: teamRank,
             qbRank: qbRank,
             rbRank: rbRank,
             wrRank: wrRank,
