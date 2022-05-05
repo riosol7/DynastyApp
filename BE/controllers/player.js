@@ -69,20 +69,20 @@ playerController.get("/rosters", async (req, res) => {
 
             let foundUser = parsedUsers.find(user => user.user_id === roster.owner_id)
 
-            let qbTotal = kctRankings.filter(player => player.position === "QB")
-            .map(player => player.rating)
+            let qbFiltered = kctRankings.filter(player => player.position === "QB")
+            let qbTotal = qbFiltered.map(player => player.rating)
             .reduce((a, b) => Number(a) + Number(b), 0)
 
-            let rbTotal = kctRankings.filter(player => player.position === "RB")
-            .map(player => player.rating)
+            let rbFiltered = kctRankings.filter(player => player.position === "RB")
+            let rbTotal = rbFiltered.map(player => player.rating)
             .reduce((a, b) => Number(a) + Number(b), 0)
 
-            let wrTotal = kctRankings.filter(player => player.position === "WR")
-            .map(player => player.rating)
+            let wrFiltered = kctRankings.filter(player => player.position === "WR")
+            let wrTotal = wrFiltered.map(player => player.rating)
             .reduce((a, b) => Number(a) + Number(b), 0)
 
-            let teTotal = kctRankings.filter(player => player.position === "TE")
-            .map(player => player.rating)
+            let teFiltered = kctRankings.filter(player => player.position === "TE")
+            let teTotal = teFiltered.map(player => player.rating)
             .reduce((a, b) => Number(a) + Number(b), 0)
         
             let teamTotal = qbTotal + rbTotal + wrTotal + teTotal
@@ -93,20 +93,33 @@ playerController.get("/rosters", async (req, res) => {
                 starters:foundStarters,
                 reserve:foundReserve,
                 taxi:foundTaxi,
-                kct:kctRankings,
-                teamTotal:teamTotal,
-                qbTotal:qbTotal,
-                rbTotal:rbTotal,
-                wrTotal:wrTotal,
-                teTotal:teTotal
+                kct:{
+                    teamTotal:teamTotal,
+                    qb:{
+                        total:qbTotal,
+                        players:qbFiltered,
+                    },
+                    rb:{
+                        total:rbTotal,
+                        players:rbFiltered
+                    },
+                    wr:{
+                        total:wrTotal,
+                        players:wrFiltered,
+                    },
+                    te:{
+                        total:teTotal,
+                        players:teFiltered
+                    }
+                },
             } 
         })
         const promise = await Promise.all(mappedRosters)
-        let totalRoster = promise.sort((a, b) => parseFloat(b.teamTotal) - parseFloat(a.teamTotal));
-        let qbRank = promise.sort((a, b) => parseFloat(b.qbTotal) - parseFloat(a.qbTotal)).map(roster => roster.kct);
-        let rbRank = promise.sort((a, b) => parseFloat(b.rbTotal) - parseFloat(a.rbTotal)).map(roster => roster.kct);
-        let wrRank = promise.sort((a, b) => parseFloat(b.wrTotal) - parseFloat(a.wrTotal)).map(roster => roster.kct);
-        let teRank = promise.sort((a, b) => parseFloat(b.teTotal) - parseFloat(a.teTotal)).map(roster => roster.kct);
+        let totalRoster = promise.sort((a, b) => parseFloat(b.kct.teamTotal) - parseFloat(a.kct.teamTotal));
+        let qbRank = promise.sort((a, b) => parseFloat(b.kct.qb.total) - parseFloat(a.kct.qb.total)).map(roster => roster.kct);
+        let rbRank = promise.sort((a, b) => parseFloat(b.kct.rb.total) - parseFloat(a.kct.rb.total)).map(roster => roster.kct);
+        let wrRank = promise.sort((a, b) => parseFloat(b.kct.wr.total) - parseFloat(a.kct.wr.total)).map(roster => roster.kct);
+        let teRank = promise.sort((a, b) => parseFloat(b.kct.te.total) - parseFloat(a.kct.te.total)).map(roster => roster.kct);
 
         let rankings = {
             totalRoster: totalRoster,
