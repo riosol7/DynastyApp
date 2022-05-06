@@ -121,6 +121,7 @@ export default function Home () {
                             {
                                 roster.kct.qb.players.map((player, i) =>
                                 <div key={i}>
+                                    <img alt="thumb" src={`https://sleepercdn.com/content/nfl/players/thumb/${player.player_id}.jpg`}/>
                                     <p>{player.position} {player.player}</p>
                                     <p>{player.team}</p>
                                     <p>age: {player.age}</p>
@@ -132,6 +133,7 @@ export default function Home () {
                             {
                                 roster.kct.rb.players.map((player, i) =>
                                 <div key={i}>
+                                    <img alt="thumb" src={`https://sleepercdn.com/content/nfl/players/thumb/${player.player_id}.jpg`}/>
                                     <p>{player.position} {player.player}</p>
                                     <p>{player.team}</p>
                                     <p>age: {player.age}</p>
@@ -143,6 +145,7 @@ export default function Home () {
                             {
                                 roster.kct.wr.players.map((player, i) =>
                                 <div key={i}>
+                                    <img alt="thumb" src={`https://sleepercdn.com/content/nfl/players/thumb/${player.player_id}.jpg`}/>
                                     <p>{player.position} {player.player}</p>
                                     <p>{player.team}</p>
                                     <p>age: {player.age}</p>
@@ -154,6 +157,7 @@ export default function Home () {
                             {
                                 roster.kct.te.players.map((player, i) =>
                                 <div key={i}>
+                                    <img alt="thumb" src={`https://sleepercdn.com/content/nfl/players/thumb/${player.player_id}.jpg`}/>
                                     <p>{player.position} {player.player}</p>
                                     <p>{player.team}</p>
                                     <p>age: {player.age}</p>
