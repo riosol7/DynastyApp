@@ -60,7 +60,7 @@ playerController.get("/rosters", async (req, res) => {
             years_exp:1
         }
 
-        let mappedRosters = parsedRosters.map(async (roster, idx) => {
+        let mappedRosters = parsedRosters.map(async (roster) => {
             const foundPlayers = await Player.find({"player_id": roster.players}, filtered)
             const kctRankings = await KCT.find({"player_id": roster.players})
             const foundStarters = await KCT.find({"player_id": roster.starters})
@@ -120,11 +120,11 @@ playerController.get("/rosters", async (req, res) => {
             } 
         })
         const promise = await Promise.all(mappedRosters)
-        let teamRank = promise.sort((a, b) => parseFloat(b.kct.teamTotal) - parseFloat(a.kct.teamTotal)).map(roster => roster.kct);
-        let qbRank = promise.sort((a, b) => parseFloat(b.kct.qb.total) - parseFloat(a.kct.qb.total)).map(roster => roster.kct);
-        let rbRank = promise.sort((a, b) => parseFloat(b.kct.rb.total) - parseFloat(a.kct.rb.total)).map(roster => roster.kct);
-        let wrRank = promise.sort((a, b) => parseFloat(b.kct.wr.total) - parseFloat(a.kct.wr.total)).map(roster => roster.kct);
-        let teRank = promise.sort((a, b) => parseFloat(b.kct.te.total) - parseFloat(a.kct.te.total)).map(roster => roster.kct);
+        let teamRank = promise.sort((a, b) => parseFloat(b.kct.teamTotal) - parseFloat(a.kct.teamTotal)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
+        let qbRank = promise.sort((a, b) => parseFloat(b.kct.qb.total) - parseFloat(a.kct.qb.total)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
+        let rbRank = promise.sort((a, b) => parseFloat(b.kct.rb.total) - parseFloat(a.kct.rb.total)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
+        let wrRank = promise.sort((a, b) => parseFloat(b.kct.wr.total) - parseFloat(a.kct.wr.total)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
+        let teRank = promise.sort((a, b) => parseFloat(b.kct.te.total) - parseFloat(a.kct.te.total)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
 
         let rankings = {
             totalRoster: promise,

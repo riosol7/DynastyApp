@@ -22,6 +22,11 @@ export default function Home () {
       }
     }
 
+    function qbRankings (roster) {
+        let foundTeam = rosters.qbRank.find(team => team.kct.owner.display_name === roster.kct.owner.display_name)
+        return foundTeam.rank
+    }
+
   return (
     <div className="">
         {
@@ -31,22 +36,25 @@ export default function Home () {
                     rosters.teamRank.map((roster, idx) => 
                         <div key={idx}>
                             {
-                                roster.owner.team_name ?
-                                <p>{roster.owner.team_name}</p>
+                                roster.kct.owner.team_name ?
+                                <p>{idx + 1}{idx === 0?  "st" : idx === 1? "nd" : idx === 2? "rd" : "th"}: {roster.kct.owner.team_name}</p>
                                 :
-                                <p>{roster.owner.display_name}</p>
+                                <p>{idx + 1}{idx === 0?  "st" : idx === 1? "nd" : idx === 2? "rd" : "th"}: {roster.kct.owner.display_name}</p>
                             }
                             <p>Team total: {roster.teamTotal}</p>
                             <img alt="avatar" src={
                                 `https://sleepercdn.com/avatars/thumbs/${
-                                    roster.owner.avatar
+                                    roster.kct.owner.avatar
                                 }`
                             }/>
-                            <p>QB total: {roster.qb.total}</p>
+                            <p>QB rank:{qbRankings(roster)} - {roster.kct.qb.total}</p>
                             {
-                                roster.qb.players.map((player, i) =>
+                                roster.kct.qb.players.map((player, i) =>
                                 <div key={i}>
-                                    <p>{player.player}</p>
+                                    <p>{player.position} {player.player}</p>
+                                    <p>{player.team}</p>
+                                    <p>age: {player.age}</p>
+                                    <p>value: {player.rating}</p>
                                 </div>
                                 )
                             }
