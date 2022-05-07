@@ -131,34 +131,36 @@ export default function DynastyRanker(props) {
             {
                 rosters.teamRank.map((roster, idx) => 
                     <div key={idx}>
-                    {
-                        roster.kct.owner.team_name ?
-                        <p>{roster.rank}
-                        {
-                            roster.rank === 1? "st" : 
-                            roster.rank === 2? "nd" : 
-                            roster.rank === 3? "rd" : "th"
-                        }: {roster.kct.owner.team_name}
-                        </p>
-                        :
-                        <p>{roster.rank}
-                        {
-                            roster.rank === 1?  "st" : 
-                            roster.rank === 2? "nd" : 
-                            roster.rank === 3? "rd" : "th"
-                        }: {roster.kct.owner.display_name}</p>
-                    }
                         <div className="">
+                        {
+                            roster.kct.owner.team_name ?
+                                <p>{roster.rank}
+                                {
+                                    roster.rank === 1? "st" : 
+                                    roster.rank === 2? "nd" : 
+                                    roster.rank === 3? "rd" : "th"
+                                }: {roster.kct.owner.team_name}
+                                </p>
+                            :
+                                <p>{roster.rank}
+                                {
+                                    roster.rank === 1?  "st" : 
+                                    roster.rank === 2? "nd" : 
+                                    roster.rank === 3? "rd" : "th"
+                                }: {roster.kct.owner.display_name}</p>
+                        }
                             <p>Team total: {roster.kct.teamTotal}</p>
                             <img alt="avatar" src={
                                 `https://sleepercdn.com/avatars/thumbs/${
                                     roster.kct.owner.avatar
                                 }`
                             }/>
+                            {/* find avg age of the team */}
                         </div>
                         <div className="">
                             <div className="d-flex justify-content-between">
                                 <p>QB rank: {qbRankings(roster)} - {roster.kct.qb.total}</p>
+                                {/* find avg age per position */}
                                 {
                                     qbArrow ?
                                         <Icon
@@ -203,6 +205,7 @@ export default function DynastyRanker(props) {
                                                 </div>
                                                 <div className="col-md-1 d-flex justify-content-center">
                                                     <p>age: {player.age}</p>
+                                                    {/* Display breakout indicator */}
                                                 </div>
                                                 <div className="col-md-1 d-flex justify-content-center">
                                                     <p>value: {player.rating}</p>
