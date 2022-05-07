@@ -5,12 +5,36 @@ export default function DynastyRanker(props) {
     const isLoading = props.isLoading
     let rosters = props.rosters
 
-    const [show, setShow] = useState(true)
-    const [arrow, setArrow] = useState(true)
+    const [showQBs, setShowQBs] = useState(false)
+    const [qbArrow, setQbArrow] = useState(true)
     
-    const showMore = () => {
-        setShow(!show)
-        setArrow(!arrow)
+    const showMoreQBs = () => {
+        setShowQBs(!showQBs)
+        setQbArrow(!qbArrow)
+    }
+
+    const [showRBs, setShowRBs] = useState(false)
+    const [rbArrow, setRbArrow] = useState(true)
+    
+    const showMoreRBs = () => {
+        setShowRBs(!showRBs)
+        setRbArrow(!rbArrow)
+    }
+
+    const [showWRs, setShowWRs] = useState(false)
+    const [wrArrow, setWrArrow] = useState(true)
+    
+    const showMoreWRs = () => {
+        setShowWRs(!showWRs)
+        setWrArrow(!wrArrow)
+    }
+
+    const [showTEs, setShowTEs] = useState(false)
+    const [teArrow, setTeArrow] = useState(true)
+    
+    const showMoreTEs = () => {
+        setShowTEs(!showTEs)
+        setTeArrow(!teArrow)
     }
 
     function qbRankings (roster) {
@@ -77,10 +101,25 @@ export default function DynastyRanker(props) {
         return rank
     }
 
-    function getTopQb(display_name){
+    function getTopQB(display_name){
         let foundTeam = rosters.teamRank.find(roster => roster.kct.owner.display_name === display_name)
         let topQB = foundTeam.kct.qb.players[0]
         return topQB
+    }
+    function getTopRB(display_name){
+        let foundTeam = rosters.teamRank.find(roster => roster.kct.owner.display_name === display_name)
+        let topRB = foundTeam.kct.rb.players[0]
+        return topRB
+    }
+    function getTopWR(display_name){
+        let foundTeam = rosters.teamRank.find(roster => roster.kct.owner.display_name === display_name)
+        let topWR = foundTeam.kct.wr.players[0]
+        return topWR
+    }
+    function getTopTE(display_name){
+        let foundTeam = rosters.teamRank.find(roster => roster.kct.owner.display_name === display_name)
+        let topTE = foundTeam.kct.te.players[0]
+        return topTE
     }
     
 
@@ -121,10 +160,10 @@ export default function DynastyRanker(props) {
                             <div className="d-flex justify-content-between">
                                 <p>QB rank: {qbRankings(roster)} - {roster.kct.qb.total}</p>
                                 {
-                                    arrow ?
+                                    qbArrow ?
                                         <Icon
                                             icon='akar-icons:circle-chevron-down'
-                                            onClick={showMore}
+                                            onClick={showMoreQBs}
                                             style={{
                                                 fontSize:'1.5rem',
                                                 marginRight:'1rem'
@@ -132,7 +171,7 @@ export default function DynastyRanker(props) {
                                         />
                                     :
                                         <Icon
-                                            onClick={showMore}
+                                            onClick={showMoreQBs}
                                             icon='akar-icons:circle-chevron-up'
                                             style={{
                                                 fontSize:'1.5rem',
@@ -142,7 +181,7 @@ export default function DynastyRanker(props) {
                                 }
                             </div>
                             {
-                                show ?
+                                showQBs ?
                                     <div>
                                     {
                                         roster.kct.qb.players.map((player, i) =>
@@ -176,65 +215,275 @@ export default function DynastyRanker(props) {
                                     <div>
                                         <div className="d-flex align-items-center">
                                             <div className="col-md-1 d-flex justify-content-end">
-                                                <p>{getTopQb(roster.kct.owner.display_name).position}</p>                                                </div>
+                                                <p>{getTopQB(roster.kct.owner.display_name).position}</p>                                                </div>
                                             <div className="col-md-2 d-flex justify-content-center">
                                                 <span className="">
                                                     <img alt="thumb" 
                                                         className="thumb"
                                                         src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                            getTopQb(roster.kct.owner.display_name).player_id}.jpg`}
+                                                            getTopQB(roster.kct.owner.display_name).player_id}.jpg`}
                                                     />
                                                 </span>
                                             </div>
                                             <div className="col-md-1 d-flex justify-content-center">
-                                                <p>{getTopQb(roster.kct.owner.display_name).player} - {getTopQb(roster.kct.owner.display_name).team}</p>
+                                                <p>{getTopQB(roster.kct.owner.display_name).player} - {getTopQB(roster.kct.owner.display_name).team}</p>
                                             </div>
                                             <div className="col-md-1 d-flex justify-content-center">
-                                                <p>age: {getTopQb(roster.kct.owner.display_name).age}</p>
+                                                <p>age: {getTopQB(roster.kct.owner.display_name).age}</p>
                                             </div>
                                             <div className="col-md-1 d-flex justify-content-center">
-                                                <p>value: {getTopQb(roster.kct.owner.display_name).rating}</p>
+                                                <p>value: {getTopQB(roster.kct.owner.display_name).rating}</p>
                                             </div>
                                         </div>
                                     </div>
                             }                          
                         </div>
-                        <p>RB rank: {rbRankings(roster)} - {roster.kct.rb.total}</p>
-                        {
-                            roster.kct.rb.players.map((player, i) =>
-                            <div key={i}>
-                                <img alt="thumb" src={`https://sleepercdn.com/content/nfl/players/thumb/${player.player_id}.jpg`}/>
-                                <p>{player.position} {player.player}</p>
-                                <p>{player.team}</p>
-                                <p>age: {player.age}</p>
-                                <p>value: {player.rating}</p>
+                        <div className="">
+                            <div className="d-flex justify-content-between">
+                                <p>RB rank: {rbRankings(roster)} - {roster.kct.qb.total}</p>
+                            {
+                                rbArrow ?
+                                    <Icon
+                                        icon='akar-icons:circle-chevron-down'
+                                        onClick={showMoreRBs}
+                                        style={{
+                                            fontSize:'1.5rem',
+                                            marginRight:'1rem'
+                                        }}
+                                    />
+                                :
+                                    <Icon
+                                        onClick={showMoreRBs}
+                                        icon='akar-icons:circle-chevron-up'
+                                        style={{
+                                            fontSize:'1.5rem',
+                                            marginRight:'1rem'
+                                        }}
+                                    />
+                            }
                             </div>
-                            )
-                        }
-                        <p>WR rank: {wrRankings(roster)} - {roster.kct.wr.total}</p>
-                        {
-                            roster.kct.wr.players.map((player, i) =>
-                            <div key={i}>
-                                <img alt="thumb" src={`https://sleepercdn.com/content/nfl/players/thumb/${player.player_id}.jpg`}/>
-                                <p>{player.position} {player.player}</p>
-                                <p>{player.team}</p>
-                                <p>age: {player.age}</p>
-                                <p>value: {player.rating}</p>
+                            {
+                                showRBs ?
+                                    <div>
+                                    {
+                                        roster.kct.rb.players.map((player, i) =>
+                                            <div key={i} className="d-flex align-items-center">
+                                                <div className="col-md-1 d-flex justify-content-end">
+                                                    <p>{player.position}</p>
+                                                </div>
+                                                <div className="col-md-2 d-flex justify-content-center">
+                                                    <span className="">
+                                                        <img alt="thumb" 
+                                                            className="thumb"
+                                                            src={`https://sleepercdn.com/content/nfl/players/thumb/${
+                                                                player.player_id}.jpg`}
+                                                        />
+                                                    </span>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>{player.player} - {player.team}</p>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>age: {player.age}</p>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>value: {player.rating}</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    </div>
+                                :
+                                    <div>
+                                        <div className="d-flex align-items-center">
+                                            <div className="col-md-1 d-flex justify-content-end">
+                                                <p>{getTopRB(roster.kct.owner.display_name).position}</p>                                                </div>
+                                            <div className="col-md-2 d-flex justify-content-center">
+                                                <span className="">
+                                                    <img alt="thumb" 
+                                                        className="thumb"
+                                                        src={`https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            getTopRB(roster.kct.owner.display_name).player_id}.jpg`}
+                                                    />
+                                                </span>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>{getTopRB(roster.kct.owner.display_name).player} - {getTopRB(roster.kct.owner.display_name).team}</p>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>age: {getTopRB(roster.kct.owner.display_name).age}</p>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>value: {getTopRB(roster.kct.owner.display_name).rating}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            }                          
+                        </div>
+                        <div className="">
+                            <div className="d-flex justify-content-between">
+                                <p>WR rank: {wrRankings(roster)} - {roster.kct.qb.total}</p>
+                            {
+                                rbArrow ?
+                                    <Icon
+                                        icon='akar-icons:circle-chevron-down'
+                                        onClick={showMoreWRs}
+                                        style={{
+                                            fontSize:'1.5rem',
+                                            marginRight:'1rem'
+                                        }}
+                                    />
+                                :
+                                    <Icon
+                                        onClick={showMoreWRs}
+                                        icon='akar-icons:circle-chevron-up'
+                                        style={{
+                                            fontSize:'1.5rem',
+                                            marginRight:'1rem'
+                                        }}
+                                    />
+                            }
                             </div>
-                            )
-                        }
-                            <p>TE rank: {teRankings(roster)} - {roster.kct.te.total}</p>
-                        {
-                            roster.kct.te.players.map((player, i) =>
-                            <div key={i}>
-                                <img alt="thumb" src={`https://sleepercdn.com/content/nfl/players/thumb/${player.player_id}.jpg`}/>
-                                <p>{player.position} {player.player}</p>
-                                <p>{player.team}</p>
-                                <p>age: {player.age}</p>
-                                <p>value: {player.rating}</p>
+                            {
+                                showWRs ?
+                                    <div>
+                                    {
+                                        roster.kct.wr.players.map((player, i) =>
+                                            <div key={i} className="d-flex align-items-center">
+                                                <div className="col-md-1 d-flex justify-content-end">
+                                                    <p>{player.position}</p>
+                                                </div>
+                                                <div className="col-md-2 d-flex justify-content-center">
+                                                    <span className="">
+                                                        <img alt="thumb" 
+                                                            className="thumb"
+                                                            src={`https://sleepercdn.com/content/nfl/players/thumb/${
+                                                                player.player_id}.jpg`}
+                                                        />
+                                                    </span>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>{player.player} - {player.team}</p>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>age: {player.age}</p>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>value: {player.rating}</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    </div>
+                                :
+                                    <div>
+                                        <div className="d-flex align-items-center">
+                                            <div className="col-md-1 d-flex justify-content-end">
+                                                <p>{getTopWR(roster.kct.owner.display_name).position}</p>                                                </div>
+                                            <div className="col-md-2 d-flex justify-content-center">
+                                                <span className="">
+                                                    <img alt="thumb" 
+                                                        className="thumb"
+                                                        src={`https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            getTopWR(roster.kct.owner.display_name).player_id}.jpg`}
+                                                    />
+                                                </span>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>{getTopWR(roster.kct.owner.display_name).player} - {getTopWR(roster.kct.owner.display_name).team}</p>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>age: {getTopWR(roster.kct.owner.display_name).age}</p>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>value: {getTopWR(roster.kct.owner.display_name).rating}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            }                          
+                        </div>
+                        <div className="">
+                            <div className="d-flex justify-content-between">
+                                <p>TE rank: {teRankings(roster)} - {roster.kct.te.total}</p>
+                            {
+                                teArrow ?
+                                    <Icon
+                                        icon='akar-icons:circle-chevron-down'
+                                        onClick={showMoreTEs}
+                                        style={{
+                                            fontSize:'1.5rem',
+                                            marginRight:'1rem'
+                                        }}
+                                    />
+                                :
+                                    <Icon
+                                        onClick={showMoreTEs}
+                                        icon='akar-icons:circle-chevron-up'
+                                        style={{
+                                            fontSize:'1.5rem',
+                                            marginRight:'1rem'
+                                        }}
+                                    />
+                            }
                             </div>
-                            )
-                        }
+                            {
+                                showTEs ?
+                                    <div>
+                                    {
+                                        roster.kct.te.players.map((player, i) =>
+                                            <div key={i} className="d-flex align-items-center">
+                                                <div className="col-md-1 d-flex justify-content-end">
+                                                    <p>{player.position}</p>
+                                                </div>
+                                                <div className="col-md-2 d-flex justify-content-center">
+                                                    <span className="">
+                                                        <img alt="thumb" 
+                                                            className="thumb"
+                                                            src={`https://sleepercdn.com/content/nfl/players/thumb/${
+                                                                player.player_id}.jpg`}
+                                                        />
+                                                    </span>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>{player.player} - {player.team}</p>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>age: {player.age}</p>
+                                                </div>
+                                                <div className="col-md-1 d-flex justify-content-center">
+                                                    <p>value: {player.rating}</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    </div>
+                                :
+                                    <div>
+                                        <div className="d-flex align-items-center">
+                                            <div className="col-md-1 d-flex justify-content-end">
+                                                <p>{getTopTE(roster.kct.owner.display_name).position}</p>                                                </div>
+                                            <div className="col-md-2 d-flex justify-content-center">
+                                                <span className="">
+                                                    <img alt="thumb" 
+                                                        className="thumb"
+                                                        src={`https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            getTopTE(roster.kct.owner.display_name).player_id}.jpg`}
+                                                    />
+                                                </span>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>{getTopTE(roster.kct.owner.display_name).player} - {getTopTE(roster.kct.owner.display_name).team}</p>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>age: {getTopTE(roster.kct.owner.display_name).age}</p>
+                                            </div>
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p>value: {getTopTE(roster.kct.owner.display_name).rating}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            }                          
+                        </div>
                     </div>
                 )
             }
