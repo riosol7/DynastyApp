@@ -135,31 +135,42 @@ export default function DynastyRanker(props) {
             {
                 rosters.teamRank.map((roster, idx) => 
                     <div key={idx}>
-                        <div className="">
-                        {
-                            roster.kct.owner.team_name ?
-                                <p>{roster.rank}
+                        <div className="d-flex">
+                            <div className="">
+                                <img alt="avatar" src={
+                                    `https://sleepercdn.com/avatars/thumbs/${
+                                        roster.kct.owner.avatar
+                                    }`
+                                }/>
+                            </div>
+                            <div className="">
+                            {
+                                roster.kct.owner.team_name ?
+                                    <p>{roster.rank}
+                                    {
+                                        roster.rank === 1? "st" : 
+                                        roster.rank === 2? "nd" : 
+                                        roster.rank === 3? "rd" : "th"
+                                    }: {roster.kct.owner.team_name}
+                                    </p>
+                                :
+                                    <p>{roster.rank}
+                                    {
+                                        roster.rank === 1?  "st" : 
+                                        roster.rank === 2? "nd" : 
+                                        roster.rank === 3? "rd" : "th"
+                                    }: {roster.kct.owner.display_name}</p>
+                            }
+                                <p>Team total: {roster.kct.teamTotal}</p>
+                                <p> avg: 
                                 {
-                                    roster.rank === 1? "st" : 
-                                    roster.rank === 2? "nd" : 
-                                    roster.rank === 3? "rd" : "th"
-                                }: {roster.kct.owner.team_name}
+                                roundToHundredth((roundToHundredth(roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length) +
+                                    roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length) +
+                                    roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length) +
+                                    roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length))/4)
+                                }
                                 </p>
-                            :
-                                <p>{roster.rank}
-                                {
-                                    roster.rank === 1?  "st" : 
-                                    roster.rank === 2? "nd" : 
-                                    roster.rank === 3? "rd" : "th"
-                                }: {roster.kct.owner.display_name}</p>
-                        }
-                            <p>Team total: {roster.kct.teamTotal}</p>
-                            <img alt="avatar" src={
-                                `https://sleepercdn.com/avatars/thumbs/${
-                                    roster.kct.owner.avatar
-                                }`
-                            }/>
-                            {/* find avg age of the team */}
+                            </div>
                         </div>
                         <div className="">
                             <div className="d-flex justify-content-between">
