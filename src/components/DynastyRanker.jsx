@@ -5,6 +5,10 @@ export default function DynastyRanker(props) {
     const isLoading = props.isLoading
     let rosters = props.rosters
 
+     const roundToHundredth = (value) => {
+        return Number(value.toFixed(2));
+    }
+
     const [showQBs, setShowQBs] = useState(false)
     const [qbArrow, setQbArrow] = useState(true)
     
@@ -160,7 +164,7 @@ export default function DynastyRanker(props) {
                         <div className="">
                             <div className="d-flex justify-content-between">
                                 <p>QB rank: {qbRankings(roster)} - {roster.kct.qb.total}</p>
-                                {/* find avg age per position */}
+                                <p>avg: {roundToHundredth(roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length)}</p>
                                 {
                                     qbArrow ?
                                         <Icon
@@ -244,6 +248,7 @@ export default function DynastyRanker(props) {
                         <div className="">
                             <div className="d-flex justify-content-between">
                                 <p>RB rank: {rbRankings(roster)} - {roster.kct.qb.total}</p>
+                                <p>avg: {roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length)}</p>
                             {
                                 rbArrow ?
                                     <Icon
@@ -326,6 +331,7 @@ export default function DynastyRanker(props) {
                         <div className="">
                             <div className="d-flex justify-content-between">
                                 <p>WR rank: {wrRankings(roster)} - {roster.kct.qb.total}</p>
+                                <p>avg: {roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length)}</p>
                             {
                                 rbArrow ?
                                     <Icon
@@ -408,7 +414,8 @@ export default function DynastyRanker(props) {
                         <div className="">
                             <div className="d-flex justify-content-between">
                                 <p>TE rank: {teRankings(roster)} - {roster.kct.te.total}</p>
-                            {
+                                <p>avg: {roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length)}</p>
+                            {  
                                 teArrow ?
                                     <Icon
                                         icon='akar-icons:circle-chevron-down'
