@@ -21,3 +21,39 @@
     border-radius: 25%;
     /* border: 1px solid black; */
 }
+
+.qbHUD{
+    background-color: #f8296d;
+    color: black;
+    border-radius: 25%;
+    padding:8px;
+    font-size: 14px;    
+    text-align: center;
+}
+
+.rbHUD{
+    background-color: #36ceb8;
+    color: black;
+    border-radius: 25%;
+    padding:8px;
+    font-size: 14px;    
+    text-align: center;
+}
+
+.wrHUD{
+    background-color: #58a7ff;
+    color: black;
+    border-radius: 25%;
+    padding:8px;
+    font-size: 14px;    
+    text-align: center;
+}
+
+.teHUD{
+    background-color: #faae58;
+    color: black;
+    border-radius: 25%;
+    padding:8px;
+    font-size: 14px;    
+    text-align: center;
+}

@@ -24,11 +24,18 @@ export default function Home () {
     }
 
     return (
-        <div className="">
-            <DynastyRanker 
-                isLoading={isLoading}
-                rosters={rosters}
-            />
-        </div>
+        <>
+            <div className="d-flex">
+                <div className="col-md-2">
+                    <p>Hello</p>
+                </div>
+                <div className="col-md-10">
+                    <DynastyRanker 
+                        isLoading={isLoading}
+                        rosters={rosters}
+                    />
+                </div>
+            </div>
+        </>
     );
 }

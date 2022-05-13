@@ -11,7 +11,7 @@ export default function DynastyRanker(props) {
 
     const [showQBs, setShowQBs] = useState(false)
     const [qbArrow, setQbArrow] = useState(true)
-    
+
     const showMoreQBs = () => {
         setShowQBs(!showQBs)
         setQbArrow(!qbArrow)
@@ -131,13 +131,13 @@ export default function DynastyRanker(props) {
         <>
         {
             isLoading ? <p>Loading </p> :
-            <div>
+            <div className="d-flex flex-wrap">
             {
                 rosters.teamRank.map((roster, idx) => 
                     <div key={idx}>
                         <div className="d-flex">
                             <div className="">
-                                <img alt="avatar" src={
+                                <img className="rounded-circle" alt="avatar" src={
                                     `https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar
                                     }`
@@ -164,10 +164,10 @@ export default function DynastyRanker(props) {
                                 <p>Team total: {roster.kct.teamTotal}</p>
                                 <p> avg: 
                                 {
-                                    roundToHundredth((roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length) +
+                                    roundToHundredth(roundToHundredth((roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length) +
                                         roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length) +
                                         roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length) +
-                                        roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length)/4
+                                        roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length))/4
                                     )
                                 }
                                 </p>
@@ -175,7 +175,10 @@ export default function DynastyRanker(props) {
                         </div>
                         <div className="">
                             <div className="d-flex justify-content-between">
-                                <p>QB rank: {qbRankings(roster)} - {roster.kct.qb.total}</p>
+                                <p>
+                                    <span className="qbHUD">QB </span> 
+                                    rank: {qbRankings(roster)} - {roster.kct.qb.total}
+                                </p>
                                 <p>avg: {roundToHundredth(roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length)}</p>
                                 {
                                     qbArrow ?
@@ -204,9 +207,9 @@ export default function DynastyRanker(props) {
                                     {
                                         roster.kct.qb.players.map((player, i) =>
                                             <div key={i} className="d-flex align-items-center">
-                                                <div className="col-md-1 d-flex justify-content-end">
+                                                {/* <div className="col-md-1 d-flex justify-content-end">
                                                     <p>{player.position}</p>
-                                                </div>
+                                                </div> */}
                                                 <div className="">
                                                     <div
                                                         className="headShot"
@@ -217,14 +220,12 @@ export default function DynastyRanker(props) {
                                                             <div className="backgroundShot"></div>
                                                     </div> 
                                                 </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
+                                                <div className="">
                                                     <p>{player.player} - {player.team}</p>
-                                                </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
                                                     <p>age: {player.age}</p>
                                                     {/* Display breakout indicator */}
                                                 </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
+                                                <div className="">
                                                     <p>value: {player.rating}</p>
                                                 </div>
                                             </div>
@@ -234,9 +235,9 @@ export default function DynastyRanker(props) {
                                 :
                                     <div>
                                         <div className="d-flex align-items-center">
-                                            <div className="col-md-1 d-flex justify-content-end">
+                                            {/* <div className="">
                                                 <p>{getTopQB(roster.kct.owner.display_name).position}</p>
-                                            </div>
+                                            </div> */}
                                             <div className="">
                                                 <div
                                                     className="headShot"
@@ -247,13 +248,11 @@ export default function DynastyRanker(props) {
                                                         <div className="backgroundShot"></div>
                                                 </div>
                                             </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
+                                            <div className="">
                                                 <p>{getTopQB(roster.kct.owner.display_name).player} - {getTopQB(roster.kct.owner.display_name).team}</p>
-                                            </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
                                                 <p>age: {getTopQB(roster.kct.owner.display_name).age}</p>
                                             </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
+                                            <div className="">
                                                 <p>value: {getTopQB(roster.kct.owner.display_name).rating}</p>
                                             </div>
                                         </div>
@@ -262,7 +261,10 @@ export default function DynastyRanker(props) {
                         </div>
                         <div className="">
                             <div className="d-flex justify-content-between">
-                                <p>RB rank: {rbRankings(roster)} - {roster.kct.qb.total}</p>
+                                <p>
+                                    <span className="rbHUD">RB </span> 
+                                    rank: {rbRankings(roster)} - {roster.kct.rb.total}
+                                </p>
                                 <p>avg: {roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length)}</p>
                             {
                                 rbArrow ?
@@ -291,9 +293,9 @@ export default function DynastyRanker(props) {
                                     {
                                         roster.kct.rb.players.map((player, i) =>
                                             <div key={i} className="d-flex align-items-center">
-                                                <div className="col-md-1 d-flex justify-content-end">
+                                                {/* <div className="col-md-1 d-flex justify-content-end">
                                                     <p>{player.position}</p>
-                                                </div>
+                                                </div> */}
                                                 <div className="">
                                                     <div
                                                         className="headShot"
@@ -304,13 +306,11 @@ export default function DynastyRanker(props) {
                                                             <div className="backgroundShot"></div>
                                                     </div> 
                                                 </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
+                                                <div className="">
                                                     <p>{player.player} - {player.team}</p>
-                                                </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
                                                     <p>age: {player.age}</p>
                                                 </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
+                                                <div className="">
                                                     <p>value: {player.rating}</p>
                                                 </div>
                                             </div>
@@ -320,9 +320,9 @@ export default function DynastyRanker(props) {
                                 :
                                     <div>
                                         <div className="d-flex align-items-center">
-                                            <div className="col-md-1 d-flex justify-content-end">
+                                            {/* <div className="col-md-1 d-flex justify-content-end">
                                                 <p>{getTopRB(roster.kct.owner.display_name).position}</p>                                                
-                                            </div>
+                                            </div> */}
                                             <div className="">
                                                 <div
                                                     className="headShot"
@@ -333,13 +333,11 @@ export default function DynastyRanker(props) {
                                                         <div className="backgroundShot"></div>
                                                 </div>
                                             </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
+                                            <div className="">
                                                 <p>{getTopRB(roster.kct.owner.display_name).player} - {getTopRB(roster.kct.owner.display_name).team}</p>
-                                            </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
                                                 <p>age: {getTopRB(roster.kct.owner.display_name).age}</p>
                                             </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
+                                            <div className="">
                                                 <p>value: {getTopRB(roster.kct.owner.display_name).rating}</p>
                                             </div>
                                         </div>
@@ -348,7 +346,10 @@ export default function DynastyRanker(props) {
                         </div>
                         <div className="">
                             <div className="d-flex justify-content-between">
-                                <p>WR rank: {wrRankings(roster)} - {roster.kct.qb.total}</p>
+                                <p>
+                                    <span className="wrHUD">WR </span> 
+                                    rank: {wrRankings(roster)} - {roster.kct.wr.total}
+                                </p>
                                 <p>avg: {roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length)}</p>
                             {
                                 rbArrow ?
@@ -377,9 +378,9 @@ export default function DynastyRanker(props) {
                                     {
                                         roster.kct.wr.players.map((player, i) =>
                                             <div key={i} className="d-flex align-items-center">
-                                                <div className="col-md-1 d-flex justify-content-end">
+                                                {/* <div className="col-md-1 d-flex justify-content-end">
                                                     <p>{player.position}</p>
-                                                </div>
+                                                </div> */}
                                                 <div className="">
                                                     <div
                                                         className="headShot"
@@ -390,13 +391,11 @@ export default function DynastyRanker(props) {
                                                             <div className="backgroundShot"></div>
                                                     </div> 
                                                 </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
+                                                <div className="">
                                                     <p>{player.player} - {player.team}</p>
-                                                </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
                                                     <p>age: {player.age}</p>
                                                 </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
+                                                <div className="">
                                                     <p>value: {player.rating}</p>
                                                 </div>
                                             </div>
@@ -406,9 +405,9 @@ export default function DynastyRanker(props) {
                                 :
                                     <div>
                                         <div className="d-flex align-items-center">
-                                            <div className="col-md-1 d-flex justify-content-end">
+                                            {/* <div className="col-md-1 d-flex justify-content-end">
                                                 <p>{getTopWR(roster.kct.owner.display_name).position}</p>                                                
-                                            </div>
+                                            </div> */}
                                             <div className="">
                                                 <div
                                                     className="headShot"
@@ -419,13 +418,11 @@ export default function DynastyRanker(props) {
                                                         <div className="backgroundShot"></div>
                                                 </div>
                                             </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
+                                            <div className="">
                                                 <p>{getTopWR(roster.kct.owner.display_name).player} - {getTopWR(roster.kct.owner.display_name).team}</p>
+                                                <p>age: {getTopWR(roster.kct.owner.display_name).age}</p>        
                                             </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
-                                                <p>age: {getTopWR(roster.kct.owner.display_name).age}</p>
-                                            </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
+                                            <div className="">
                                                 <p>value: {getTopWR(roster.kct.owner.display_name).rating}</p>
                                             </div>
                                         </div>
@@ -434,7 +431,10 @@ export default function DynastyRanker(props) {
                         </div>
                         <div className="">
                             <div className="d-flex justify-content-between">
-                                <p>TE rank: {teRankings(roster)} - {roster.kct.te.total}</p>
+                                <p>
+                                    <span className="teHUD">TE </span> 
+                                    rank: {teRankings(roster)} - {roster.kct.te.total}
+                                </p>
                                 <p>avg: {roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length)}</p>
                             {  
                                 teArrow ?
@@ -463,9 +463,9 @@ export default function DynastyRanker(props) {
                                     {
                                         roster.kct.te.players.map((player, i) =>
                                             <div key={i} className="d-flex align-items-center">
-                                                <div className="col-md-1 d-flex justify-content-end">
+                                                {/* <div className="col-md-1 d-flex justify-content-end">
                                                     <p>{player.position}</p>
-                                                </div>
+                                                </div> */}
                                                 <div className="">
                                                     <div
                                                         className="headShot"
@@ -476,13 +476,11 @@ export default function DynastyRanker(props) {
                                                             <div className="backgroundShot"></div>
                                                     </div> 
                                                 </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
+                                                <div className="">
                                                     <p>{player.player} - {player.team}</p>
-                                                </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
                                                     <p>age: {player.age}</p>
                                                 </div>
-                                                <div className="col-md-1 d-flex justify-content-center">
+                                                <div className="">
                                                     <p>value: {player.rating}</p>
                                                 </div>
                                             </div>
@@ -492,9 +490,9 @@ export default function DynastyRanker(props) {
                                 :
                                     <div>
                                         <div className="d-flex align-items-center">
-                                            <div className="col-md-1 d-flex justify-content-end">
+                                            {/* <div className="col-md-1 d-flex justify-content-end">
                                                 <p>{getTopTE(roster.kct.owner.display_name).position}</p>                                                
-                                            </div>
+                                            </div> */}
                                             <div className="">
                                                 <div
                                                     className="headShot"
@@ -505,13 +503,11 @@ export default function DynastyRanker(props) {
                                                         <div className="backgroundShot"></div>
                                                 </div>
                                             </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
+                                            <div className="">
                                                 <p>{getTopTE(roster.kct.owner.display_name).player} - {getTopTE(roster.kct.owner.display_name).team}</p>
-                                            </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
                                                 <p>age: {getTopTE(roster.kct.owner.display_name).age}</p>
                                             </div>
-                                            <div className="col-md-1 d-flex justify-content-center">
+                                            <div className="">
                                                 <p>value: {getTopTE(roster.kct.owner.display_name).rating}</p>
                                             </div>
                                         </div>
