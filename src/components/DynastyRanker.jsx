@@ -156,7 +156,7 @@ export default function DynastyRanker(props) {
                                 :
                                     <p>{roster.rank}
                                     {
-                                        roster.rank === 1?  "st" : 
+                                        roster.rank === 1? "st" : 
                                         roster.rank === 2? "nd" : 
                                         roster.rank === 3? "rd" : "th"
                                     }: {roster.kct.owner.display_name}</p>
@@ -164,10 +164,11 @@ export default function DynastyRanker(props) {
                                 <p>Team total: {roster.kct.teamTotal}</p>
                                 <p> avg: 
                                 {
-                                roundToHundredth((roundToHundredth(roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length) +
-                                    roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length) +
-                                    roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length) +
-                                    roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length))/4)
+                                    roundToHundredth((roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length) +
+                                        roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length) +
+                                        roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length) +
+                                        roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length)/4
+                                    )
                                 }
                                 </p>
                             </div>
@@ -206,14 +207,15 @@ export default function DynastyRanker(props) {
                                                 <div className="col-md-1 d-flex justify-content-end">
                                                     <p>{player.position}</p>
                                                 </div>
-                                                <div className="col-md-2 d-flex justify-content-center">
-                                                    <span className="">
-                                                        <img alt="thumb" 
-                                                            className="thumb"
-                                                            src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                                player.player_id}.jpg`}
-                                                        />
-                                                    </span>
+                                                <div className="">
+                                                    <div
+                                                        className="headShot"
+                                                        style={{
+                                                            backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                                player.player_id}.jpg)`,
+                                                        }}>
+                                                            <div className="backgroundShot"></div>
+                                                    </div> 
                                                 </div>
                                                 <div className="col-md-1 d-flex justify-content-center">
                                                     <p>{player.player} - {player.team}</p>
@@ -233,15 +235,17 @@ export default function DynastyRanker(props) {
                                     <div>
                                         <div className="d-flex align-items-center">
                                             <div className="col-md-1 d-flex justify-content-end">
-                                                <p>{getTopQB(roster.kct.owner.display_name).position}</p>                                                </div>
-                                            <div className="col-md-2 d-flex justify-content-center">
-                                                <span className="">
-                                                    <img alt="thumb" 
-                                                        className="thumb"
-                                                        src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                            getTopQB(roster.kct.owner.display_name).player_id}.jpg`}
-                                                    />
-                                                </span>
+                                                <p>{getTopQB(roster.kct.owner.display_name).position}</p>
+                                            </div>
+                                            <div className="">
+                                                <div
+                                                    className="headShot"
+                                                    style={{
+                                                        backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            getTopQB(roster.kct.owner.display_name).player_id}.jpg)`,
+                                                    }}>
+                                                        <div className="backgroundShot"></div>
+                                                </div>
                                             </div>
                                             <div className="col-md-1 d-flex justify-content-center">
                                                 <p>{getTopQB(roster.kct.owner.display_name).player} - {getTopQB(roster.kct.owner.display_name).team}</p>
@@ -290,14 +294,15 @@ export default function DynastyRanker(props) {
                                                 <div className="col-md-1 d-flex justify-content-end">
                                                     <p>{player.position}</p>
                                                 </div>
-                                                <div className="col-md-2 d-flex justify-content-center">
-                                                    <span className="">
-                                                        <img alt="thumb" 
-                                                            className="thumb"
-                                                            src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                                player.player_id}.jpg`}
-                                                        />
-                                                    </span>
+                                                <div className="">
+                                                    <div
+                                                        className="headShot"
+                                                        style={{
+                                                            backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                                player.player_id}.jpg)`,
+                                                        }}>
+                                                            <div className="backgroundShot"></div>
+                                                    </div> 
                                                 </div>
                                                 <div className="col-md-1 d-flex justify-content-center">
                                                     <p>{player.player} - {player.team}</p>
@@ -316,15 +321,17 @@ export default function DynastyRanker(props) {
                                     <div>
                                         <div className="d-flex align-items-center">
                                             <div className="col-md-1 d-flex justify-content-end">
-                                                <p>{getTopRB(roster.kct.owner.display_name).position}</p>                                                </div>
-                                            <div className="col-md-2 d-flex justify-content-center">
-                                                <span className="">
-                                                    <img alt="thumb" 
-                                                        className="thumb"
-                                                        src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                            getTopRB(roster.kct.owner.display_name).player_id}.jpg`}
-                                                    />
-                                                </span>
+                                                <p>{getTopRB(roster.kct.owner.display_name).position}</p>                                                
+                                            </div>
+                                            <div className="">
+                                                <div
+                                                    className="headShot"
+                                                    style={{
+                                                        backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            getTopRB(roster.kct.owner.display_name).player_id}.jpg)`,
+                                                    }}>
+                                                        <div className="backgroundShot"></div>
+                                                </div>
                                             </div>
                                             <div className="col-md-1 d-flex justify-content-center">
                                                 <p>{getTopRB(roster.kct.owner.display_name).player} - {getTopRB(roster.kct.owner.display_name).team}</p>
@@ -373,14 +380,15 @@ export default function DynastyRanker(props) {
                                                 <div className="col-md-1 d-flex justify-content-end">
                                                     <p>{player.position}</p>
                                                 </div>
-                                                <div className="col-md-2 d-flex justify-content-center">
-                                                    <span className="">
-                                                        <img alt="thumb" 
-                                                            className="thumb"
-                                                            src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                                player.player_id}.jpg`}
-                                                        />
-                                                    </span>
+                                                <div className="">
+                                                    <div
+                                                        className="headShot"
+                                                        style={{
+                                                            backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                                player.player_id}.jpg)`,
+                                                        }}>
+                                                            <div className="backgroundShot"></div>
+                                                    </div> 
                                                 </div>
                                                 <div className="col-md-1 d-flex justify-content-center">
                                                     <p>{player.player} - {player.team}</p>
@@ -399,15 +407,17 @@ export default function DynastyRanker(props) {
                                     <div>
                                         <div className="d-flex align-items-center">
                                             <div className="col-md-1 d-flex justify-content-end">
-                                                <p>{getTopWR(roster.kct.owner.display_name).position}</p>                                                </div>
-                                            <div className="col-md-2 d-flex justify-content-center">
-                                                <span className="">
-                                                    <img alt="thumb" 
-                                                        className="thumb"
-                                                        src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                            getTopWR(roster.kct.owner.display_name).player_id}.jpg`}
-                                                    />
-                                                </span>
+                                                <p>{getTopWR(roster.kct.owner.display_name).position}</p>                                                
+                                            </div>
+                                            <div className="">
+                                                <div
+                                                    className="headShot"
+                                                    style={{
+                                                        backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            getTopWR(roster.kct.owner.display_name).player_id}.jpg)`,
+                                                    }}>
+                                                        <div className="backgroundShot"></div>
+                                                </div>
                                             </div>
                                             <div className="col-md-1 d-flex justify-content-center">
                                                 <p>{getTopWR(roster.kct.owner.display_name).player} - {getTopWR(roster.kct.owner.display_name).team}</p>
@@ -456,14 +466,15 @@ export default function DynastyRanker(props) {
                                                 <div className="col-md-1 d-flex justify-content-end">
                                                     <p>{player.position}</p>
                                                 </div>
-                                                <div className="col-md-2 d-flex justify-content-center">
-                                                    <span className="">
-                                                        <img alt="thumb" 
-                                                            className="thumb"
-                                                            src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                                player.player_id}.jpg`}
-                                                        />
-                                                    </span>
+                                                <div className="">
+                                                    <div
+                                                        className="headShot"
+                                                        style={{
+                                                            backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                                player.player_id}.jpg)`,
+                                                        }}>
+                                                            <div className="backgroundShot"></div>
+                                                    </div> 
                                                 </div>
                                                 <div className="col-md-1 d-flex justify-content-center">
                                                     <p>{player.player} - {player.team}</p>
@@ -482,15 +493,17 @@ export default function DynastyRanker(props) {
                                     <div>
                                         <div className="d-flex align-items-center">
                                             <div className="col-md-1 d-flex justify-content-end">
-                                                <p>{getTopTE(roster.kct.owner.display_name).position}</p>                                                </div>
-                                            <div className="col-md-2 d-flex justify-content-center">
-                                                <span className="">
-                                                    <img alt="thumb" 
-                                                        className="thumb"
-                                                        src={`https://sleepercdn.com/content/nfl/players/thumb/${
-                                                            getTopTE(roster.kct.owner.display_name).player_id}.jpg`}
-                                                    />
-                                                </span>
+                                                <p>{getTopTE(roster.kct.owner.display_name).position}</p>                                                
+                                            </div>
+                                            <div className="">
+                                                <div
+                                                    className="headShot"
+                                                    style={{
+                                                        backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            getTopTE(roster.kct.owner.display_name).player_id}.jpg)`,
+                                                    }}>
+                                                        <div className="backgroundShot"></div>
+                                                </div>
                                             </div>
                                             <div className="col-md-1 d-flex justify-content-center">
                                                 <p>{getTopTE(roster.kct.owner.display_name).player} - {getTopTE(roster.kct.owner.display_name).team}</p>
