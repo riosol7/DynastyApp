@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react"
-import DynastyRankings from "../components/DynastyRankings"
+import React, { useEffect, useState } from "react";
+import DynastyRankings from "../components/DynastyRankings";
+import TopPlayers from "../components/TopPlayers";
 // import DynastyRanker from "../components/DynastyRanker"
 
 export default function Home () {
@@ -34,6 +35,12 @@ export default function Home () {
                 {/* Dashboard */}
                 <div className="p-2">
                     <DynastyRankings
+                        isLoading={isLoading}
+                        rosters={rosters}
+                    />
+                </div>
+                <div className="p-2">
+                    <TopPlayers
                         isLoading={isLoading}
                         rosters={rosters}
                     />
