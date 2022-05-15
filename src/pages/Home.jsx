@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import DynastyRanker from "../components/DynastyRanker"
+import DynastyRankings from "../components/DynastyRankings"
+// import DynastyRanker from "../components/DynastyRanker"
 
 export default function Home () {
     const [isLoading, setIsLoading] = useState(true)
@@ -26,15 +27,23 @@ export default function Home () {
     return (
         <>
             <div className="d-flex">
-                <div className="col-md-2">
+                {/* Menu */}
+                <div className="p-2">
                     <p>Hello</p>
                 </div>
-                <div className="col-md-10">
-                    <DynastyRanker 
+                {/* Dashboard */}
+                <div className="p-2">
+                    <DynastyRankings
                         isLoading={isLoading}
                         rosters={rosters}
                     />
                 </div>
+                {/* <div className="col-md-10">
+                    <DynastyRanker 
+                        isLoading={isLoading}
+                        rosters={rosters}
+                    />
+                </div> */}
             </div>
         </>
     );
