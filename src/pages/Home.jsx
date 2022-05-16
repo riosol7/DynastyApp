@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LeagueWidget from "../components/LeagueWidget";
 import DynastyRankings from "../components/DynastyRankings";
 import MVP from "../components/MVP";
+import Transaction from "../components/Transaction";
 // import DynastyRanker from "../components/DynastyRanker"
 
 export default function Home () {
@@ -12,6 +13,7 @@ export default function Home () {
     useEffect(() => {
         getRosters();
         getLeague();
+        getTransactions();
         // return () => {setRosters([])};
         // eslint-disable-next-line 
     }, [])
@@ -35,6 +37,16 @@ export default function Home () {
             setLeague(parsedLeague)
             console.log(parsedLeague)
         } catch(err) {
+            console.log(err)
+        }
+    }
+
+    const getTransactions = async () => {
+        try{
+            const call = await fetch(`https://api.sleeper.app/v1/league/${process.env.REACT_APP_LEAGUE_ID}/transactions/1`)
+            const parsedTransactions = await call.json()
+            console.log(parsedTransactions)
+        } catch (err) {
             console.log(err)
         }
     }
@@ -64,6 +76,12 @@ export default function Home () {
                     <MVP
                         isLoading={isLoading}
                         rosters={rosters}
+                    />
+                </div>
+                <div className="p-2">
+                    <Transaction
+                        isLoading={isLoading}
+                        // rosters={rosters}
                     />
                 </div>
                 {/* <div className="col-md-10">

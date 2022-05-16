@@ -50,4 +50,4 @@ const playerSchema = new mongoose.Schema({
     depth_chart_position: {type: String, default: null},
 })
 
-module.exports = mongoose.model("Players", playerSchema);
+module.exports = mongoose.model("Player", playerSchema);

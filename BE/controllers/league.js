@@ -1,5 +1,8 @@
 const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
 const leagueController = require("express").Router({ mergeParams: true });
+const Owner = require("../models/Owner")
+const Player = require("../models/Player")
+const KCT = require("../models/KCT")
 
 leagueController.get("/", async (req, res) => {
     try{
@@ -37,6 +40,40 @@ leagueController.get("/", async (req, res) => {
         }
 
         res.status(200).json(league)
+    } catch (err) {
+        res.status(400).json({
+            error: err.message
+        })
+    }
+})
+
+leagueController.get("/transactions", async (req, res) => {
+    try {
+        const getTransactions = await fetch(`https://api.sleeper.app/v1/league/786065005090189312/transactions/1`)
+        const parsedTransactions = await getTransactions.json()
+
+        const filtered = {
+            user_id:1, 
+            metadata:{
+                team_name:1,
+                avatar:1
+            },
+            league_id:1,
+            display_name:1,
+            avatar:1,
+            roster_id:1
+        }
+
+        let mappedTransactions = parsedTransactions.map(async transaction => {
+            let foundOwners = await Owner.find({"roster_id": transaction.roster_ids}, filtered)
+            return {
+                ...transaction,
+                roster_ids: foundOwners
+            }    
+        })
+        const promise = await Promise.all(mappedTransactions)
+        res.status(200).json(promise)
+
     } catch (err) {
         res.status(400).json({
             error: err.message
