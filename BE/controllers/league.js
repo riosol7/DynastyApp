@@ -49,6 +49,9 @@ leagueController.get("/", async (req, res) => {
 
 leagueController.get("/transactions", async (req, res) => {
     try {
+        const getUsers = await fetch("https://api.sleeper.app/v1/league/786065005090189312/users")
+        const parsedUsers = await getUsers.json()
+    
         const getTransactions = await fetch(`https://api.sleeper.app/v1/league/786065005090189312/transactions/1`)
         const parsedTransactions = await getTransactions.json()
 
@@ -66,9 +69,11 @@ leagueController.get("/transactions", async (req, res) => {
 
         let mappedTransactions = parsedTransactions.map(async transaction => {
             let foundOwners = await Owner.find({"roster_id": transaction.roster_ids}, filtered)
+            let foundUser = parsedUsers.find(user => user.user_id === transaction.creator)
             return {
                 ...transaction,
-                roster_ids: foundOwners
+                roster_ids: foundOwners,
+                creator: foundUser.display_name
             }    
         })
         const promise = await Promise.all(mappedTransactions)
