@@ -59,7 +59,7 @@ export default function MVP(props) {
                                             {getMVP(roster.kct.owner.display_name).position}
                                     </span>
                                 </div>
-                                <p className="m-0 text-center">{getInitials(getMVP(roster.kct.owner.display_name).player)}</p>
+                                <p className="bold m-0 text-center">{getInitials(getMVP(roster.kct.owner.display_name).player)}</p>
                                 <p className="m-0 text-center">{getMVP(roster.kct.owner.display_name).rating}</p>
                             </div>
                         </div>

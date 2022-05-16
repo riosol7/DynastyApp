@@ -29,13 +29,14 @@ const corsOptions = {
 //         CONTROLLERS
 // =============================
 const playerController = require("./controllers/player");
+const leagueController = require("./controllers/league");
 
 app.use(methodOverride("_method"));
 app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/player", playerController);
-
+app.use("/league", leagueController);
 
 app.listen(port, () => {
     console.log(`DynastyDB is running on port ${port}`)

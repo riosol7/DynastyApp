@@ -41,7 +41,7 @@
 
 .rbHUD{
     background-color: #36ceb8;
-    color: whitesmoke;
+    color: black;
     border-radius: 25%;
     border: 1px solid #edf4f6;
     padding:5px;
@@ -63,7 +63,7 @@
 
 .teHUD{
     background-color: #faae58;
-    color: whitesmoke;
+    color: black;
     border-radius: 25%;
     border: 1px solid #edf4f6;
     padding:5px;
@@ -72,9 +72,14 @@
     text-align: center;
 }
 
+.leagueLogo {
+    width: 100%;
+}
+
 .ownerLogo {
     border-radius: 50%;
     width: 29px;
+    box-shadow: 3px 5px 15px rgb(167, 166, 166);
 }
 
 .displayHUD{
@@ -82,4 +87,8 @@
     z-index: 1;
     top: -20px;
     text-align: center;
+}
+
+.bold{
+    font-weight: bold;
 }

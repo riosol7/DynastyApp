@@ -69,9 +69,9 @@ export default function DynastyRankings(props) {
                                     <div className="text-truncate">
                                     {
                                         roster.kct.owner.team_name ?
-                                        <p className="m-0 text-truncate">{roster.kct.owner.team_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                         :
-                                        <p className="m-0 text-truncate">{roster.kct.owner.display_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.display_name}</p>
                                     }
                                     </div>
                                 </div>
@@ -91,9 +91,9 @@ export default function DynastyRankings(props) {
                                     <div className="text-truncate">
                                     {
                                         roster.kct.owner.team_name ?
-                                        <p className="m-0 text-truncate">{roster.kct.owner.team_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                         :
-                                        <p className="m-0 text-truncate">{roster.kct.owner.display_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.display_name}</p>
                                     }
                                     </div>
                                 </div>
@@ -113,9 +113,9 @@ export default function DynastyRankings(props) {
                                     <div className="text-truncate">
                                     {
                                         roster.kct.owner.team_name ?
-                                        <p className="m-0 text-truncate">{roster.kct.owner.team_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                         :
-                                        <p className="m-0 text-truncate">{roster.kct.owner.display_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.display_name}</p>
                                     }
                                     </div>
                                 </div>
@@ -135,9 +135,9 @@ export default function DynastyRankings(props) {
                                     <div className="text-truncate">
                                     {
                                         roster.kct.owner.team_name ?
-                                        <p className="m-0 text-truncate">{roster.kct.owner.team_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                         :
-                                        <p className="m-0 text-truncate">{roster.kct.owner.display_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.display_name}</p>
                                     }
                                     </div>
                                 </div>
@@ -156,9 +156,9 @@ export default function DynastyRankings(props) {
                                     <div className="text-truncate">
                                     {
                                         roster.kct.owner.team_name ?
-                                        <p className="m-0 text-truncate">{roster.kct.owner.team_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                         :
-                                        <p className="m-0 text-truncate">{roster.kct.owner.display_name}</p>
+                                        <p className="m-0 bold text-truncate">{roster.kct.owner.display_name}</p>
                                     }
                                     </div>
                                 </div>
