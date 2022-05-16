@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DynastyRankings from "../components/DynastyRankings";
-import TopPlayers from "../components/TopPlayers";
+import MVP from "../components/MVP";
 // import DynastyRanker from "../components/DynastyRanker"
 
 export default function Home () {
@@ -40,7 +40,7 @@ export default function Home () {
                     />
                 </div>
                 <div className="p-2">
-                    <TopPlayers
+                    <MVP
                         isLoading={isLoading}
                         rosters={rosters}
                     />
