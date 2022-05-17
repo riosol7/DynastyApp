@@ -55,7 +55,7 @@ leagueController.get("/transactions", async (req, res) => {
         const getTransactions = await fetch(`https://api.sleeper.app/v1/league/786065005090189312/transactions/1`)
         const parsedTransactions = await getTransactions.json()
 
-        const filtered = {
+        const ownerFiltered = {
             user_id:1, 
             metadata:{
                 team_name:1,
@@ -67,13 +67,37 @@ leagueController.get("/transactions", async (req, res) => {
             roster_id:1
         }
 
+        const playerFiltered = {
+            age:1, 
+            college:1,
+            fantasy_data_id:1,
+            full_name:1,
+            height:1,
+            number:1,
+            player_id:1,
+            position:1,
+            team:1, 
+            weight:1,
+            years_exp:1
+        }
+
         let mappedTransactions = parsedTransactions.map(async transaction => {
-            let foundOwners = await Owner.find({"roster_id": transaction.roster_ids}, filtered)
+            let foundOwners = await Owner.find({"roster_id": transaction.roster_ids}, ownerFiltered)
             let foundUser = parsedUsers.find(user => user.user_id === transaction.creator)
+           
+            let keys = Object.keys(transaction.adds || {})
+
+            let foundKCT = await KCT.find({"player_id": keys})
+            let foundPlayers = await Player.find({"player_id": keys}, playerFiltered)
+            
             return {
                 ...transaction,
                 roster_ids: foundOwners,
-                creator: foundUser.display_name
+                creator: foundUser.display_name,
+                playerDB: {
+                    playersKCT: foundKCT,
+                    players: foundPlayers
+                }
             }    
         })
         const promise = await Promise.all(mappedTransactions)

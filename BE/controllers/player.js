@@ -42,9 +42,9 @@ playerController.get("/rosters", async (req, res) => {
             }
        
         })
-        const updatedPlayers = await Promise.all(mergeKCT)
+        const updatedKCT = await Promise.all(mergeKCT)
         const cleanDB = await KCT.deleteMany({})
-        const insertKCT = await KCT.insertMany(updatedPlayers)
+        const insertKCT = await KCT.insertMany(updatedKCT)
 
         const filtered = {
             age:1, 
