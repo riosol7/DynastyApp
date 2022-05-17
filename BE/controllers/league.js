@@ -47,12 +47,13 @@ leagueController.get("/", async (req, res) => {
     }
 })
 
-leagueController.get("/transactions", async (req, res) => {
+leagueController.get("/transactions/:round", async (req, res) => {
     try {
+        let round = req.params.round
         const getUsers = await fetch("https://api.sleeper.app/v1/league/786065005090189312/users")
         const parsedUsers = await getUsers.json()
     
-        const getTransactions = await fetch(`https://api.sleeper.app/v1/league/786065005090189312/transactions/1`)
+        const getTransactions = await fetch(`https://api.sleeper.app/v1/league/786065005090189312/transactions/${round}`)
         const parsedTransactions = await getTransactions.json()
 
         const ownerFiltered = {
@@ -85,7 +86,7 @@ leagueController.get("/transactions", async (req, res) => {
             let foundOwners = await Owner.find({"roster_id": transaction.roster_ids}, ownerFiltered)
             let foundUser = parsedUsers.find(user => user.user_id === transaction.creator)
            
-            let keys = Object.keys(transaction.adds || {})
+            let keys = Object.keys(transaction.adds || transaction.drops || {})
 
             let foundKCT = await KCT.find({"player_id": keys})
             let foundPlayers = await Player.find({"player_id": keys}, playerFiltered)

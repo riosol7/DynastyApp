@@ -9,6 +9,7 @@ export default function Home () {
     const [isLoading, setIsLoading] = useState(true)
     const [league, setLeague] = useState({})
     const [rosters, setRosters] = useState([])
+    let round = 1
 
     useEffect(() => {
         getRosters();
@@ -43,7 +44,7 @@ export default function Home () {
 
     const getTransactions = async () => {
         try{
-            const call = await fetch(`https://api.sleeper.app/v1/league/${process.env.REACT_APP_LEAGUE_ID}/transactions/1`)
+            const call = await fetch(`http://localhost:5000/league/transactions/${round}`)
             const parsedTransactions = await call.json()
             console.log(parsedTransactions)
         } catch (err) {
