@@ -132,7 +132,7 @@
 .ownerLogo {
     border-radius: 50%;
     width: 29px;
-    box-shadow: 3px 5px 15px rgb(167, 166, 166);
+    box-shadow: 1px 5px 15px rgb(167, 166, 166);
     background-color: whitesmoke;
 }
 
@@ -146,8 +146,9 @@
 .tradeIcon{
     position: relative;
     z-index: 1;
-    right:122.5px;
-    font-Size: 12px
+    font-Size: 12px;
+    text-align: center;
+    top:4rem
 }
 
 .bold{

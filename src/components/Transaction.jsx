@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
+import TradeModal from './TradeModal'
 
 export default function Transaction(props) {
     const transactions = props.transactions
     const isLoading = props.isLoading
+
+    const [isOpen, setIsOpen] = useState(false)
+    const [transaction, setTransaction] = useState({})
 
     let findPlayer = (activity, players, playerID) => {
         if(activity === "adds") {
@@ -34,6 +38,16 @@ export default function Transaction(props) {
         return  month + "/" + day + "/" + year
     }
 
+    const transactionModal = (data) => {
+        setTransaction(data)
+        setIsOpen(true)
+    }
+
+    const closeModal = () => {
+        setTransaction({})
+        setIsOpen(false)
+    }
+
     return (
         <>
         {
@@ -44,6 +58,7 @@ export default function Transaction(props) {
                         transaction.type === "trade" ?
                         <>
                             <p className="m-0">trade {toDateTime(transaction.created)}</p>
+                            <p className="m-0 tradeIcon">icon</p>    
                             <div className="d-flex align-items-center">
                             {
                                 Object.keys(transaction.adds).map((transactionID, i) => 
@@ -77,8 +92,8 @@ export default function Transaction(props) {
                                             {
                                                 transaction.draft_picks !== [] ?
                                                     transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
-                                                    .map(transaction => 
-                                                        <p className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
+                                                    .map((transaction, i) => 
+                                                        <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
                                                             transaction.round === 1 ?
                                                             "st"
                                                             : transaction.round === 2 ? 
@@ -94,8 +109,23 @@ export default function Transaction(props) {
                                     </div>
                                 )
                             }
-                            <p className="m-0 tradeIcon">icon</p>    
                             </div> 
+                            <div className="d-flex justify-content-center">
+                                <button
+                                    onClick={() => transactionModal(transaction)}
+                                    style={{
+                                        width:"85%",
+                                        borderRadius:"25px",
+                                        paddingTop:".5rem",
+                                        paddingBottom:'.5rem',
+                                        paddingLeft: "14px",
+                                        paddingRight: "14px",
+                                        border:"1px solid black"
+                                    }}
+                                >
+                                    <p className="m-0">view trade</p>
+                                </button>
+                            </div>
                         </>
                         :
                         // adds && drops via waiver/commissioner/free agent
@@ -122,6 +152,14 @@ export default function Transaction(props) {
                     </div>
                 )
         }
+        <TradeModal
+            open={isOpen}
+            onClose={() => closeModal()}
+            transaction={transaction}
+            // findOwner={() => findOwner()}
+            // findPlayer={() => findPlayer()}
+            // getInitials={() => getInitials()}
+        />
         </>
     )
 }
