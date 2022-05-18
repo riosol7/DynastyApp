@@ -28,7 +28,7 @@ export default function Transaction(props) {
     function toDateTime(secs) {
         var t = Number(secs);
         let dateObj = new Date(t);
-        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var month = dateObj.getUTCMonth() + 1;
         var day = dateObj.getUTCDate();
         var year = dateObj.getUTCFullYear();
         return  month + "/" + day + "/" + year
@@ -71,14 +71,14 @@ export default function Transaction(props) {
                                         </div>
                                         <div>
                                             <p className="bold m-0 text-center text-truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
-                                            <p className="m-0 text-center"> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
+                                            <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
                                         </div>
                                         <div>
                                             {
                                                 transaction.draft_picks !== [] ?
                                                     transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
                                                     .map(transaction => 
-                                                        <p className="m-0 text-center">{transaction.season}  {transaction.round}{
+                                                        <p className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
                                                             transaction.round === 1 ?
                                                             "st"
                                                             : transaction.round === 2 ? 
