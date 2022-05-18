@@ -12,6 +12,51 @@
     /* border: 1px solid black; */
 }
 
+.smallHeadShotQB{
+    background-color: whitesmoke;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:90px;
+    height: 56px;
+    width: 56.11px;
+    border-radius: 50%;
+    border: 1px solid #f8296d;
+}
+
+.smallHeadShotRB{
+    background-color: whitesmoke;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:90px;
+    height: 56px;
+    width: 56.11px;
+    border-radius: 50%;
+    border: 1px solid #36ceb8;
+
+}
+
+.smallHeadShotWR{
+    background-color: whitesmoke;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:90px;
+    height: 56px;
+    width: 56.11px;
+    border-radius: 50%;
+    border: 1px solid #58a7ff;
+}
+
+.smallHeadShotTE{
+    background-color: whitesmoke;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:90px;
+    height: 56px;
+    width: 56.11px;
+    border-radius: 50%;
+    border: 1px solid #faae58;
+}
+
 .headShot{
     background-repeat: no-repeat;
     background-position: center;
@@ -25,6 +70,14 @@
     position: relative;
     z-index: 1;
     top: 50px;
+    text-align: right; 
+}
+
+.displayOwnerLogoSM{
+    position: relative;
+    z-index: 1;
+    top: 25px;
+    left: 10px;
     text-align: right; 
 }
 
@@ -80,6 +133,7 @@
     border-radius: 50%;
     width: 29px;
     box-shadow: 3px 5px 15px rgb(167, 166, 166);
+    background-color: whitesmoke;
 }
 
 .displayHUD{
@@ -87,6 +141,13 @@
     z-index: 1;
     top: -20px;
     text-align: center;
+}
+
+.tradeIcon{
+    position: relative;
+    z-index: 1;
+    right:122.5px;
+    font-Size: 12px
 }
 
 .bold{
