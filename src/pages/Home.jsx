@@ -9,6 +9,8 @@ export default function Home () {
     const [isLoading, setIsLoading] = useState(true)
     const [league, setLeague] = useState({})
     const [rosters, setRosters] = useState([])
+    const [transactions, setTransactions] = useState([])
+
     let round = 1
 
     useEffect(() => {
@@ -46,6 +48,7 @@ export default function Home () {
         try{
             const call = await fetch(`http://localhost:5000/league/transactions/${round}`)
             const parsedTransactions = await call.json()
+            setTransactions(parsedTransactions)
             console.log(parsedTransactions)
         } catch (err) {
             console.log(err)
@@ -82,7 +85,7 @@ export default function Home () {
                 <div className="p-2">
                     <Transaction
                         isLoading={isLoading}
-                        // rosters={rosters}
+                        transactions={transactions}
                     />
                 </div>
                 {/* <div className="col-md-10">

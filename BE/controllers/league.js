@@ -86,18 +86,28 @@ leagueController.get("/transactions/:round", async (req, res) => {
             let foundOwners = await Owner.find({"roster_id": transaction.roster_ids}, ownerFiltered)
             let foundUser = parsedUsers.find(user => user.user_id === transaction.creator)
            
-            let keys = Object.keys(transaction.adds || transaction.drops || {})
+            let keys = Object.keys((transaction.adds || {}))
+            let dropKeys = Object.keys(((transaction.drops || {})))
 
-            let foundKCT = await KCT.find({"player_id": keys})
-            let foundPlayers = await Player.find({"player_id": keys}, playerFiltered)
+            let addedKCT = await KCT.find({"player_id":keys})
+            let addedPlayers = await Player.find({"player_id": keys}, playerFiltered)
+
+            let droppedKCT = await KCT.find({"player_id":dropKeys})
+            let droppedPlayers = await Player.find({"player_id":dropKeys}, playerFiltered)
             
             return {
                 ...transaction,
                 roster_ids: foundOwners,
                 creator: foundUser.display_name,
                 playerDB: {
-                    playersKCT: foundKCT,
-                    players: foundPlayers
+                    adds:{
+                        playersKCT: addedKCT,
+                        players: addedPlayers
+                    },
+                    drops:{
+                        playersKCT: droppedKCT,
+                        players: droppedPlayers
+                    }
                 }
             }    
         })
