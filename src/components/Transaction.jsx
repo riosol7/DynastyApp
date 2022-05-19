@@ -12,10 +12,19 @@ export default function Transaction(props) {
         if(activity === "adds") {
             let foundPlayerKCT = players.adds.playersKCT.filter(player => player.player_id === playerID)
             let foundPlayer = players.adds.players.filter(player => player.player_id === playerID)
-            if(foundPlayerKCT === [] || null){
+            
+            if(foundPlayerKCT[0] === undefined || null){
                 return foundPlayer[0]
-            } else
-            return foundPlayerKCT[0]
+            } else {return foundPlayerKCT[0]}
+        
+        } else if(activity === "drops") {
+            let foundPlayerKCT = players.drops.playersKCT.filter(player => player.player_id === playerID)
+            let foundPlayer = players.drops.players.filter(player => player.player_id === playerID)
+            console.log(foundPlayerKCT[0])
+        
+            if(foundPlayerKCT[0] === undefined || null){
+                return foundPlayer[0]
+            } else {return foundPlayerKCT[0]}
         }
     }
 
@@ -137,7 +146,34 @@ export default function Transaction(props) {
                         // only drops
                         transaction.adds === null ? 
                         <>
-                        
+                            <div>
+                            {
+                                Object.keys(transaction.drops).map((transactionID, i) => 
+                                <div key={i} className="container">
+                                    <p>{findPlayer("drops", transaction.playerDB, transactionID).position}</p>
+                                    {/* <div
+                                        className={
+                                            findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
+                                            findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
+                                            findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
+                                            "smallHeadShotTE"
+                                        }
+                                        style={{
+                                            backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,   
+                                        }}>
+                                        <div className="displayOwnerLogoSM">
+                                            <img className="ownerLogo" alt="avatar" src={
+                                                    `https://sleepercdn.com/avatars/thumbs/${
+                                                        findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar
+                                                    }`
+                                            }/>
+                                        </div>    
+                                    </div> */}
+                                </div>
+                                )
+                            }
+                            </div>
                         </>
                         :
                         // only adds
