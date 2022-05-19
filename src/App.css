@@ -92,6 +92,16 @@
     text-align: right; 
 }
 
+.displayOwnerLogoMD{
+    position: relative;
+    z-index: -1;
+    top: 0px;
+    left: 25px;
+    text-align: right; 
+    border-top-left-radius: 80px 80px;
+    border-bottom-left-radius: 80px 80px;
+}
+
 .qbHUD{
     background-color: #f8296d;
     color: whitesmoke;
@@ -147,6 +157,18 @@
     background-color: whitesmoke;
 }
 
+.ownerLogoMD {
+    border-radius:2%;
+    width: 2.5rem;
+    height: 3.5rem;
+    background-size: 4rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-top-left-radius: 15px 15px;
+    border-bottom-left-radius: 15px 15px;
+    border: 1px solid black;
+}
+
 .minusLogo {
     border-radius: 50%;
     width: 25px;
@@ -167,6 +189,7 @@
     text-align: center;
     top:4rem
 }
+
 
 .bold{
     font-weight: bold;

@@ -149,14 +149,23 @@ export default function DynastyRankings(props) {
                         ) 
                     :
                     rosters.teamRank.map((roster, i) => 
-                        <div key={i}>
+                        <div key={i} className="my-2">
                             <div className="d-flex">
                                 <div className="col-md-9 d-flex">
-                                    <p className="px-2">{roster.rank}</p>
-                                    <div className="text-truncate">
+                                    <div className="displayOwnerLogoMD">
+                                        <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
+                                            roster.kct.owner.avatar})`
+                                        }}>
+                                        </div>
+                                    </div>  
+                                    <p className={roster.rank >= 10 ? "m-0 mx-1" : "m-0 mx-2"} style={{color:"white"}}>{roster.rank}</p>
+                                    <div className="text-truncate mx-2 border-bottom">
                                     {
                                         roster.kct.owner.team_name ?
-                                        <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
+                                        <>
+                                            <p className="m-0 bold text-truncate" style={{fontSize:"14px"}}>{roster.kct.owner.team_name}</p>
+                                            <p className="m-0 text-truncate" style={{fontSize:"11.5px"}}>{roster.kct.owner.display_name}</p>
+                                        </>
                                         :
                                         <p className="m-0 bold text-truncate">{roster.kct.owner.display_name}</p>
                                     }

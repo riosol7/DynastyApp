@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import TradeModal from './TradeModal'
+import { Icon } from '@iconify/react';
 
 export default function Transaction(props) {
     const transactions = props.transactions
@@ -68,7 +69,11 @@ export default function Transaction(props) {
                         transaction.type === "trade" ?
                         <div className="p-2">
                             <p className="m-0">trade {toDateTime(transaction.created)}</p>
-                            <p className="m-0 tradeIcon">icon</p>    
+                            <div className="tradeIcon">
+                                <Icon style={{fontSize:"1.5rem"}} icon="gg:arrows-exchange"/>
+                            </div>
+                            {/* <div></div>   
+                            <Icon id="tradeIcon" icon="gg:arrows-exchange"/> */}
                             <div className="d-flex align-items-center">
                             {
                                 Object.keys(transaction.adds).map((transactionID, i) => 
@@ -86,10 +91,8 @@ export default function Transaction(props) {
                                                         findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,   
                                                 }}>
                                                 <div className="displayOwnerLogoSM">
-                                                    <img className="ownerLogo" alt="avatar" src={
-                                                            `https://sleepercdn.com/avatars/thumbs/${
-                                                                findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar
-                                                            }`
+                                                    <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                                        findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
                                                     }/>
                                                 </div>    
                                             </div>
@@ -148,7 +151,7 @@ export default function Transaction(props) {
                         transaction.adds === null ?    
                             Object.keys(transaction.drops).map((transactionID, i) =>
                             <div key={i}>
-                                <p className="m-0">{findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata ? 
+                                <p className="m-0" style={{fontSize:"14.9px"}}>{findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata ? 
                                     findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata.team_name : findOwner(transaction.drops[transactionID], transaction.roster_ids).display_name} released FA
                                 </p> 
                                 <div className="container d-flex p-2">
@@ -161,9 +164,13 @@ export default function Transaction(props) {
                                             findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,
                                     }}>
                                         <div className="displayOwnerLogoSM">
-                                            <img className="minusLogo" alt="avatar" src={
-                                                `https://images.vexels.com/media/users/3/131485/isolated/preview/902382355440866b8484b44952db2301-minus-inside-ring.png`
-                                            }/>
+                                            <Icon icon="ph:user-circle-minus-duotone" style={
+                                            findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
+                                            findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
+                                            findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
+                                            findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
+                                                fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
+                                            }}/>
                                         </div>  
                                     </div>
                                     <div className="px-4">
@@ -192,9 +199,6 @@ export default function Transaction(props) {
             open={isOpen}
             onClose={() => closeModal()}
             transaction={transaction}
-            // findOwner={() => findOwner()}
-            // findPlayer={() => findPlayer()}
-            // getInitials={() => getInitials()}
         />
         </>
     )
