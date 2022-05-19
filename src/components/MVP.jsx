@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function MVP(props) {
     const rosters = props.rosters
-    const isLoading = props.isLoading
+    const loadRosters = props.loadRosters
 
     function getMVP(display_name){
         let foundTeam = rosters.teamRank.find(roster => roster.kct.owner.display_name === display_name)
@@ -26,8 +26,7 @@ export default function MVP(props) {
     return (
         <>
         {
-            isLoading ? <p>Loading </p> :
-        
+            loadRosters ? <p>Loading </p> :
             rosters.teamRank.map((roster, i) => 
                 <div key={i}>
                     <div className="">

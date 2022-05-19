@@ -6,9 +6,12 @@ import Transaction from "../components/Transaction";
 // import DynastyRanker from "../components/DynastyRanker"
 
 export default function Home () {
-    const [isLoading, setIsLoading] = useState(true)
     const [league, setLeague] = useState({})
+    const [loadLeague, setLoadLeague] = useState(true)
+
     const [rosters, setRosters] = useState([])
+    const [loadRosters, setLoadRosters] = useState(true)
+    
     const [transactions, setTransactions] = useState([])
     const [loadTransactions, setLoadTransactions] = useState(true)
 
@@ -28,7 +31,7 @@ export default function Home () {
         const parsedRosters = await call.json()
         setRosters(parsedRosters)
         console.log(parsedRosters)
-        setIsLoading(false)
+        setLoadRosters(false)
       } catch (err) {
         console.log(err)
       }
@@ -40,6 +43,7 @@ export default function Home () {
             const parsedLeague = await call.json()
             setLeague(parsedLeague)
             console.log(parsedLeague)
+            setLoadLeague(false)
         } catch(err) {
             console.log(err)
         }
@@ -68,19 +72,19 @@ export default function Home () {
                 <div className="p-2">
                     <LeagueWidget
                         league={league}
-                        isLoading={isLoading}
+                        loadLeague={loadLeague}
                         rosters={rosters}
                     />
                 </div>
                 <div className="p-2">
                     <DynastyRankings
-                        isLoading={isLoading}
+                        loadRosters={loadRosters}
                         rosters={rosters}
                     />
                 </div>
                 <div className="p-2">
                     <MVP
-                        isLoading={isLoading}
+                        loadRosters={loadRosters}
                         rosters={rosters}
                     />
                 </div>

@@ -27,7 +27,6 @@ const OVERLAY_STYLES = {
 export default function TradeModal(props) {
     if(!props.open) return null 
     const transaction = props.transaction
-    console.log(transaction)
 
     let findPlayer = (activity, players, playerID) => {
         if(activity === "adds") {
@@ -49,8 +48,6 @@ export default function TradeModal(props) {
         var splitName = name.split(" ");
         return splitName[0].charAt(0) + ". " + splitName[1]
     };
-
-
 
     return (
         <>
