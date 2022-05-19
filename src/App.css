@@ -95,8 +95,6 @@
 .displayOwnerLogoMD{
     position: relative;
     z-index: -1;
-    top: 0px;
-    left: 25px;
     text-align: right; 
     border-top-left-radius: 80px 80px;
     border-bottom-left-radius: 80px 80px;

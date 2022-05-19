@@ -154,22 +154,33 @@ export default function DynastyRankings(props) {
                                 <div className="col-md-9 d-flex">
                                     <div className="displayOwnerLogoMD">
                                         <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
-                                            roster.kct.owner.avatar})`
-                                        }}>
+                                            roster.kct.owner.avatar})`}}>
                                         </div>
-                                    </div>  
-                                    <p className={roster.rank >= 10 ? "m-0 mx-1" : "m-0 mx-2"} style={{color:"white"}}>{roster.rank}</p>
-                                    <div className="text-truncate mx-2 border-bottom">
+                                    </div>
+                                    <div className="text-truncate mx-1 border-bottom" style={{width:"100%"}}>
                                     {
                                         roster.kct.owner.team_name ?
                                         <>
-                                            <p className="m-0 bold text-truncate" style={{fontSize:"14px"}}>{roster.kct.owner.team_name}</p>
-                                            <p className="m-0 text-truncate" style={{fontSize:"11.5px"}}>{roster.kct.owner.display_name}</p>
+                                            <div className="d-flex" style={{fontSize:"14px"}}>
+                                                <span className="m-0">{roster.rank}.</span>
+                                                <div className="text-truncate mx-1">
+                                                    <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
+                                                    <p className="m-0 text-truncate" style={{fontSize:"11.5px"}}>{roster.kct.owner.display_name}</p>
+                                                </div> 
+                                            </div>
+                                            {/* <p className="m-0 text-truncate" style={{fontSize:"14px"}}>
+                                                <span>{roster.rank}. </span> 
+                                                <span className="bold">{roster.kct.owner.team_name}</span>
+                                            </p>
+                                            <p className="m-0 text-truncate" style={{fontSize:"11.5px"}}>{roster.kct.owner.display_name}</p> */}
                                         </>
-                                        :
-                                        <p className="m-0 bold text-truncate">{roster.kct.owner.display_name}</p>
+                                        :        
+                                        <p className="m-0 text-truncate" style={{fontSize:"14px"}}>
+                                            <span>{roster.rank}. </span> 
+                                            <span className="bold">{roster.kct.owner.display_name}</span>
+                                        </p>
                                     }
-                                    </div>
+                                    </div> 
                                 </div>
                                 <div className="col-md-3 d-flex justify-content-center">
                                     <p className="m-0">{roster.kct.teamTotal}</p>
