@@ -3,7 +3,7 @@ import TradeModal from './TradeModal'
 
 export default function Transaction(props) {
     const transactions = props.transactions
-    const isLoading = props.isLoading
+    const loadTransactions = props.loadTransactions
 
     const [isOpen, setIsOpen] = useState(false)
     const [transaction, setTransaction] = useState({})
@@ -20,7 +20,6 @@ export default function Transaction(props) {
         } else if(activity === "drops") {
             let foundPlayerKCT = players.drops.playersKCT.filter(player => player.player_id === playerID)
             let foundPlayer = players.drops.players.filter(player => player.player_id === playerID)
-            console.log(foundPlayerKCT[0])
         
             if(foundPlayerKCT[0] === undefined || null){
                 return foundPlayer[0]
@@ -34,8 +33,10 @@ export default function Transaction(props) {
     }
 
     var getInitials = function (name) {
+        if(name !== undefined){
         var splitName = name.split(" ");
         return splitName[0].charAt(0) + ". " + splitName[1]
+        }
     };
 
     function toDateTime(secs) {
@@ -60,12 +61,12 @@ export default function Transaction(props) {
     return (
         <>
         {
-            isLoading ? <p>Loading </p> :
+            loadTransactions ? <p>Loading </p> :
                 transactions.map((transaction, i) => 
-                    <div key={i}>
+                    <div key={i} className="my-2">
                     {
                         transaction.type === "trade" ?
-                        <>
+                        <div className="p-2">
                             <p className="m-0">trade {toDateTime(transaction.created)}</p>
                             <p className="m-0 tradeIcon">icon</p>    
                             <div className="d-flex align-items-center">
@@ -135,7 +136,7 @@ export default function Transaction(props) {
                                     <p className="m-0">view trade</p>
                                 </button>
                             </div>
-                        </>
+                        </div>
                         :
                         // adds && drops via waiver/commissioner/free agent
                         transaction.adds !== null && transaction.drops !== null && transaction.type !== "trade"?
@@ -143,38 +144,37 @@ export default function Transaction(props) {
                             {/* <p>test</p> */}
                         </>
                         :
-                        // only drops
-                        transaction.adds === null ? 
-                        <>
-                            <div>
-                            {
-                                Object.keys(transaction.drops).map((transactionID, i) => 
-                                <div key={i} className="container">
-                                    <p>{findPlayer("drops", transaction.playerDB, transactionID).position}</p>
-                                    {/* <div
-                                        className={
-                                            findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
-                                            findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
-                                            findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
-                                            "smallHeadShotTE"
-                                        }
-                                        style={{
-                                            backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                                findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,   
-                                        }}>
+                        // only drops - FA
+                        transaction.adds === null ?    
+                            Object.keys(transaction.drops).map((transactionID, i) =>
+                            <div key={i}>
+                                <p className="m-0">{findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata ? 
+                                    findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata.team_name : findOwner(transaction.drops[transactionID], transaction.roster_ids).display_name} released FA
+                                </p> 
+                                <div className="container d-flex p-2">
+                                    <div className={
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : "smallHeadShot"
+                                    } style={{ backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                            findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,
+                                    }}>
                                         <div className="displayOwnerLogoSM">
-                                            <img className="ownerLogo" alt="avatar" src={
-                                                    `https://sleepercdn.com/avatars/thumbs/${
-                                                        findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar
-                                                    }`
+                                            <img className="minusLogo" alt="avatar" src={
+                                                `https://images.vexels.com/media/users/3/131485/isolated/preview/902382355440866b8484b44952db2301-minus-inside-ring.png`
                                             }/>
-                                        </div>    
-                                    </div> */}
+                                        </div>  
+                                    </div>
+                                    <div className="px-4">
+                                        <p className="m-0 bold text-center">{getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
+                                        <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
+                                        <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).rating}</p>
+                                    </div>  
                                 </div>
-                                )
-                            }
                             </div>
-                        </>
+                            )
+                        
                         :
                         // only adds
                         transaction.drops === null ?

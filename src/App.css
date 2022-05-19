@@ -57,6 +57,17 @@
     border: 1px solid #faae58;
 }
 
+.smallHeadShot{
+    background-color: whitesmoke;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:90px;
+    height: 56px;
+    width: 56.11px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
 .headShot{
     background-repeat: no-repeat;
     background-position: center;
@@ -133,6 +144,12 @@
     border-radius: 50%;
     width: 29px;
     box-shadow: 1px 5px 15px rgb(167, 166, 166);
+    background-color: whitesmoke;
+}
+
+.minusLogo {
+    border-radius: 50%;
+    width: 25px;
     background-color: whitesmoke;
 }
 

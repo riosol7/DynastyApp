@@ -10,6 +10,7 @@ export default function Home () {
     const [league, setLeague] = useState({})
     const [rosters, setRosters] = useState([])
     const [transactions, setTransactions] = useState([])
+    const [loadTransactions, setLoadTransactions] = useState(true)
 
     let round = 1
 
@@ -49,6 +50,7 @@ export default function Home () {
             const call = await fetch(`http://localhost:5000/league/transactions/${round}`)
             const parsedTransactions = await call.json()
             setTransactions(parsedTransactions)
+            setLoadTransactions(false)
             console.log(parsedTransactions)
         } catch (err) {
             console.log(err)
@@ -84,7 +86,7 @@ export default function Home () {
                 </div>
                 <div className="p-2">
                     <Transaction
-                        isLoading={isLoading}
+                        loadTransactions={loadTransactions}
                         transactions={transactions}
                     />
                 </div>
