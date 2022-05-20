@@ -67,15 +67,16 @@ export default function Transaction(props) {
                     <div key={i} className="my-2">
                     {
                         transaction.type === "trade" ?
-                        <div className="p-2">
-                            <p className="m-0">trade {toDateTime(transaction.created)}</p>
+                        <div className="container">
+                            <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
+                            <p className="m-0" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
                             <div className="tradeIcon">
-                                <Icon style={{fontSize:"1.5rem"}} icon="gg:arrows-exchange"/>
+                                <Icon style={{fontSize:"1.8rem", marginRight:"1.3rem"}} icon="gg:arrows-exchange"/>
                             </div>
                             <div className="d-flex align-items-center">
                             {
                                 Object.keys(transaction.adds).map((transactionID, i) => 
-                                <div key={i} className="p-2 mx-2">
+                                <div key={i} className={i === 1? "mx-4 pb-2": "pb-2"}>
                                     <div className="container">
                                         <div
                                             className={
@@ -96,7 +97,7 @@ export default function Transaction(props) {
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="bold m-0 text-center text-truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
+                                        <p className="bold m-0 text-center truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
                                         <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
                                     </div>
                                     <div>
@@ -125,7 +126,7 @@ export default function Transaction(props) {
                                 <button
                                     onClick={() => transactionModal(transaction)}
                                     style={{
-                                        width:"85%",
+                                        width:"100%",
                                         borderRadius:"25px",
                                         paddingTop:".5rem",
                                         paddingBottom:'.5rem',
@@ -141,54 +142,142 @@ export default function Transaction(props) {
                         :
                         // adds && drops via waiver/commissioner/free agent
                         transaction.adds !== null && transaction.drops !== null && transaction.type !== "trade"?
-                        <>
-                            {/* <p>test</p> */}
-                        </>
+                        <div className="container">
+                        {
+                            transaction.type === "commissioner" ?
+                            <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner made a move</p> 
+                            :
+                            <p className="m-0" style={{fontSize:"14.9px"}}>{transaction.creator} made a move</p> 
+                        }
+                            <div className="d-flex align-items-center">
+                            {
+                                Object.keys(transaction.adds).map((transactionID, i) => 
+                                <div key={i} className="py-2">
+                                    <div>
+                                        <div className="d-flex justify-content-center">
+                                            <div
+                                                className={
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" : "smallHeadShotTE"
+                                                }
+                                                style={{
+                                                    backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                        findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,   
+                                                }}>
+                                            {
+                                                transaction.type === "commissioner" ?
+                                                <div className="displayOwnerLogoSM">
+                                                    <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                                        findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
+                                                    }/>
+                                                </div> 
+                                                :
+                                                <div className="displayOwnerLogoSM">
+                                                    <Icon icon="ph:user-circle-plus-duotone" style={
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
+                                                        fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
+                                                    }}/>
+                                                </div>
+                                            }   
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <p className="bold m-0 text-center truncate text-center"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
+                                                <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating || 0} </p>      
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                )
+                            }
+                            {
+                                Object.keys(transaction.drops).map((transactionID, i) => 
+                                <div key={i} className="py-2 mx-4">
+                                    <div>
+                                        <div className="d-flex justify-content-center">
+                                            <div
+                                                className={
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" : "smallHeadShotTE"
+                                                }
+                                                style={{
+                                                    backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                        findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,   
+                                                }}>
+                                               <div className="displayOwnerLogoSM">
+                                                    <Icon icon="ph:user-circle-minus-duotone" style={
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
+                                                        fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
+                                                    }}/>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <p className="bold m-0 text-center truncate text-center"> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
+                                                <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>      
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                )
+                            }
+                            </div>
+                        </div>
                         :
                         // only drops - FA / commissioner 
                         transaction.adds === null ?    
-                            Object.keys(transaction.drops).map((transactionID, i) =>
-                            <div key={i}>
-                            {
-                                transaction.type === "commissioner" ?
-                                <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner released FA</p> 
-                                :
-                                <p className="m-0" style={{fontSize:"14.9px"}}>{findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata ? 
-                                    findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata.team_name : findOwner(transaction.drops[transactionID], transaction.roster_ids).display_name} released FA
-                                </p> 
-                            }
-                                <div className="container d-flex p-2">
-                                    <div className={
-                                        findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
-                                        findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
-                                        findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
-                                        findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : "smallHeadShot"
-                                    } style={{ backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                            findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,
-                                    }}>
-                                        <div className="displayOwnerLogoSM">
-                                            <Icon icon="ph:user-circle-minus-duotone" style={
-                                            findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
-                                            findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
-                                            findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
-                                            findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
-                                                fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
-                                            }}/>
-                                        </div>  
-                                    </div>
-                                    <div className="px-4">
-                                        <p className="m-0 bold text-center">{getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
-                                        <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
-                                        <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).rating}</p>
+                        Object.keys(transaction.drops).map((transactionID, i) =>
+                        <div key={i} className="container">
+                        {
+                            transaction.type === "commissioner" ?
+                            <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner released FA</p> 
+                            :
+                            <p className="m-0" style={{fontSize:"14.9px"}}>{findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata ? 
+                                findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata.team_name : findOwner(transaction.drops[transactionID], transaction.roster_ids).display_name} released FA
+                            </p> 
+                        }
+                            <div className="container d-flex p-2">
+                                <div className={
+                                    findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
+                                    findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
+                                    findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
+                                    findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : "smallHeadShot"
+                                } style={{ backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                        findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,
+                                }}>
+                                    <div className="displayOwnerLogoSM">
+                                        <Icon icon="ph:user-circle-minus-duotone" style={
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
+                                            fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
+                                        }}/>
                                     </div>  
                                 </div>
+                                <div className="px-4">
+                                    <p className="m-0 bold text-center">{getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
+                                    <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
+                                    <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>
+                                </div>  
                             </div>
-                            )
+                        </div>
+                        )
                         :
                         // only adds FA / commissioner 
                         transaction.drops === null ?
                         Object.keys(transaction.adds).map((transactionID, i) =>
-                        <div key={i}>
+                        <div key={i} className="container">
                             {
                                 transaction.type === "commissioner" ?
                                 <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner signed</p> 

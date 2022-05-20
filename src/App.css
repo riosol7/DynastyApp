@@ -183,11 +183,16 @@
 .tradeIcon{
     position: relative;
     z-index: 1;
-    font-Size: 12px;
     text-align: center;
     top:4rem
 }
 
+.truncate {
+    width: 85.22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .bold{
     font-weight: bold;
