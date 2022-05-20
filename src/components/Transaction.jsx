@@ -69,10 +69,7 @@ export default function Transaction(props) {
                         transaction.type === "trade" ?
                         <div className="container">
                             <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
-                            <p className="m-0" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
-                            <div className="tradeIcon">
-                                <Icon style={{fontSize:"1.8rem", marginRight:"1.3rem"}} icon="gg:arrows-exchange"/>
-                            </div>
+                            <p className="m-0 pb-2" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
                             <div className="d-flex align-items-center">
                             {
                                 Object.keys(transaction.adds).map((transactionID, i) => 
@@ -122,11 +119,11 @@ export default function Transaction(props) {
                                 )
                             }
                             </div> 
-                            <div className="d-flex justify-content-center">
+                            <div className="d-flex justify-content-start">
                                 <button
                                     onClick={() => transactionModal(transaction)}
                                     style={{
-                                        width:"100%",
+                                        width:"195px",
                                         borderRadius:"25px",
                                         paddingTop:".5rem",
                                         paddingBottom:'.5rem',
@@ -137,6 +134,9 @@ export default function Transaction(props) {
                                 >
                                     <p className="m-0">view trade</p>
                                 </button>
+                            </div>
+                            <div className="tradeIcon">
+                                <Icon style={{fontSize:"1.8rem", marginRight:"1.9rem"}} icon="gg:arrows-exchange"/>
                             </div>
                         </div>
                         :
@@ -237,7 +237,7 @@ export default function Transaction(props) {
                         // only drops - FA / commissioner 
                         transaction.adds === null ?    
                         Object.keys(transaction.drops).map((transactionID, i) =>
-                        <div key={i} className="container">
+                        <div key={i} className="container mx-1">
                         {
                             transaction.type === "commissioner" ?
                             <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner released FA</p> 
@@ -286,7 +286,7 @@ export default function Transaction(props) {
                                     findOwner(transaction.adds[transactionID], transaction.roster_ids).metadata.team_name : findOwner(transaction.adds[transactionID], transaction.roster_ids).display_name} signed
                                 </p> 
                             }
-                            <div className="container d-flex p-2">
+                            <div className="container d-flex p-2 mx-1">
                                 <div className={
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :

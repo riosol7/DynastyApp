@@ -184,7 +184,7 @@
     position: relative;
     z-index: 1;
     text-align: center;
-    top:4rem
+    top:-8rem
 }
 
 .truncate {
