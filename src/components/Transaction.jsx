@@ -123,13 +123,15 @@ export default function Transaction(props) {
                                 <button
                                     onClick={() => transactionModal(transaction)}
                                     style={{
+                                        background:"linear-gradient(90deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%)",
                                         width:"195px",
                                         borderRadius:"25px",
                                         paddingTop:".5rem",
                                         paddingBottom:'.5rem',
                                         paddingLeft: "14px",
                                         paddingRight: "14px",
-                                        border:"1px solid black"
+                                        border:"0px solid black",
+                                        color:"white"
                                     }}
                                 >
                                     <p className="m-0">view trade</p>

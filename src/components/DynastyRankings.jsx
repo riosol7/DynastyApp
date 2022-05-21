@@ -42,18 +42,22 @@ export default function DynastyRankings(props) {
             <div>
                 <div className="d-flex justify-content-center">
                     <p 
+                        style={{color:"#f8296d"}}
                         onClick={qbRankings}
                         className="m-0 mx-2">QB
                     </p>
                     <p 
+                        style={{color:"#36ceb8"}}
                         onClick={rbRankings}
                         className="m-0 mx-2">RB
                     </p>
                     <p 
+                        style={{color:"#58a7ff"}}
                         onClick={wrRankings}
                         className="m-0 mx-2">WR
                     </p>
                     <p
+                        style={{color:"#faae58"}}
                         onClick={teRankings} 
                         className="m-0 mx-2">TE
                     </p>
@@ -90,7 +94,7 @@ export default function DynastyRankings(props) {
                                 </div> 
                             </div>
                             <div className="col-md-3 d-flex justify-content-center">
-                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.teamTotal}</p>
+                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.qb.total}</p>
                             </div>
                         </div>
                     </div>   
@@ -124,7 +128,7 @@ export default function DynastyRankings(props) {
                                 </div> 
                             </div>
                             <div className="col-md-3 d-flex justify-content-center">
-                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.teamTotal}</p>
+                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.rb.total}</p>
                             </div>
                         </div>
                     </div>  
@@ -158,7 +162,7 @@ export default function DynastyRankings(props) {
                                 </div> 
                             </div>
                             <div className="col-md-3 d-flex justify-content-center">
-                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.teamTotal}</p>
+                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.wr.total}</p>
                             </div>
                         </div>
                     </div>    
@@ -192,7 +196,7 @@ export default function DynastyRankings(props) {
                                 </div> 
                             </div>
                             <div className="col-md-3 d-flex justify-content-center">
-                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.teamTotal}</p>
+                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.te.total}</p>
                             </div>
                         </div>
                     </div>    
