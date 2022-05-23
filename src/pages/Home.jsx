@@ -3,6 +3,7 @@ import LeagueWidget from "../components/LeagueWidget";
 import DynastyRankings from "../components/DynastyRankings";
 import MVP from "../components/MVP";
 import Transaction from "../components/Transaction";
+import Standings from "../components/Standings";
 // import DynastyRanker from "../components/DynastyRanker"
 
 export default function Home () {
@@ -92,6 +93,12 @@ export default function Home () {
                     <Transaction
                         loadTransactions={loadTransactions}
                         transactions={transactions}
+                    />
+                </div>
+                <div className="p-2">
+                    <Standings
+                        loadLeague={loadLeague}
+                        league={league}
                     />
                 </div>
                 {/* <div className="col-md-10">

@@ -39,27 +39,27 @@ export default function DynastyRankings(props) {
         <>
         {
             loadRosters ? <p>Loading </p> :
-            <div>
-                <div className="d-flex justify-content-center">
+            <div className="">
+                <div className="d-flex justify-content-center border-bottom pb-2">
                     <p 
                         style={{color:"#f8296d"}}
                         onClick={qbRankings}
-                        className="m-0 mx-2">QB
+                        className="m-0 mx-3">QB
                     </p>
                     <p 
                         style={{color:"#36ceb8"}}
                         onClick={rbRankings}
-                        className="m-0 mx-2">RB
+                        className="m-0 mx-3">RB
                     </p>
                     <p 
                         style={{color:"#58a7ff"}}
                         onClick={wrRankings}
-                        className="m-0 mx-2">WR
+                        className="m-0 mx-3">WR
                     </p>
                     <p
                         style={{color:"#faae58"}}
                         onClick={teRankings} 
-                        className="m-0 mx-2">TE
+                        className="m-0 mx-3">TE
                     </p>
                 </div>
                 <div>
