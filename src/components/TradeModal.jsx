@@ -1,4 +1,5 @@
 import React from 'react'
+// import { Icon } from '@iconify/react';
 
 const MODAL_STYLES = {
     position: 'fixed',
@@ -32,10 +33,18 @@ export default function TradeModal(props) {
         if(activity === "adds") {
             let foundPlayerKCT = players.adds.playersKCT.filter(player => player.player_id === playerID)
             let foundPlayer = players.adds.players.filter(player => player.player_id === playerID)
-            if(foundPlayerKCT === [] || null){
+            
+            if(foundPlayerKCT[0] === undefined || null){
                 return foundPlayer[0]
-            } else
-            return foundPlayerKCT[0]
+            } else {return foundPlayerKCT[0]}
+        
+        } else if(activity === "drops") {
+            let foundPlayerKCT = players.drops.playersKCT.filter(player => player.player_id === playerID)
+            let foundPlayer = players.drops.players.filter(player => player.player_id === playerID)
+        
+            if(foundPlayerKCT[0] === undefined || null){
+                return foundPlayer[0]
+            } else {return foundPlayerKCT[0]}
         }
     }
 
@@ -49,6 +58,16 @@ export default function TradeModal(props) {
         return splitName[0].charAt(0) + ". " + splitName[1]
     };
 
+    function toDateTime(secs) {
+        var t = Number(secs);
+        let dateObj = new Date(t);
+        var month = dateObj.getUTCMonth() + 1;
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+        return  month + "/" + day + "/" + year
+    }
+
+
     return (
         <>
         {
@@ -56,57 +75,116 @@ export default function TradeModal(props) {
             <div style={OVERLAY_STYLES}>
                 <div style={MODAL_STYLES}>
                     <p className="m-0" onClick={props.onClose}>x</p>
-                    <div className="d-flex align-items-center">
-                    {
-                        Object.keys(transaction.adds).map((transactionID, i) => 
-                            <div key={i} className="p-2 mx-2">
-                                <div className="container">
-                                    <div
-                                        className={
-                                            findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
-                                            findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
-                                            findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
-                                            "smallHeadShotTE"
-                                        }
-                                        style={{
-                                            backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                                findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,   
-                                        }}>
-                                        <div className="displayOwnerLogoSM">
-                                            <img className="ownerLogo" alt="avatar" src={
-                                                    `https://sleepercdn.com/avatars/thumbs/${
-                                                        findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar
-                                                    }`
-                                            }/>
-                                        </div>    
+                    <div className="container">
+                        <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
+                        <p className="m-0 pb-2" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
+                        <div className="">
+                        {
+                            transaction.roster_ids.map((roster, i) =>
+                            <div key={i} className="border-dark border my-4">
+                                <div className="">
+                                    <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                        roster.avatar}`
+                                    }/>
+                                </div> 
+                                <p className="m-0">{roster.display_name}</p>
+                                <div className="d-flex">
+                                    <div>
+                                        <p className="m-0">receive</p>
+                                    {
+                                        Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).map((transactionID, i) => 
+                                        <div key={i} className="m-2">
+                                            <div className="container">
+                                                <div
+                                                    className={
+                                                        findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
+                                                        findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
+                                                        findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
+                                                        "smallHeadShotTE"
+                                                    }
+                                                    style={{
+                                                        backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,   
+                                                    }}>   
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="bold m-0 text-center truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
+                                                <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
+                                            </div>
+                                            <div className="my-2">
+                                            {
+                                                transaction.draft_picks !== [] ?
+                                                    transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
+                                                    .map((transaction, i) => 
+                                                        <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
+                                                            transaction.round === 1 ?
+                                                            "st"
+                                                            : transaction.round === 2 ? 
+                                                            "nd"
+                                                            : transaction.round === 3 ?
+                                                            "rd" : "th"
+                                                        }</p>
+                                                    )
+                                                :
+                                                <></>
+                                            }
+                                            </div>
+                                        </div>
+                                        )
+                                    }
+                                    </div>
+                                    <div>
+                                        <p className="m-0">send</p>
+                                    {
+                                        Object.keys(transaction.drops).filter(i => transaction.drops[i] === roster.roster_id).map((transactionID, i) => 
+                                        <div key={i} className="m-2">
+                                            <div className="container">
+                                                <div
+                                                    className={
+                                                        findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
+                                                        findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
+                                                        findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
+                                                        "smallHeadShotTE"
+                                                    }
+                                                    style={{
+                                                        backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                            findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,   
+                                                    }}>   
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="bold m-0 text-center truncate"> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player)}</p>
+                                                <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("drops", transaction.playerDB, transactionID).rating}</p>      
+                                            </div>
+                                            <div className="my-2">
+                                            {
+                                                transaction.draft_picks !== [] ?
+                                                    transaction.draft_picks.filter(picks => picks.previous_owner_id === findOwner(transaction.drops[transactionID], transaction.roster_ids).roster_id)
+                                                    .map((transaction, i) => 
+                                                        <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
+                                                            transaction.round === 1 ?
+                                                            "st"
+                                                            : transaction.round === 2 ? 
+                                                            "nd"
+                                                            : transaction.round === 3 ?
+                                                            "rd" : "th"
+                                                        }</p>
+                                                    )
+                                                :
+                                                <></>
+                                            }
+                                            </div>
+                                        </div>
+                                        )
+                                    }
                                     </div>
                                 </div>
-                                <div>
-                                    <p className="bold m-0 text-center text-truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
-                                    <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
-                                </div>
-                                <div>
-                                    {
-                                        transaction.draft_picks !== [] ?
-                                            transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
-                                            .map((transaction, i) => 
-                                                <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
-                                                    transaction.round === 1 ?
-                                                    "st"
-                                                    : transaction.round === 2 ? 
-                                                    "nd"
-                                                    : transaction.round === 3 ?
-                                                    "rd" : "th"
-                                                }</p>
-                                            )
-                                        :
-                                        <></>
-                                    }
-                                </div>
                             </div>
-                        )
-                    }
-                    </div> 
+                            )
+                        }
+                        </div> 
+                    </div>
                 </div>
             </div>
             :
