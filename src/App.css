@@ -58,6 +58,17 @@
     border: 2px solid #faae58;
 }
 
+.smallHeadShotK{
+    background-color: #edf4f6;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:90px;
+    height: 56px;
+    width: 56.11px;
+    border-radius: 50%;
+    border: 2px solid #bd66ff;
+}
+
 .smallHeadShot{
     background-color:#edf4f6;
     background-repeat: no-repeat;
@@ -185,7 +196,7 @@
     position: relative;
     z-index: 1;
     text-align: center;
-    top:-8rem
+    top:-7rem
 }
 
 .truncate {

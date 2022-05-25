@@ -27,19 +27,16 @@ export default function Transaction(props) {
             } else {return foundPlayerKCT[0]}
         }
     }
-
     let findOwner = (ownerID, owners) => {
         let foundOwner = owners.filter(owner => owner.roster_id === ownerID)
         return foundOwner[0]
     }
-
     var getInitials = function (name) {
         if(name !== undefined){
         var splitName = name.split(" ");
         return splitName[0].charAt(0) + ". " + splitName[1]
         }
     };
-
     function toDateTime(secs) {
         var t = Number(secs);
         let dateObj = new Date(t);
@@ -48,12 +45,10 @@ export default function Transaction(props) {
         var year = dateObj.getUTCFullYear();
         return  month + "/" + day + "/" + year
     }
-
     const transactionModal = (data) => {
         setTransaction(data)
         setIsOpen(true)
     }
-
     const closeModal = () => {
         setTransaction({})
         setIsOpen(false)
@@ -67,10 +62,12 @@ export default function Transaction(props) {
                     <div key={i} className="my-2">
                     {
                         transaction.type === "trade" ?
-                        <div className="container">
-                            <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
-                            <p className="m-0 pb-2" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
-                            <div className="d-flex align-items-center">
+                        <div className="">
+                            <div className="container">
+                                <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
+                                <p className="m-0 pb-2" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
+                            </div>
+                            <div className="d-flex align-items-center container">
                             {
                                 Object.keys(transaction.adds).map((transactionID, i) => 
                                 <div key={i} className={i === 1? "mx-4 pb-2": "pb-2"}>
@@ -80,7 +77,8 @@ export default function Transaction(props) {
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
-                                                "smallHeadShotTE"
+                                                findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : 
+                                                findPlayer("adds", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
                                             }
                                             style={{
                                                 backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
@@ -103,23 +101,19 @@ export default function Transaction(props) {
                                             transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
                                             .map((transaction, i) => 
                                                 <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
-                                                    transaction.round === 1 ?
-                                                    "st"
-                                                    : transaction.round === 2 ? 
-                                                    "nd"
-                                                    : transaction.round === 3 ?
-                                                    "rd" : "th"
+                                                    transaction.round === 1 ? "st" : 
+                                                    transaction.round === 2 ? "nd" : 
+                                                    transaction.round === 3 ? "rd" : "th"
                                                 }</p>
                                             )
-                                        :
-                                        <></>
+                                        :<></>
                                     }
                                     </div>
                                 </div>
                                 )
                             }
                             </div> 
-                            <div className="d-flex justify-content-start">
+                            <div className="d-flex justify-content-start container">
                                 <button
                                     onClick={() => transactionModal(transaction)}
                                     style={{
@@ -161,7 +155,9 @@ export default function Transaction(props) {
                                                 className={
                                                     findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                                     findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
-                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" : "smallHeadShotTE"
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : 
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
                                                 }
                                                 style={{
                                                     backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
@@ -180,7 +176,8 @@ export default function Transaction(props) {
                                                     findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
                                                     findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
                                                     findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
-                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :
+                                                    findPlayer("adds", transaction.playerDB, transactionID).position === "K" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#bd66ff"} : {
                                                         fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
                                                     }}/>
                                                 </div>
@@ -206,7 +203,9 @@ export default function Transaction(props) {
                                                 className={
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
-                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" : "smallHeadShotTE"
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" :
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
                                                 }
                                                 style={{
                                                     backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
@@ -217,7 +216,8 @@ export default function Transaction(props) {
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
-                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :
+                                                    findPlayer("drops", transaction.playerDB, transactionID).position === "K" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#bd66ff"} : {
                                                         fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
                                                     }}/>
                                                 </div>    
@@ -239,21 +239,20 @@ export default function Transaction(props) {
                         // only drops - FA / commissioner 
                         transaction.adds === null ?    
                         Object.keys(transaction.drops).map((transactionID, i) =>
-                        <div key={i} className="container mx-1">
+                        <div key={i} className="container">
                         {
                             transaction.type === "commissioner" ?
                             <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner released FA</p> 
                             :
-                            <p className="m-0" style={{fontSize:"14.9px"}}>{findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata ? 
-                                findOwner(transaction.drops[transactionID], transaction.roster_ids).metadata.team_name : findOwner(transaction.drops[transactionID], transaction.roster_ids).display_name} released FA
-                            </p> 
+                            <p className="m-0 text-truncate" style={{fontSize:"14.9px"}}>{transaction.creator} released FA</p> 
                         }
                             <div className="container d-flex p-2">
                                 <div className={
                                     findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                     findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
                                     findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
-                                    findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : "smallHeadShot"
+                                    findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" :
+                                    findPlayer("drops", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
                                 } style={{ backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
                                         findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,
                                 }}>
@@ -262,7 +261,8 @@ export default function Transaction(props) {
                                         findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
                                         findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
                                         findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
-                                        findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :
+                                        findPlayer("drops", transaction.playerDB, transactionID).position === "K" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#bd66ff"} : {
                                             fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
                                         }}/>
                                     </div>  
@@ -280,22 +280,21 @@ export default function Transaction(props) {
                         transaction.drops === null ?
                         Object.keys(transaction.adds).map((transactionID, i) =>
                         <div key={i} className="container">
-                            {
-                                transaction.type === "commissioner" ?
-                                <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner signed</p> 
-                                :
-                                <p className="m-0" style={{fontSize:"14.9px"}}>{findOwner(transaction.adds[transactionID], transaction.roster_ids).metadata ? 
-                                    findOwner(transaction.adds[transactionID], transaction.roster_ids).metadata.team_name : findOwner(transaction.adds[transactionID], transaction.roster_ids).display_name} signed
-                                </p> 
-                            }
-                            <div className="container d-flex p-2 mx-1">
+                        {
+                            transaction.type === "commissioner" ?
+                            <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner signed</p> 
+                            :
+                            <p className="m-0 text-truncate" style={{fontSize:"14.9px"}}>{transaction.creator} signed</p> 
+                        }
+                            <div className="container d-flex p-2">
                                 <div className={
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
-                                    findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : "smallHeadShot"
+                                    findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : 
+                                    findPlayer("adds", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
                                 } style={{ backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                        findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,
+                                    findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,
                                 }}>
                                 {
                                     transaction.type === "commissioner" ?
@@ -310,7 +309,8 @@ export default function Transaction(props) {
                                         findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
                                         findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#36ceb8"} :
                                         findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#58a7ff"} :
-                                        findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :{
+                                        findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#faae58"} :
+                                        findPlayer("adds", transaction.playerDB, transactionID).position === "K" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#bd66ff"} : {
                                             fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"black"
                                         }}/>
                                     </div>
@@ -323,10 +323,7 @@ export default function Transaction(props) {
                                 </div>  
                             </div>
                         </div>
-                        )
-                        :
-                        <>
-                        </>
+                        ): <></>
                     }
                     </div>
                 )

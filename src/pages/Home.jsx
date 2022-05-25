@@ -5,6 +5,7 @@ import MVP from "../components/MVP";
 import Transaction from "../components/Transaction";
 import Standings from "../components/Standings";
 // import DynastyRanker from "../components/DynastyRanker"
+import { Icon } from '@iconify/react';
 
 export default function Home () {
     const [league, setLeague] = useState({})
@@ -74,7 +75,6 @@ export default function Home () {
                     <LeagueWidget
                         league={league}
                         loadLeague={loadLeague}
-                        rosters={rosters}
                     />
                 </div>
                 <div className="p-2">
@@ -90,15 +90,27 @@ export default function Home () {
                     />
                 </div>
                 <div className="p-2">
-                    <Transaction
-                        loadTransactions={loadTransactions}
-                        transactions={transactions}
-                    />
+                    <div className="" style={{border:"5px solid black", borderRadius:"5px"}}>
+                        <div className="d-flex justify-content-between align-items-center m-2">
+                            <p className="m-0">Transactions</p>
+                            <div className="">
+                                <Icon icon="zondicons:navigation-more" style={{fontSize:"1.8rem"}}/>
+                            </div>
+                        </div>
+                        <div style={{height:"34.5rem", width:"100%", overflow:"scroll"}}>
+                            <Transaction
+                                loadTransactions={loadTransactions}
+                                transactions={transactions}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div className="p-2">
                     <Standings
                         loadLeague={loadLeague}
                         league={league}
+                        loadRosters={loadRosters}
+                        rosters={rosters}
                     />
                 </div>
                 {/* <div className="col-md-10">

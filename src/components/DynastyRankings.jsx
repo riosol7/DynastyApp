@@ -12,22 +12,18 @@ export default function DynastyRankings(props) {
         } else
         setFilter("QB")
     }
-
-
     const rbRankings = () => {
         if(filter === "RB"){
             setFilter("Team")
         } else
         setFilter("RB")
     }
-
     const wrRankings = () => {
         if(filter === "WR"){
             setFilter("Team")
         } else
         setFilter("WR")
     }
-
     const teRankings = () => {
         if(filter === "TE"){
             setFilter("Team")
@@ -39,25 +35,25 @@ export default function DynastyRankings(props) {
         <>
         {
             loadRosters ? <p>Loading </p> :
-            <div className="">
+            <div className="" style={{width:"270px"}}>
                 <div className="d-flex justify-content-center border-bottom pb-2">
                     <p 
-                        style={{color:"#f8296d"}}
+                        style={filter === "QB"?{color:"#f8296d"}:{color:"black"}}
                         onClick={qbRankings}
                         className="m-0 mx-3">QB
                     </p>
                     <p 
-                        style={{color:"#36ceb8"}}
+                        style={filter === "RB"?{color:"#36ceb8"}:{color:"black"}}
                         onClick={rbRankings}
                         className="m-0 mx-3">RB
                     </p>
                     <p 
-                        style={{color:"#58a7ff"}}
+                        style={filter === "WR"?{color:"#58a7ff"}:{color:"black"}}
                         onClick={wrRankings}
                         className="m-0 mx-3">WR
                     </p>
                     <p
-                        style={{color:"#faae58"}}
+                        style={filter === "TE"?{color:"#faae58"}:{color:"black"}}
                         onClick={teRankings} 
                         className="m-0 mx-3">TE
                     </p>
