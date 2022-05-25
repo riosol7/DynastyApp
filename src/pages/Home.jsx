@@ -90,14 +90,14 @@ export default function Home () {
                     />
                 </div>
                 <div className="p-2">
-                    <div className="" style={{border:"5px solid black", borderRadius:"5px"}}>
+                    <div className="pb-2" style={{border:"5px solid black", borderRadius:"15px"}}>
                         <div className="d-flex justify-content-between align-items-center m-2">
-                            <p className="m-0">Transactions</p>
+                            <p className="m-0 bold" style={{fontSize:"1.2rem"}}>Transactions</p>
                             <div className="">
-                                <Icon icon="zondicons:navigation-more" style={{fontSize:"1.8rem"}}/>
+                                <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2.5rem"}}/>
                             </div>
                         </div>
-                        <div style={{height:"34.5rem", width:"100%", overflow:"scroll"}}>
+                        <div className="" style={{height:"28rem", width:"100%", overflow:"scroll"}}>
                             <Transaction
                                 loadTransactions={loadTransactions}
                                 transactions={transactions}
