@@ -5,8 +5,8 @@ export default function Standings(props) {
   const rosters = props.rosters
   const league = props.league
 
-  let division_1 = rosters.totalRoster.filter(roster => roster.settings.division === 1)
-  let division_2 = rosters.totalRoster.filter(roster => roster.settings.division === 2)
+  let division_1 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 1)
+  let division_2 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 2)
 
   return (
     <>
