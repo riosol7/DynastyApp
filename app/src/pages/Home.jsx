@@ -4,6 +4,7 @@ import DynastyRankings from "../components/DynastyRankings";
 import MVP from "../components/MVP";
 import Transaction from "../components/Transaction";
 import Standings from "../components/Standings";
+import Tabs from "../components/Tabs";
 // import DynastyRanker from "../components/DynastyRanker"
 import { Icon } from '@iconify/react';
 
@@ -68,27 +69,35 @@ export default function Home () {
             <div className="d-flex">
                 {/* Menu */}
                 <div className="p-2">
-                    <p>Hello</p>
-                </div>
-                {/* Dashboard */}
-                <div className="p-2">
-                    <LeagueWidget
+                    <Tabs
                         league={league}
                         loadLeague={loadLeague}
                     />
                 </div>
+                {/* Dashboard */}
                 <div className="p-2">
-                    <DynastyRankings
-                        loadRosters={loadRosters}
-                        rosters={rosters}
-                    />
+                    <div>
+                        <LeagueWidget
+                            league={league}
+                            loadLeague={loadLeague}
+                        />
+                    </div>
+                    <div className="d-flex">
+                        <MVP
+                            loadRosters={loadRosters}
+                            rosters={rosters}
+                        />
+                    </div>
                 </div>
                 <div className="p-2">
-                    <MVP
-                        loadRosters={loadRosters}
-                        rosters={rosters}
-                    />
+                    <div className="p-2" style={{border:"5px solid black", borderRadius:"15px"}}>
+                        <DynastyRankings
+                            loadRosters={loadRosters}
+                            rosters={rosters}
+                        />
+                    </div>
                 </div>
+             
                 <div className="p-2">
                     <div className="pb-2" style={{border:"5px solid black", borderRadius:"15px"}}>
                         <div className="d-flex justify-content-between align-items-center m-2">

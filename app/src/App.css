@@ -174,8 +174,8 @@
     background-size: 4rem;
     background-repeat: no-repeat;
     background-position: center;
-    border-top-left-radius: 15px 15px;
-    border-bottom-left-radius: 15px 15px;
+    border-top-left-radius: 10px 10px;
+    border-bottom-left-radius: 10px 10px;
     border: 1px solid black;
 }
 
