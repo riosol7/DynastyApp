@@ -82,8 +82,7 @@ export default function Home () {
                             loadLeague={loadLeague}
                         />
                     </div>
-                   
-                    <div className="d-flex">
+                    <div className="">
                         <MVP
                             loadRosters={loadRosters}
                             rosters={rosters}
