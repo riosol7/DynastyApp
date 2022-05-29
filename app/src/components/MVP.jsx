@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function MVP(props) {
     const rosters = props.rosters
