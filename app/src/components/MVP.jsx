@@ -1,12 +1,8 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {motion} from "framer-motion";
+import React from 'react';
 
 export default function MVP(props) {
     const rosters = props.rosters
     const loadRosters = props.loadRosters
-
-    const [width, setWidth] = useState(0);
-    const carousel = useRef();
 
     function getMVP(display_name){
         let foundTeam = rosters.teamRank.find(roster => roster.kct.owner.display_name === display_name)
@@ -27,19 +23,14 @@ export default function MVP(props) {
         return splitName[0].charAt(0) + ". " + splitName[1]
     };
 
-    useEffect(()=>{
-        setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-    },[])
 
     return (
         <>
         {
             loadRosters ? <p>Loading </p> :
-            <div className="outer-carousel">
-                <motion.div ref={carousel} whileTap={{cursor:"grabbing"}} className="carousel">
-                    <motion.div drag="x" dragConstraints={{right:0, left: -width}} className="inner-carousel">
+                <div className="d-flex">
                     {rosters.teamRank.map((roster, i) => 
-                        <motion.div key={i} className={"mx-2"}>
+                        <div key={i} className={"mx-2"}>
                             <div className="">
                                 <div className="displayOwnerLogo">
                                     <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
@@ -69,11 +60,9 @@ export default function MVP(props) {
                                     <p className="m-0 text-center">{getMVP(roster.kct.owner.display_name).rating}</p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     )}
-                    </motion.div>
-                </motion.div>
-            </div>
+                    </div>
         }
         </>
     )

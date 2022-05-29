@@ -1,16 +1,3 @@
-.outer-carousel{
-    margin-right: 50%;
-}
-
-.carousel{
-    cursor:grab;
-    overflow: hidden;
-}
-
-.inner-carousel{
-    display: flex;
-}
-
 .thumb{
     width: 100%;
 }
