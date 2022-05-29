@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import TradeModal from './TradeModal'
 import { Icon } from '@iconify/react';
+import {logos} from "../assets/logos";
 
 export default function Transaction(props) {
     const transactions = props.transactions
@@ -9,11 +10,24 @@ export default function Transaction(props) {
     const [isOpen, setIsOpen] = useState(false)
     const [transaction, setTransaction] = useState({})
 
+    let findLogo = (activity, DB) => {
+        if(activity === "adds"){
+            let foundTeam = DB.adds.players[0].team
+            let foundLogo = logos.filter(logo => logo[foundTeam])
+            return Object.values(foundLogo[0])[0]
+        } else if (activity === "drops") {
+            let foundTeam = DB.drops.players[0].team
+            let foundLogo = logos.filter(logo => logo[foundTeam])
+            return Object.values(foundLogo[0])[0]
+        }
+    }
+    
+
     let findPlayer = (activity, players, playerID) => {
         if(activity === "adds") {
             let foundPlayerKCT = players.adds.playersKCT.filter(player => player.player_id === playerID)
             let foundPlayer = players.adds.players.filter(player => player.player_id === playerID)
-            
+
             if(foundPlayerKCT[0] === undefined || null){
                 return foundPlayer[0]
             } else {return foundPlayerKCT[0]}
@@ -159,10 +173,10 @@ export default function Transaction(props) {
                                                     findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : 
                                                     findPlayer("adds", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
                                                 }
-                                                style={{
-                                                    backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                                        findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,   
-                                                }}>
+                                                style={ transaction.playerDB.adds.players[0].position === "DEF" ? 
+                                                    {backgroundImage: `url(${findLogo("adds", transaction.playerDB)})`, backgroundSize:"100%"}:
+                                                    {backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`}
+                                            }>
                                             {
                                                 transaction.type === "commissioner" ?
                                                 <div className="displayOwnerLogoSM">
@@ -207,10 +221,10 @@ export default function Transaction(props) {
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" :
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
                                                 }
-                                                style={{
-                                                    backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                                        findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,   
-                                                }}>
+                                                style={ transaction.playerDB.drops.players[0].position === "DEF" ? 
+                                                    {backgroundImage: `url(${findLogo("drops", transaction.playerDB)})`, backgroundSize:"100%"}:
+                                                    {backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`}
+                                            }>
                                                <div className="displayOwnerLogoSM">
                                                     <Icon icon="ph:user-circle-minus-duotone" style={
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
@@ -253,9 +267,10 @@ export default function Transaction(props) {
                                     findPlayer("drops", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
                                     findPlayer("drops", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" :
                                     findPlayer("drops", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
-                                } style={{ backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                        findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`,
-                                }}>
+                                } style={ transaction.playerDB.drops.players[0].position === "DEF" ? 
+                                    {backgroundImage: `url(${findLogo("drops", transaction.playerDB)})`, backgroundSize:"100%"}:
+                                    {backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${findPlayer("drops", transaction.playerDB, transactionID).player_id}.jpg)`}
+                                }>
                                     <div className="displayOwnerLogoSM">
                                         <Icon icon="ph:user-circle-minus-duotone" style={
                                         findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :
@@ -293,9 +308,10 @@ export default function Transaction(props) {
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : 
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
-                                } style={{ backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                    findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,
-                                }}>
+                                } style={ transaction.playerDB.adds.players[0].position === "DEF" ? 
+                                    {backgroundImage: `url(${findLogo("adds", transaction.playerDB)})`, backgroundSize:"100%"}:
+                                    {backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`}
+                                }>
                                 {
                                     transaction.type === "commissioner" ?
                                     <div className="displayOwnerLogoSM">
