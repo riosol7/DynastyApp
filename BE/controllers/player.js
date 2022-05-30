@@ -1,4 +1,5 @@
 const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
+const Owner = require("../models/Owner")
 const Player = require("../models/Player")
 const KCT = require("../models/KCT")
 const playerController = require("express").Router({ mergeParams: true });
@@ -45,7 +46,6 @@ playerController.get("/rosters", async (req, res) => {
                     player_id: sleeperID
                 }
             }
-       
         })
         const updatedKCT = await Promise.all(mergeKCT)
         const cleanDB = await KCT.deleteMany({})
@@ -92,8 +92,24 @@ playerController.get("/rosters", async (req, res) => {
         
             let teamTotal = qbTotal + rbTotal + wrTotal + teTotal
 
+            const updateOwner = await Owner.findOneAndUpdate(
+                {
+                    "user_id":foundUser.user_id,
+                    "dynasty.date":{$ne: new Date(Date.now()).toLocaleDateString().split('T')[0]}
+                },
+                {
+                    $addToSet:{
+                       "dynasty":{
+                            "date": new Date(Date.now()).toLocaleDateString().split('T')[0],
+                            "value": teamTotal
+                        }
+                    } 
+                },{new:true})
+
+            const foundOwner = await Owner.find({"user_id":foundUser.user_id})
+
             return {...roster, 
-                owner_id:foundUser,
+                owner_id:updateOwner || foundOwner,
                 players:foundPlayers,
                 starters:foundStarters,
                 reserve:foundReserve,

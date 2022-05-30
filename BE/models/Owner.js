@@ -45,7 +45,12 @@ const ownerSchema = new mongoose.Schema({
     is_bot: Boolean,
     display_name: String,
     avatar: String,
-    roster_id:Number
+    roster_id:Number,
+    dynasty:[{
+        _id:false,
+        date:{type:Date, default: Date.now},
+        value:Number
+    }]
 })
 
 module.exports = mongoose.model("Owner", ownerSchema);

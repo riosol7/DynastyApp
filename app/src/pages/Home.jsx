@@ -97,26 +97,27 @@ export default function Home () {
                                 />
                             </div>
                             <div className="col-md-4 p-2">
-                                <div className="pb-2" style={{border:"5px solid black", borderRadius:"15px"}}>
-                                    <div className="d-flex justify-content-between align-items-center m-2">
-                                        <p className="m-0 bold" style={{fontSize:"1.2rem"}}>Transactions</p>
-                                        <div className="">
-                                            <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2.5rem"}}/>
-                                        </div>
-                                    </div>
-                                    <div className="" style={{height:"28rem", width:"100%", overflow:"scroll"}}>
-                                        <Transaction
-                                            loadTransactions={loadTransactions}
-                                            transactions={transactions}
-                                        />
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
-                       
                     </div>
                 </div>
-              
+                <div className="p-2">
+                    <div className="pb-2" style={{border:"5px solid black", borderRadius:"15px"}}>
+                        <div className="d-flex justify-content-between align-items-center m-2">
+                            <p className="m-0 bold" style={{fontSize:"1.2rem"}}>Transactions</p>
+                            <div className="">
+                                <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2.5rem"}}/>
+                            </div>
+                        </div>
+                        <div className="" style={{height:"50rem", width:"100%", overflow:"scroll"}}>
+                            <Transaction
+                                loadTransactions={loadTransactions}
+                                transactions={transactions}
+                            />
+                        </div>
+                    </div>
+                </div>
                 <div className="p-2">
                     <div className="p-2" style={{border:"5px solid black", borderRadius:"15px"}}>
                         <DynastyRankings
