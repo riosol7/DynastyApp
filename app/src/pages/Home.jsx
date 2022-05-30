@@ -87,19 +87,6 @@ export default function Home () {
                             loadRosters={loadRosters}
                             rosters={rosters}
                         />
-                        <div className="d-flex">
-                            <div className="col-md-8 p-2">
-                                <Standings
-                                    loadLeague={loadLeague}
-                                    league={league}
-                                    loadRosters={loadRosters}
-                                    rosters={rosters}
-                                />
-                            </div>
-                            <div className="col-md-4 p-2">
-                                
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div className="p-2">
@@ -117,6 +104,14 @@ export default function Home () {
                             />
                         </div>
                     </div>
+                </div>
+                <div className="p-2">
+                    <Standings
+                        loadLeague={loadLeague}
+                        league={league}
+                        loadRosters={loadRosters}
+                        rosters={rosters}
+                    />
                 </div>
                 <div className="p-2">
                     <div className="p-2" style={{border:"5px solid black", borderRadius:"15px"}}>

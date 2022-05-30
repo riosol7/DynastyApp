@@ -146,7 +146,7 @@ export default function Transaction(props) {
                                 </button>
                             </div>
                             <div className="tradeIcon">
-                                <Icon style={{fontSize:"1.8rem", marginRight:"1.9rem"}} icon="gg:arrows-exchange"/>
+                                <Icon style={{fontSize:"1.8rem", marginRight:"1.65rem"}} icon="gg:arrows-exchange"/>
                             </div>
                         </div>
                         :
@@ -335,7 +335,7 @@ export default function Transaction(props) {
                                 <div className="px-4">
                                     <p className="m-0 bold text-center">{getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                     <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team}</p>
-                                    <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("adds", transaction.playerDB, transactionID).rating}</p>
+                                    <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("adds", transaction.playerDB, transactionID).rating || 0}</p>
                                 </div>  
                             </div>
                         </div>
