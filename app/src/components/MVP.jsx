@@ -28,7 +28,7 @@ export default function MVP(props) {
     return (
         <>
         { loadRosters ? <p>Loading </p> :
-            <div className="d-flex">
+            <div className="d-flex" style={{maxWidth:"52rem"}}>
                 <Swiper 
                     slidesPerView={6} 
                     spaceBetween={15} 
