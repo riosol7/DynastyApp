@@ -106,7 +106,7 @@ playerController.get("/rosters", async (req, res) => {
                     } 
                 },{new:true})
 
-            const foundOwner = await Owner.find({"user_id":foundUser.user_id})
+            const foundOwner = await Owner.findOne({"user_id":foundUser.user_id})
 
             return {...roster, 
                 owner_id:updateOwner || foundOwner,
