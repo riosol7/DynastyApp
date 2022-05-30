@@ -82,7 +82,7 @@ export default function Home () {
                             loadLeague={loadLeague}
                         />
                     </div>
-                    <div className="">
+                    <div className="" style={{width:"50rem"}}>
                         <MVP
                             loadRosters={loadRosters}
                             rosters={rosters}

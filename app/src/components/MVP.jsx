@@ -1,9 +1,10 @@
 import React from 'react';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper";
 
 export default function MVP(props) {
     const rosters = props.rosters
     const loadRosters = props.loadRosters
-
     function getMVP(display_name){
         let foundTeam = rosters.teamRank.find(roster => roster.kct.owner.display_name === display_name)
         let topPlayers = [
@@ -26,43 +27,57 @@ export default function MVP(props) {
 
     return (
         <>
-        {
-            loadRosters ? <p>Loading </p> :
-                <div className="d-flex">
-                    {rosters.teamRank.map((roster, i) => 
-                        <div key={i} className={"mx-2"}>
+        { loadRosters ? <p>Loading </p> :
+            <div className="d-flex">
+                <Swiper 
+                    slidesPerView={6} 
+                    spaceBetween={15} 
+                    slidesPerGroup={6} 
+                    loop={true} 
+                    loopFillGroupWithBlank={true}   
+                    pagination={{clickable: true}}
+                    modules={[Autoplay, Pagination]}
+                    autoplay={{
+                        delay: 5500,
+                        disableOnInteraction: false,
+                      }}
+                    className="mySwiper"
+                >
+                {rosters.teamRank.map((roster, i) => 
+                    <SwiperSlide key={i} className={""}>
+                        <div className="">
+                            <div className="displayOwnerLogo">
+                                <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                    roster.kct.owner.avatar}`}/>
+                            </div> 
                             <div className="">
-                                <div className="displayOwnerLogo">
-                                    <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
-                                        roster.kct.owner.avatar}`}/>
+                                <div
+                                    className="headShot" 
+                                    style={{
+                                        backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                            getMVP(roster.kct.owner.display_name).player_id}.jpg)`,
+                                    }}>
+                                        <div className="backgroundShot"></div>
                                 </div> 
-                                <div className="">
-                                    <div
-                                        className="headShot" 
-                                        style={{
-                                            backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                                getMVP(roster.kct.owner.display_name).player_id}.jpg)`,
-                                        }}>
-                                            <div className="backgroundShot"></div>
-                                    </div> 
-                                    <div className="displayHUD">
-                                        <span 
-                                            className={
-                                                getMVP(roster.kct.owner.display_name).position === "QB" ? "qbHUD" :
-                                                getMVP(roster.kct.owner.display_name).position === "RB" ? "rbHUD" :
-                                                getMVP(roster.kct.owner.display_name).position === "WR" ? "wrHUD" :
-                                                "teHUD"
-                                            }>
-                                                {getMVP(roster.kct.owner.display_name).position}
-                                        </span>
-                                    </div>
-                                    <p className="bold m-0 text-center">{getInitials(getMVP(roster.kct.owner.display_name).player)}</p>
-                                    <p className="m-0 text-center">{getMVP(roster.kct.owner.display_name).rating}</p>
+                                <div className="displayHUD">
+                                    <span 
+                                        className={
+                                            getMVP(roster.kct.owner.display_name).position === "QB" ? "qbHUD" :
+                                            getMVP(roster.kct.owner.display_name).position === "RB" ? "rbHUD" :
+                                            getMVP(roster.kct.owner.display_name).position === "WR" ? "wrHUD" :
+                                            "teHUD"
+                                        }>
+                                            {getMVP(roster.kct.owner.display_name).position}
+                                    </span>
                                 </div>
+                                <p className="bold m-0 text-center">{getInitials(getMVP(roster.kct.owner.display_name).player)}</p>
+                                <p className="m-0 text-center">{getMVP(roster.kct.owner.display_name).rating}</p>
                             </div>
                         </div>
-                    )}
-                    </div>
+                    </SwiperSlide>
+                )}
+                </Swiper>
+            </div>
         }
         </>
     )
