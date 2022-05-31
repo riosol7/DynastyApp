@@ -4,6 +4,7 @@ import DynastyRankings from "../components/DynastyRankings";
 import MVP from "../components/MVP";
 import Transaction from "../components/Transaction";
 import Standings from "../components/Standings";
+import AreaChart from "../components/AreaChart";
 import Tabs from "../components/Tabs";
 // import DynastyRanker from "../components/DynastyRanker"
 import { Icon } from '@iconify/react';
@@ -85,6 +86,11 @@ export default function Home () {
                     <div className="">
                         <MVP
                             loadRosters={loadRosters}
+                            rosters={rosters}
+                        />
+                    </div>
+                    <div>
+                        <AreaChart
                             rosters={rosters}
                         />
                     </div>
