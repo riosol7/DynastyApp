@@ -3,14 +3,14 @@ import Chart from 'react-apexcharts';
 
 export default function AreaChart(props) {
     const rosters = props.rosters
-    let lineSeries = rosters.totalRoster.map(roster => {
+    let lineSeries = rosters.totalRoster && rosters.totalRoster.map(roster => {
         return {
             name:roster.owner_id.display_name,
-            data:roster.owner_id.dynasty.map(data => data.value)
+            data:roster.owner_id ? roster.owner_id.dynasty.map(data => data.value) : []
         }
     })
-    let dates = rosters.totalRoster.map(roster => roster.owner_id.dynasty.map(data => new Date(data.date).toLocaleDateString()))
-    const series =  lineSeries
+    let dates = rosters.totalRoster && rosters.totalRoster.map(roster => roster.owner_id.dynasty.map(data => new Date(data.date).toLocaleDateString()))
+    const series =  lineSeries !== undefined ? lineSeries : [{name:"", data:[]}]
     const options = {
         chart: {
             toolbar: {
@@ -83,7 +83,7 @@ export default function AreaChart(props) {
         },
         xaxis: { 
             type: 'date',
-            categories: dates[0]
+            categories: dates !== undefined ? dates[0] : []
         },
         tooltip: {
             x: {
