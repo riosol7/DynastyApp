@@ -40,30 +40,30 @@ export default function AreaChart(props) {
             //Porfirio69 Y
             "#00EFD1",
             //riosol Y
-            "#5b86e5",
+            "#0083b0",
             //MasterJedi Y
             "#FFC371",
             //Chadlos Y
             "#ffafbd",
             //BigD069 Y
-            "#45a247",
+            "#43C6AC",
             //Kosmic Y
-            "#E21C34",
-            //jlo
-            "#B5FFFF",
-            //donkey
-            "#FFE98A",
+            "#fd1d1d",
+            //jlo Y
+            "#0ED2F7",
+            //donkey Y
+            "#FF7E5F",
             //kmdez Y
             "#72FFB6",
-            //Galatis
-            "#bd66ff",
+            //Galatis Y
+            "#9733ee",
             //cbcb 
-            "#F7CE38"
+            "#f0cb35"
         ],
         fill: {
             type: 'gradient',
             gradient: {
-              gradientToColors: ["#5B146F","#00ACEA","#36d1dc","#FF5F6D","#ffc3a0","#283c86","#500B28","#FCA5F1","#D74177","#10D164","#38ADAE","#FC210D"]
+              gradientToColors: ["#5B146F","#00ACEA","#36d1dc","#FF5F6D","#ffc3a0","#FF8235","#7b4397","#FCA5F1","#D74177","#DCE35B","#38ADAE","#FC210D"]
             }
         },
         legend:{
