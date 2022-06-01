@@ -91,6 +91,7 @@ export default function Home () {
                     </div>
                     <div>
                         <AreaChart
+                            loadRosters={loadRosters}
                             rosters={rosters}
                         />
                     </div>

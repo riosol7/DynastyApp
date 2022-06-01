@@ -1,10 +1,14 @@
+/* .App{
+    background-color: #16192a;
+    color: white;
+} */
 .thumb{
     width: 100%;
 }
 
 .backgroundShot{
     background-color:#edf4f6;
-    top:30%;
+    top:29%;
     height: 86px;
     border-radius: 25%;
     position: relative;
@@ -85,7 +89,7 @@
     background-size:177px;
     height: 125px;
     width: 125.11px;
-    border-radius: 25%;
+    border-radius: 24%;
 }
 
 .displayOwnerLogo{
@@ -162,7 +166,7 @@
 .ownerLogo {
     border-radius: 50%;
     width: 29px;
-    box-shadow: 1px 5px 15px rgb(167, 166, 166);
+    box-shadow: 1px 5px 15px rgb(81, 81, 81);
     background-color: whitesmoke;
 }
 

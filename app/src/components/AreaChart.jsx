@@ -2,6 +2,7 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 
 export default function AreaChart(props) {
+    const loadRosters = props.loadRosters
     const rosters = props.rosters
     let lineSeries = rosters.totalRoster && rosters.totalRoster.map(roster => {
         return {
@@ -13,6 +14,8 @@ export default function AreaChart(props) {
     const series =  lineSeries !== undefined ? lineSeries : [{name:"", data:[]}]
     const options = {
         chart: {
+            background: '#262e47',
+            foreColor: '#ffffff',
             toolbar: {
                 show: false
             },
@@ -28,10 +31,10 @@ export default function AreaChart(props) {
             },
             dropShadow: {
                 enabled: true,
-                opacity: 0.05,
-                blur: 4,
+                opacity: 0.3,
+                blur: 5,
                 left: -7,
-                top: 12
+                top: 15
             },
         },
         colors:[
@@ -96,14 +99,19 @@ export default function AreaChart(props) {
     }
     
     return (
-        <div id="chart" className="">
-            <Chart 
-                options={options} 
-                series={series} 
-                type="line" 
-                height={500}
-                // width={600} 
-            />
-        </div>
+        <>
+        {
+            loadRosters ? <p>Loading </p> :
+            <div id="chart" className="">
+                <Chart 
+                    options={options} 
+                    series={series} 
+                    type="line" 
+                    height={500}
+                    // width={600} 
+                />
+            </div>
+        }
+        </>
     )
 }
