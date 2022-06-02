@@ -14,7 +14,7 @@ export default function AreaChart(props) {
     const series =  lineSeries !== undefined ? lineSeries : [{name:"", data:[]}]
     const options = {
         chart: {
-            background: '#262e47',
+            background: '#0d0b0f',
             foreColor: '#ffffff',
             toolbar: {
                 show: false
@@ -26,7 +26,7 @@ export default function AreaChart(props) {
               enabled: true,
               easing: 'linear',
               dynamicAnimation: {
-                speed: 1000
+                speed: 5000
               }
             },
             dropShadow: {
@@ -37,36 +37,24 @@ export default function AreaChart(props) {
                 top: 15
             },
         },
+        theme: {
+            mode: 'dark', 
+        },
         colors:[
-            //Sam Y
-            "#FF009C",
-            //Porfirio69 Y
-            "#00EFD1",
-            //riosol Y
-            "#0083b0",
-            //MasterJedi Y
-            "#FFC371",
-            //Chadlos Y
-            "#ffafbd",
-            //BigD069 Y
-            "#43C6AC",
-            //Kosmic Y
-            "#fd1d1d",
-            //jlo Y
-            "#0ED2F7",
-            //donkey Y
-            "#FF7E5F",
-            //kmdez Y
-            "#72FFB6",
-            //Galatis Y
-            "#9733ee",
-            //cbcb 
-            "#f0cb35"
+            "#FF009C","#ff8008","#0072ff",
+            "#fd1d1d","#00EFD1","#feb47b",
+            "#c9d6ff","#24fe41","#a80077",
+            "#c8b387","#9733ee","#ffff1c"
         ],
         fill: {
             type: 'gradient',
             gradient: {
-              gradientToColors: ["#5B146F","#00ACEA","#36d1dc","#FF5F6D","#ffc3a0","#FF8235","#7b4397","#FCA5F1","#D74177","#DCE35B","#38ADAE","#FC210D"]
+              gradientToColors: [
+                  "#5B146F","#f09819","#00c6ff",
+                  "#7a2828","#00ACEA","#ff7e5f",
+                  "#757f9a","#FFB612","#d38312",
+                  "#D3BC8D","#89216b","#FFC20E"
+                ]
             }
         },
         legend:{
@@ -82,7 +70,9 @@ export default function AreaChart(props) {
             enabled: false
         },
         stroke: {
-            curve: 'smooth'
+            show:true,
+            curve: 'smooth',
+            lineCap:"butt"
         },
         xaxis: { 
             type: 'date',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper";
+import { Autoplay } from "swiper";
 
 export default function MVP(props) {
     const rosters = props.rosters
@@ -28,15 +28,14 @@ export default function MVP(props) {
     return (
         <>
         { loadRosters ? <p>Loading </p> :
-            <div className="d-flex" style={{maxWidth:"52rem"}}>
+            <div className="d-flex" style={{maxWidth:"77rem"}}>
                 <Swiper 
-                    slidesPerView={6} 
-                    spaceBetween={15} 
-                    slidesPerGroup={6} 
+                    slidesPerView={8} 
+                    spaceBetween={28} 
+                    slidesPerGroup={1} 
                     loop={true} 
-                    loopFillGroupWithBlank={true}   
-                    pagination={{clickable: true}}
-                    modules={[Autoplay, Pagination]}
+                    loopFillGroupWithBlank={true}  
+                    modules={[Autoplay]}
                     autoplay={{
                         delay: 5500,
                         disableOnInteraction: false,

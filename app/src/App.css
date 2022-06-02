@@ -1,19 +1,19 @@
-/* .App{
-    background-color: #16192a;
+.App{
+    background-color: #0d0b0f;
     color: white;
-} */
+}
 .thumb{
     width: 100%;
 }
 
 .backgroundShot{
-    background-color:#edf4f6;
-    top:29%;
+    background-color:#232227;
+    top:40px;
     height: 86px;
     border-radius: 25%;
     position: relative;
     z-index: -1;
-    /* border: 1px solid black; */
+    border: 1.5px solid whitesmoke;
 }
 
 .smallHeadShotQB{
@@ -89,13 +89,14 @@
     background-size:177px;
     height: 125px;
     width: 125.11px;
-    border-radius: 24%;
+    border-radius: 25%;
 }
 
 .displayOwnerLogo{
     position: relative;
     z-index: 1;
     top: 50px;
+    left:-7px;
     text-align: right; 
 }
 
@@ -166,10 +167,14 @@
 .ownerLogo {
     border-radius: 50%;
     width: 29px;
-    box-shadow: 1px 5px 15px rgb(81, 81, 81);
+    /* box-shadow: 1px 5px 10px rgba(81, 81, 81, 0.378); */
     background-color: whitesmoke;
 }
-
+.ownerLogoSM {
+    border-radius: 50%;
+    width: 29px;
+    background-color: whitesmoke;
+}
 .ownerLogoMD {
     border-radius:2%;
     width: 2.5rem;

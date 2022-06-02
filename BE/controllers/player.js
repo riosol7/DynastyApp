@@ -50,7 +50,6 @@ playerController.get("/rosters", async (req, res) => {
         const updatedKCT = await Promise.all(mergeKCT)
         const cleanDB = await KCT.deleteMany({})
         const insertKCT = await KCT.insertMany(updatedKCT)
-
         const filtered = {
             age:1, 
             college:1,
@@ -141,21 +140,20 @@ playerController.get("/rosters", async (req, res) => {
             } 
         })
         const promise = await Promise.all(mappedRosters)
+        let totalRoster = promise.sort((a, b) => parseFloat(b.kct.teamTotal) - parseFloat(a.kct.teamTotal)).map(roster => roster);
         let teamRank = promise.sort((a, b) => parseFloat(b.kct.teamTotal) - parseFloat(a.kct.teamTotal)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
         let qbRank = promise.sort((a, b) => parseFloat(b.kct.qb.total) - parseFloat(a.kct.qb.total)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
         let rbRank = promise.sort((a, b) => parseFloat(b.kct.rb.total) - parseFloat(a.kct.rb.total)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
         let wrRank = promise.sort((a, b) => parseFloat(b.kct.wr.total) - parseFloat(a.kct.wr.total)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
         let teRank = promise.sort((a, b) => parseFloat(b.kct.te.total) - parseFloat(a.kct.te.total)).map((roster, idx) => {return {rank: idx + 1, kct:roster.kct}});
-
         let rankings = {
-            totalRoster: promise,
+            totalRoster: totalRoster,
             teamRank: teamRank,
             qbRank: qbRank,
             rbRank: rbRank,
             wrRank: wrRank,
             teRank: teRank
         }
-        
         res.status(200).json(rankings)
     } catch (err) {
         res.status(400).json({

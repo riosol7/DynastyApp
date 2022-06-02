@@ -89,11 +89,21 @@ export default function Home () {
                             rosters={rosters}
                         />
                     </div>
-                    <div>
-                        <AreaChart
-                            loadRosters={loadRosters}
-                            rosters={rosters}
-                        />
+                    <div className="d-flex">
+                        <div className="col p-2">
+                            <Standings
+                                loadLeague={loadLeague}
+                                league={league}
+                                loadRosters={loadRosters}
+                                rosters={rosters}
+                            />
+                        </div>
+                        <div className="col">
+                            <AreaChart
+                                loadRosters={loadRosters}
+                                rosters={rosters}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="p-2">
@@ -111,14 +121,6 @@ export default function Home () {
                             />
                         </div>
                     </div>
-                </div>
-                <div className="p-2">
-                    <Standings
-                        loadLeague={loadLeague}
-                        league={league}
-                        loadRosters={loadRosters}
-                        rosters={rosters}
-                    />
                 </div>
                 <div className="p-2">
                     <div className="p-2" style={{border:"5px solid black", borderRadius:"15px"}}>
