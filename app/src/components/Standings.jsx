@@ -7,7 +7,7 @@ export default function Standings(props) {
 
   let division_1 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 1)
   let division_2 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 2)
-  console.log(division_1)
+
   return (
     <>
     {

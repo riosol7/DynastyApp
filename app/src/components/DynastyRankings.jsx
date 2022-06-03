@@ -38,24 +38,24 @@ export default function DynastyRankings(props) {
             <div className="" style={{width:"270px"}}>
                 <div className="d-flex justify-content-center border-bottom pb-2">
                     <p 
-                        style={filter === "QB"?{color:"#f8296d"}:{color:"black"}}
+                        style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}
                         onClick={qbRankings}
-                        className="m-0 mx-3">QB
+                        className="pointer m-0 mx-3">QB
                     </p>
                     <p 
-                        style={filter === "RB"?{color:"#36ceb8"}:{color:"black"}}
+                        style={filter === "RB"?{color:"#36ceb8"}:{color:"gray"}}
                         onClick={rbRankings}
-                        className="m-0 mx-3">RB
+                        className="pointer m-0 mx-3">RB
                     </p>
                     <p 
-                        style={filter === "WR"?{color:"#58a7ff"}:{color:"black"}}
+                        style={filter === "WR"?{color:"#58a7ff"}:{color:"gray"}}
                         onClick={wrRankings}
-                        className="m-0 mx-3">WR
+                        className="pointer m-0 mx-3">WR
                     </p>
                     <p
-                        style={filter === "TE"?{color:"#faae58"}:{color:"black"}}
+                        style={filter === "TE"?{color:"#faae58"}:{color:"gray"}}
                         onClick={teRankings} 
-                        className="m-0 mx-3">TE
+                        className="pointer m-0 mx-3">TE
                     </p>
                 </div>
                 <div>

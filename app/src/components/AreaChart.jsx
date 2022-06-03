@@ -14,8 +14,8 @@ export default function AreaChart(props) {
     const series =  lineSeries !== undefined ? lineSeries : [{name:"", data:[]}]
     const options = {
         chart: {
-            background: '#0d0b0f',
-            foreColor: '#ffffff',
+            background: '#000000',
+            foreColor: '#ebebeb',
             toolbar: {
                 show: false
             },

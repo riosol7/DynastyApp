@@ -1,19 +1,23 @@
 .App{
-    background-color: #0d0b0f;
+    background-color: #000000;
     color: white;
 }
 .thumb{
     width: 100%;
 }
 
+.pointer{
+    cursor:pointer
+}
+
 .backgroundShot{
-    background-color:#232227;
+    background-color:#111111;
     top:40px;
     height: 86px;
     border-radius: 25%;
     position: relative;
     z-index: -1;
-    border: 1.5px solid whitesmoke;
+    border: 0px solid whitesmoke;
 }
 
 .smallHeadShotQB{
@@ -90,6 +94,7 @@
     height: 125px;
     width: 125.11px;
     border-radius: 25%;
+    
 }
 
 .displayOwnerLogo{
@@ -110,7 +115,7 @@
 
 .displayOwnerLogoMD{
     position: relative;
-    z-index: -1;
+    z-index: 0;
     text-align: right; 
     border-top-left-radius: 80px 80px;
     border-bottom-left-radius: 80px 80px;
@@ -184,7 +189,7 @@
     background-position: center;
     border-top-left-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
-    border: 1px solid black;
+    border: 1px solid whitesmoke;
 }
 
 .minusLogo {

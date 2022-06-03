@@ -23,11 +23,15 @@ export default function Transaction(props) {
     }
     
 
-    let findPlayer = (activity, players, playerID) => {
-        if(activity === "adds") {
+    let findPlayer = (activity, players, playerID, player_ids, owners) => {
+        if(activity === "trade") {
+
+            // let foundPlayerKCT = players.adds.playersKCT.filter(player => player.player_id === playerID)
+            // let foundPlayer = players.adds.players.filter(player => player.player_id === playerID)
+        } else if(activity === "adds") {
+            console.log([player_ids])
             let foundPlayerKCT = players.adds.playersKCT.filter(player => player.player_id === playerID)
             let foundPlayer = players.adds.players.filter(player => player.player_id === playerID)
-
             if(foundPlayerKCT[0] === undefined || null){
                 return foundPlayer[0]
             } else {return foundPlayerKCT[0]}
@@ -83,9 +87,55 @@ export default function Transaction(props) {
                             </div>
                             <div className="d-flex align-items-center container">
                             {
-                                Object.keys(transaction.adds).map((transactionID, i) => 
-                                <div key={i} className={i === 1? "mx-4 pb-2": "pb-2"}>
-                                    <div className="container">
+                                transaction.roster_ids.map((roster) =>
+                                Object.keys(transaction.adds).length > 1 ?
+
+                                Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).map((transactionID, idx) => 
+                                <div key={idx} className={idx === 1? "mx-4 pb-2": "pb-2"}>
+                                     <div className="container">
+                                        <div
+                                            className={
+                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "QB" ? "smallHeadShotQB" :
+                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "RB" ? "smallHeadShotRB" :
+                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "WR" ? "smallHeadShotWR" :
+                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "TE" ? "smallHeadShotTE" : 
+                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "K" ? "smallHeadShotK" : "smallHeadShot"
+                                            }
+                                            style={{
+                                                backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                                    findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,   
+                                            }}>
+                                            <div className="displayOwnerLogoSM">
+                                                <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                                    findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
+                                                }/>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="bold m-0 text-center truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
+                                        <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
+                                    </div>
+                                    <div>
+                                    {
+                                        transaction.draft_picks !== [] ?
+                                            transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
+                                            .map((transaction, i) => 
+                                                <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
+                                                    transaction.round === 1 ? "st" : 
+                                                    transaction.round === 2 ? "nd" : 
+                                                    transaction.round === 3 ? "rd" : "th"
+                                                }</p>
+                                            )
+                                        :<></>
+                                    }
+                                    </div>
+                                </div>
+                                )
+                                :
+                                Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).map((transactionID, idx) => 
+                                <div key={idx} className={idx === 1? "mx-4 pb-2": "pb-2"}>
+                                     <div className="container">
                                         <div
                                             className={
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
@@ -124,7 +174,8 @@ export default function Transaction(props) {
                                     }
                                     </div>
                                 </div>
-                                )
+                               
+                                ))
                             }
                             </div> 
                             <div className="d-flex justify-content-start container">
