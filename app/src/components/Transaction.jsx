@@ -21,15 +21,8 @@ export default function Transaction(props) {
             return Object.values(foundLogo[0])[0]
         }
     }
-    
-
-    let findPlayer = (activity, players, playerID, player_ids, owners) => {
-        if(activity === "trade") {
-
-            // let foundPlayerKCT = players.adds.playersKCT.filter(player => player.player_id === playerID)
-            // let foundPlayer = players.adds.players.filter(player => player.player_id === playerID)
-        } else if(activity === "adds") {
-            console.log([player_ids])
+    let findPlayer = (activity, players, playerID) => {
+        if(activity === "adds") {
             let foundPlayerKCT = players.adds.playersKCT.filter(player => player.player_id === playerID)
             let foundPlayer = players.adds.players.filter(player => player.player_id === playerID)
             if(foundPlayerKCT[0] === undefined || null){
@@ -71,80 +64,75 @@ export default function Transaction(props) {
         setTransaction({})
         setIsOpen(false)
     }
-
+    function getKeyByValue(object, value, players) {
+        let playerID = Object.keys(object).find(key => object[key] === value);
+        let foundPlayerKCT = players.adds.playersKCT.filter(player => player.player_id === playerID)
+        let foundPlayer = players.adds.players.filter(player => player.player_id === playerID)
+        if(foundPlayerKCT[0] === undefined || null){
+            return foundPlayer[0]
+        } else {return foundPlayerKCT[0]}
+    }
     return (
         <>
-        {
-            loadTransactions ? <p>Loading </p> :
+        {   loadTransactions ? <p>Loading </p> :
                 transactions.map((transaction, i) => 
                     <div key={i} className="my-2">
-                    {
-                        transaction.type === "trade" ?
+                    { transaction.type === "trade" ?
                         <div className="">
                             <div className="container">
                                 <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
                                 <p className="m-0 pb-2" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
                             </div>
                             <div className="d-flex align-items-center container">
-                            {
-                                transaction.roster_ids.map((roster) =>
-                                Object.keys(transaction.adds).length > 1 ?
-
-                                Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).map((transactionID, idx) => 
+                            { 
+                                Object.keys(transaction.adds).length > 2 ?
+                                transaction.roster_ids.map((roster,idx) =>
                                 <div key={idx} className={idx === 1? "mx-4 pb-2": "pb-2"}>
                                      <div className="container">
-                                        <div
-                                            className={
-                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "QB" ? "smallHeadShotQB" :
-                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "RB" ? "smallHeadShotRB" :
-                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "WR" ? "smallHeadShotWR" :
-                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "TE" ? "smallHeadShotTE" : 
-                                                findPlayer("adds", transaction.playerDB, transactionID, transaction.adds, roster).position === "K" ? "smallHeadShotK" : "smallHeadShot"
-                                            }
-                                            style={{
-                                                backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
-                                                    findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,   
-                                            }}>
+                                        <div className={
+                                            getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).position === "QB" ? "smallHeadShotQB" :
+                                            getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).position === "RB" ? "smallHeadShotRB" :
+                                            getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).position === "WR" ? "smallHeadShotWR" :
+                                            getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).position === "TE" ? "smallHeadShotTE" : 
+                                            getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).position === "K" ? "smallHeadShotK" : "smallHeadShot"
+                                        } style={{ backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
+                                            getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).player_id}.jpg)`,   
+                                        }}>
                                             <div className="displayOwnerLogoSM">
                                                 <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
-                                                    findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
+                                                    roster.avatar}`
                                                 }/>
                                             </div>    
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="bold m-0 text-center truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
-                                        <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
+                                        <p className="bold m-0 text-center truncate"> {getInitials(getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).player)}</p>
+                                        <p className="m-0 text-center" style={{fontSize:"12px"}}> {getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).rating}</p>      
                                     </div>
                                     <div>
-                                    {
-                                        transaction.draft_picks !== [] ?
-                                            transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
-                                            .map((transaction, i) => 
-                                                <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
-                                                    transaction.round === 1 ? "st" : 
-                                                    transaction.round === 2 ? "nd" : 
-                                                    transaction.round === 3 ? "rd" : "th"
-                                                }</p>
-                                            )
-                                        :<></>
-                                    }
+                                        {
+                                            Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length > 1?
+                                                <p style ={{fontSize:".8rem"}} className="m-0 text-center">+{ 
+                                                Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length + transaction.draft_picks.filter(picks => picks.owner_id === roster.roster_id).length - 1
+                                                } assets
+                                                </p>
+                                            :
+                                            <></>
+                                        }
                                     </div>
                                 </div>
                                 )
                                 :
-                                Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).map((transactionID, idx) => 
-                                <div key={idx} className={idx === 1? "mx-4 pb-2": "pb-2"}>
-                                     <div className="container">
-                                        <div
-                                            className={
+                                Object.keys(transaction.adds).map((transactionID, idx) => 
+                                <div key={idx} className={idx === 1 ? "mx-4 pb-2":"pb-2"}>
+                                    <div className="container">
+                                        <div className={
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "WR" ? "smallHeadShotWR" :
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "TE" ? "smallHeadShotTE" : 
                                                 findPlayer("adds", transaction.playerDB, transactionID).position === "K" ? "smallHeadShotK" : "smallHeadShot"
-                                            }
-                                            style={{
+                                            } style={{
                                                 backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${
                                                     findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`,   
                                             }}>
@@ -160,22 +148,19 @@ export default function Transaction(props) {
                                         <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
                                     </div>
                                     <div>
-                                    {
-                                        transaction.draft_picks !== [] ?
-                                            transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
-                                            .map((transaction, i) => 
-                                                <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
-                                                    transaction.round === 1 ? "st" : 
-                                                    transaction.round === 2 ? "nd" : 
-                                                    transaction.round === 3 ? "rd" : "th"
-                                                }</p>
-                                            )
-                                        :<></>
+                                    { transaction.draft_picks !== [] ?
+                                        transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
+                                        .map((transaction, i) => 
+                                            <p key={i} className="m-0 text-center" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
+                                                transaction.round === 1 ? "st" : 
+                                                transaction.round === 2 ? "nd" : 
+                                                transaction.round === 3 ? "rd" : "th"
+                                            }</p>
+                                        ):<></>
                                     }
                                     </div>
                                 </div>
-                               
-                                ))
+                                )
                             }
                             </div> 
                             <div className="d-flex justify-content-start container">
@@ -191,28 +176,25 @@ export default function Transaction(props) {
                                         paddingRight: "14px",
                                         border:"0px solid black",
                                         color:"white"
-                                    }}
-                                >
+                                    }}>
                                     <p className="m-0">view trade</p>
                                 </button>
                             </div>
                             <div className="tradeIcon">
-                                <Icon style={{fontSize:"1.8rem", marginRight:"1.65rem"}} icon="gg:arrows-exchange"/>
+                                <Icon style={{fontSize:"1.8rem", marginRight:"1.8rem"}} icon="gg:arrows-exchange"/>
                             </div>
                         </div>
                         :
                         // adds && drops via waiver/commissioner/free agent
                         transaction.adds !== null && transaction.drops !== null && transaction.type !== "trade"?
                         <div className="container">
-                        {
-                            transaction.type === "commissioner" ?
+                        { transaction.type === "commissioner" ?
                             <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner made a move</p> 
-                            :
+                        :
                             <p className="m-0" style={{fontSize:"14.9px"}}>{transaction.creator} made a move</p> 
                         }
                             <div className="d-flex align-items-center">
-                            {
-                                Object.keys(transaction.adds).map((transactionID, i) => 
+                            { Object.keys(transaction.adds).map((transactionID, i) => 
                                 <div key={i} className="py-2">
                                     <div>
                                         <div className="d-flex justify-content-center">
@@ -259,8 +241,7 @@ export default function Transaction(props) {
                                 </div>
                                 )
                             }
-                            {
-                                Object.keys(transaction.drops).map((transactionID, i) => 
+                            { Object.keys(transaction.drops).map((transactionID, i) => 
                                 <div key={i} className="py-2 mx-4">
                                     <div>
                                         <div className="d-flex justify-content-center">
@@ -296,8 +277,7 @@ export default function Transaction(props) {
                                         </div>
                                     </div>
                                 </div>
-                                )
-                            }
+                            )}
                             </div>
                         </div>
                         :
@@ -305,10 +285,9 @@ export default function Transaction(props) {
                         transaction.adds === null ?    
                         Object.keys(transaction.drops).map((transactionID, i) =>
                         <div key={i} className="container">
-                        {
-                            transaction.type === "commissioner" ?
+                        { transaction.type === "commissioner" ?
                             <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner released FA</p> 
-                            :
+                        :
                             <p className="m-0 text-truncate" style={{fontSize:"14.9px"}}>{transaction.creator} released FA</p> 
                         }
                             <div className="container d-flex p-2">
@@ -346,10 +325,9 @@ export default function Transaction(props) {
                         transaction.drops === null ?
                         Object.keys(transaction.adds).map((transactionID, i) =>
                         <div key={i} className="container">
-                        {
-                            transaction.type === "commissioner" ?
+                        { transaction.type === "commissioner" ?
                             <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner signed</p> 
-                            :
+                        :
                             <p className="m-0 text-truncate" style={{fontSize:"14.9px"}}>{transaction.creator} signed</p> 
                         }
                             <div className="container d-flex p-2">
@@ -363,14 +341,13 @@ export default function Transaction(props) {
                                     {backgroundImage: `url(${findLogo("adds", transaction.playerDB)})`, backgroundSize:"100%"}:
                                     {backgroundImage: `url(https://sleepercdn.com/content/nfl/players/thumb/${findPlayer("adds", transaction.playerDB, transactionID).player_id}.jpg)`}
                                 }>
-                                {
-                                    transaction.type === "commissioner" ?
+                                { transaction.type === "commissioner" ?
                                     <div className="displayOwnerLogoSM">
                                         <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
                                             findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
                                         }/>
                                     </div>  
-                                    :
+                                :
                                     <div className="displayOwnerLogoSM">
                                         <Icon icon="ph:user-circle-plus-duotone" style={
                                         findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ?  {fontSize:"1.7rem", backgroundColor:"whitesmoke", borderRadius:"50%", color:"#f8296d"} :

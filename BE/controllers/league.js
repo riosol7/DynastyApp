@@ -88,7 +88,6 @@ leagueController.get("/transactions/:round", async (req, res) => {
            
             let keys = Object.keys((transaction.adds || {}))
             let dropKeys = Object.keys(((transaction.drops || {})))
-
             let addedKCT = await KCT.find({"player_id":keys})
             let addedPlayers = await Player.find({"player_id": keys}, playerFiltered)
 
