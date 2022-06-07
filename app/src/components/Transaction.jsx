@@ -175,13 +175,20 @@ export default function Transaction(props) {
                         transaction.adds !== null && transaction.drops !== null && transaction.type !== "trade"?
                         <div className="container">
                         { transaction.type === "commissioner" ?
-                            <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner made a move</p> 
+                            <p className="m-0" style={{fontSize:"14px"}}>Commissioner made a move</p> 
                         :
-                            <p className="m-0" style={{fontSize:"14.9px"}}>{transaction.creator} made a move</p> 
+                        <div className="d-flex align-items-center">
+                            <div className="">
+                                <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                    findOwner(transaction.roster_ids[0].roster_id, transaction.roster_ids).avatar}`
+                                }/>
+                            </div>
+                            <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator} made a move</p> 
+                        </div>
                         }
-                            <div className="d-flex align-items-center">
+                            <div className="d-flex align-items-center py-3">
                             { Object.keys(transaction.adds).map((transactionID, i) => 
-                                <div key={i} className="py-2">
+                                <div key={i} className="">
                                     <div>
                                         <div className="d-flex justify-content-center">
                                             <div
@@ -228,7 +235,7 @@ export default function Transaction(props) {
                                 )
                             }
                             { Object.keys(transaction.drops).map((transactionID, i) => 
-                                <div key={i} className="py-2 mx-4">
+                                <div key={i} className="mx-4">
                                     <div>
                                         <div className="d-flex justify-content-center">
                                             <div
@@ -272,11 +279,18 @@ export default function Transaction(props) {
                         Object.keys(transaction.drops).map((transactionID, i) =>
                         <div key={i} className="container">
                         { transaction.type === "commissioner" ?
-                            <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner released FA</p> 
+                            <p className="m-0" style={{fontSize:"14px"}}>Commissioner released FA</p> 
                         :
-                            <p className="m-0 text-truncate" style={{fontSize:"14.9px"}}>{transaction.creator} released FA</p> 
+                            <div className="d-flex align-items-center">
+                                <div className="">
+                                    <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                        findOwner(transaction.drops[transactionID], transaction.roster_ids).avatar}`
+                                    }/>
+                                </div>
+                                <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator} released FA</p> 
+                            </div>                        
                         }
-                            <div className="container d-flex p-2">
+                            <div className="container d-flex p-2 py-3">
                                 <div className={
                                     findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                     findPlayer("drops", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
@@ -312,11 +326,18 @@ export default function Transaction(props) {
                         Object.keys(transaction.adds).map((transactionID, i) =>
                         <div key={i} className="container">
                         { transaction.type === "commissioner" ?
-                            <p className="m-0" style={{fontSize:"14.9px"}}>Commissioner signed</p> 
+                            <p className="m-0" style={{fontSize:"14px"}}>Commissioner signed</p> 
                         :
-                            <p className="m-0 text-truncate" style={{fontSize:"14.9px"}}>{transaction.creator} signed</p> 
+                            <div className="d-flex align-items-center">
+                                <div className="">
+                                    <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                        findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
+                                    }/>
+                                </div>
+                                <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator} signed</p> 
+                            </div>  
                         }
-                            <div className="container d-flex p-2">
+                            <div className="container d-flex p-2 py-3">
                                 <div className={
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :

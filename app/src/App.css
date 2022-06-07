@@ -36,7 +36,7 @@
     border-radius: 25%;
     position: relative;
     z-index: -1;
-    border: 0px solid whitesmoke;
+    border: 0px solid #2a2c3e;
 }
 
 .smallHeadShotQB{
@@ -192,12 +192,7 @@
     border-radius: 50%;
     width: 29px;
     /* box-shadow: 1px 5px 10px rgba(81, 81, 81, 0.378); */
-    background-color: whitesmoke;
-}
-.ownerLogoSM {
-    border-radius: 50%;
-    width: 29px;
-    background-color: whitesmoke;
+   
 }
 .ownerLogoMD {
     border-radius:2%;

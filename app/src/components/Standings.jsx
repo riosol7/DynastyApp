@@ -28,7 +28,7 @@ export default function Standings(props) {
               <div className="d-flex">
                 <p className="m-0 mx-2">{i + 1}</p>
                 <div className="">
-                  <img className="ownerLogoSM" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                  <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
                     division.owner_id.avatar}`}/>
                 </div>
                 <p className="m-0 mx-1">{division.owner_id.display_name}</p>
@@ -59,7 +59,7 @@ export default function Standings(props) {
               <div className="d-flex">
                 <p className="m-0 mx-2">{i + 1}</p>
                 <div className="">
-                  <img className="ownerLogoSM" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                  <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
                     division.owner_id.avatar}`}/>
                 </div>
                 <p className="m-0 mx-1">{division.owner_id.display_name}</p>
