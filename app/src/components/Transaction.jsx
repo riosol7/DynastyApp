@@ -75,13 +75,13 @@ export default function Transaction(props) {
     return (
         <>
         {   loadTransactions ? <p>Loading </p> :
-                transactions.map((transaction, i) => 
+                transactions.slice(0,3).map((transaction, i) => 
                     <div key={i} className="my-2">
                     { transaction.type === "trade" ?
                         <div className="">
                             <div className="container">
-                                <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
-                                <p className="m-0 pb-2" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
+                                <p className="m-0" style={{fontSize:"12px"}}>Trade completed</p>
+                                <p className="m-0 pb-2" style={{fontSize:"11px"}}>{toDateTime(transaction.created)}</p>
                             </div>
                             <div className="d-flex align-items-center container">
                             { 
@@ -106,7 +106,7 @@ export default function Transaction(props) {
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="bold m-0 text-center truncate"> {getInitials(getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).player)}</p>
+                                        <p className="bold m-0 text-center truncate" style={{fontSize:"14px"}}> {getInitials(getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).player)}</p>
                                         <p className="m-0 text-center" style={{fontSize:"12px"}}> {getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).rating}</p>      
                                     </div>
                                     <div>
@@ -142,7 +142,7 @@ export default function Transaction(props) {
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="bold m-0 text-center truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
+                                        <p className="bold m-0 text-center truncate" style={{fontSize:"14px"}}> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
                                         <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
                                     </div>
                                     <div>
@@ -162,19 +162,7 @@ export default function Transaction(props) {
                             }
                             </div> 
                             <div className="d-flex justify-content-start container">
-                                <button
-                                    onClick={() => transactionModal(transaction)}
-                                    style={{
-                                        background:"linear-gradient(90deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%)",
-                                        width:"195px",
-                                        borderRadius:"25px",
-                                        paddingTop:".5rem",
-                                        paddingBottom:'.5rem',
-                                        paddingLeft: "14px",
-                                        paddingRight: "14px",
-                                        border:"0px solid black",
-                                        color:"white"
-                                    }}>
+                                <button id="tradeBtn" onClick={() => transactionModal(transaction)}>
                                     <p className="m-0">view trade</p>
                                 </button>
                             </div>
@@ -231,7 +219,7 @@ export default function Transaction(props) {
                                         </div>
                                         <div>
                                             <div>
-                                                <p className="bold m-0 text-center truncate text-center"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
+                                                <p className="bold m-0 text-center truncate text-center" style={{fontSize:"14px"}}> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                                 <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating || 0} </p>      
                                             </div>
                                         </div>
@@ -269,7 +257,7 @@ export default function Transaction(props) {
                                         </div>
                                         <div>
                                             <div>
-                                                <p className="bold m-0 text-center truncate text-center"> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
+                                                <p className="bold m-0 text-center truncate text-center" style={{fontSize:"14px"}}> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
                                                 <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>      
                                             </div>
                                         </div>
@@ -311,7 +299,7 @@ export default function Transaction(props) {
                                     </div>  
                                 </div>
                                 <div className="px-4">
-                                    <p className="m-0 bold text-center">{getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
+                                    <p className="m-0 bold text-center" style={{fontSize:"14px"}}>{getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
                                     <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
                                     <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>
                                 </div>  
@@ -359,7 +347,7 @@ export default function Transaction(props) {
                                 }  
                                 </div>
                                 <div className="px-4">
-                                    <p className="m-0 bold text-center">{getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
+                                    <p className="m-0 bold text-center" style={{fontSize:"14px"}}>{getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                     <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team}</p>
                                     <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("adds", transaction.playerDB, transactionID).rating || 0}</p>
                                 </div>  

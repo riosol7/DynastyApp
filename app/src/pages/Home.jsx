@@ -105,14 +105,15 @@ export default function Home () {
                             />
                         </div>
                         <div className="p-2">
-                            <div className="pb-2" style={{border:"5px solid black", borderRadius:"15px"}}>
+                            <div className="pb-2" style={{border:"5px solid black", borderRadius:"15px", background:"#2a2c3e"}}>
                                 <div className="d-flex justify-content-between align-items-center m-2">
-                                    <p className="m-0 bold" style={{fontSize:"1.2rem"}}>Transactions</p>
+                                    <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
                                     <div className="">
-                                        <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2.5rem"}}/>
+                                        <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2rem"}}/>
                                     </div>
                                 </div>
-                                <div className="" style={{height:"30rem", width:"100%", overflow:"auto"}}>
+                                {/* <div style={{height:"30rem", width:"100%", overflow:"auto"}}> */}
+                                <div className="container">
                                     <Transaction
                                         loadTransactions={loadTransactions}
                                         transactions={transactions}
