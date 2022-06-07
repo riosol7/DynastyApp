@@ -112,7 +112,7 @@ export default function Home () {
                                         <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2.5rem"}}/>
                                     </div>
                                 </div>
-                                <div className="" style={{height:"30rem", width:"100%", overflow:"scroll"}}>
+                                <div className="" style={{height:"30rem", width:"100%", overflow:"auto"}}>
                                     <Transaction
                                         loadTransactions={loadTransactions}
                                         transactions={transactions}

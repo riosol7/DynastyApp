@@ -110,20 +110,18 @@ export default function Transaction(props) {
                                         <p className="m-0 text-center" style={{fontSize:"12px"}}> {getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).rating}</p>      
                                     </div>
                                     <div>
-                                        {
-                                            Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length > 1?
-                                                <p style ={{fontSize:".8rem"}} className="m-0 text-center">+{ 
-                                                Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length + transaction.draft_picks.filter(picks => picks.owner_id === roster.roster_id).length - 1
-                                                } assets
-                                                </p>
-                                            :
-                                            <></>
-                                        }
+                                    {
+                                        Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length > 1?
+                                            <p style ={{fontSize:".8rem"}} className="m-0 text-center">+{ 
+                                            Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length + transaction.draft_picks.filter(picks => picks.owner_id === roster.roster_id).length - 1
+                                            } assets
+                                            </p>
+                                        : <></>
+                                    }
                                     </div>
                                 </div>
                                 )
-                                :
-                                Object.keys(transaction.adds).map((transactionID, idx) => 
+                                : Object.keys(transaction.adds).map((transactionID, idx) => 
                                 <div key={idx} className={idx === 1 ? "mx-4 pb-2":"pb-2"}>
                                     <div className="container">
                                         <div className={

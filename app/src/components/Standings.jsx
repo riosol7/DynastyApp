@@ -7,11 +7,11 @@ export default function Standings(props) {
 
   let division_1 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 1)
   let division_2 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 2)
-
+  //will need to sort by record W-L-T
+  
   return (
     <>
-    {
-      loadRosters ? <p>Loading </p> :
+    { loadRosters ? <p>Loading </p> :
       <div className="container">
         <div className="my-2">
           <div className="d-flex">
@@ -22,20 +22,25 @@ export default function Standings(props) {
               <p className="m-0 border-bottom">W-L-T</p>
             </div>
           </div>
-        {
-          division_1.map((division, i) => 
-            <div key={i} className="d-flex">
-              <div className="col">
-                <img className="ownerLogoSM" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
-                  division.owner_id.avatar}`}/>
+        { division_1.map((division, i) => 
+          <div key={i} className="d-flex">
+            <div className="col-lg-10 text-truncate">
+              <div className="d-flex">
+                <p className="m-0 mx-2">{i + 1}</p>
+                <div className="">
+                  <img className="ownerLogoSM" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                    division.owner_id.avatar}`}/>
+                </div>
+                <p className="m-0 mx-1">{division.owner_id.display_name}</p>
               </div>
-              <div className="col-lg-9 text-truncate">
-                <p className="m-0">{division.owner_id.display_name}</p>
-              </div>
-              <div className="col-lg-2 text-truncate">
-                <p className="m-0">{division.settings.wins}-{division.settings.losses}-{division.settings.ties}</p>
+              <div className="pb-2 mx-5">
+                <p className="m-0" style={{fontSize:".65rem"}}>PF {division.settings.fpts}</p>
               </div>
             </div>
+            <div className="col-lg-2 text-truncate">
+              <p className="m-0">{division.settings.wins}-{division.settings.losses}-{division.settings.ties}</p>
+            </div>
+          </div>
           )
         }
         </div>
@@ -48,11 +53,20 @@ export default function Standings(props) {
               <p className="m-0 border-bottom">W-L-T</p>
             </div>
           </div>
-        {
-          division_2.map((division, i) => 
+        { division_2.map((division, i) => 
           <div key={i} className="d-flex">
             <div className="col-lg-10 text-truncate">
-              <p className="m-0">{division.owner_id.display_name}</p>
+              <div className="d-flex">
+                <p className="m-0 mx-2">{i + 1}</p>
+                <div className="">
+                  <img className="ownerLogoSM" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                    division.owner_id.avatar}`}/>
+                </div>
+                <p className="m-0 mx-1">{division.owner_id.display_name}</p>
+              </div>
+              <div className="pb-2 mx-5">
+                <p className="m-0" style={{fontSize:".65rem"}}>PF {division.settings.fpts}</p>
+              </div>
             </div>
             <div className="col-lg-2 text-truncate">
               <p className="m-0">{division.settings.wins}-{division.settings.losses}-{division.settings.ties}</p>
