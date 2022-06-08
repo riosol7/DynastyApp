@@ -1,3 +1,20 @@
+#scrollBarActivity::-webkit-scrollbar{
+    width: .8em;
+    background: #2a2c3e;
+}
+#scrollBarActivity::-webkit-scrollbar-track{
+    /* background: hsl(120 75% 50% / 1); */
+    border-radius: 100vw;
+    margin-block: .5em;
+}
+#scrollBarActivity::-webkit-scrollbar-thumb{
+    background:  #40414e;
+    border-radius: 100vw;
+    /* border: 1px solid white; */
+}
+/* #scrollBarActivity:-webkit-scrollbar-thumb:hover{
+    background:hsl(120 100% 20% / 1);
+} */
 .App{
     background-color: #000000;
     color: white;
@@ -5,8 +22,7 @@
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
     -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    
+    -ms-user-select: none; /* Internet Explorer/Edge */  
 }
 .thumb{
     width: 100%;

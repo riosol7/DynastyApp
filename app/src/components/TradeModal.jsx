@@ -3,13 +3,11 @@ import { Icon } from '@iconify/react';
 
 const MODAL_STYLES = {
     position: 'fixed',
-    top: '40%',
+    top: '50%',
     left: '50%',
-    // width:'0rem',
+    width:'45em',
     transform: 'translate(-50%, -50%)',
-    background: 'white',
-    // background: 'linear-gradient(rgba(0,0,0,0.6),#FFF 30%)',
-    backgroundColor: '#FFF',
+    background: "#2a2c3e",
     borderRadius:'4px',
     padding: '2rem',
     zIndex: 1
@@ -21,7 +19,7 @@ const OVERLAY_STYLES = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    background: 'rgba(0,0,0,0.6)',
     zIndex:1
 }
 
@@ -41,23 +39,25 @@ export default function TradeModal(props) {
         } else if(activity === "drops") {
             let foundPlayerKCT = players.drops.playersKCT.filter(player => player.player_id === playerID)
             let foundPlayer = players.drops.players.filter(player => player.player_id === playerID)
-        
             if(foundPlayerKCT[0] === undefined || null){
                 return foundPlayer[0]
             } else {return foundPlayerKCT[0]}
         }
-    }
-
-    let findOwner = (ownerID, owners) => {
-        let foundOwner = owners.filter(owner => owner.roster_id === ownerID)
-        return foundOwner[0]
-    }
-
-    var getInitials = function (name) {
-        var splitName = name.split(" ");
-        return splitName[0].charAt(0) + ". " + splitName[1]
     };
+    // let findOwner = (ownerID, owners) => {
+    //     console.log(ownerID)
+    //     let foundOwner = owners.filter(owner => owner.roster_id === ownerID)
+    //     // console.log(foundOwner[0])
+    //     return foundOwner[0]
+    // };
+    // var getInitials = function (name) {
+    //     var splitName = name.split(" ");
+    //     return splitName[0].charAt(0) + ". " + splitName[1]
+    // };
 
+    // let test = transaction.roster_ids.map((roster, i) =>Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).map((transactionID, i) =>  findPlayer("adds", transaction.playerDB, transactionID)))
+    // console.log(test.map(t => t.reduce((prev,curr) => Number(prev.rating) + Number(curr.rating), 0)))
+    
     function toDateTime(secs) {
         var t = Number(secs);
         let dateObj = new Date(t);
@@ -67,23 +67,26 @@ export default function TradeModal(props) {
         return  month + "/" + day + "/" + year
     }
 
-
     return (
         <>
         {
             transaction !== {} ? 
             <div style={OVERLAY_STYLES}>
                 <div style={MODAL_STYLES}>
-                    <p className="m-0" onClick={props.onClose}>x</p>
+                    <div className="d-flex justify-content-between">
+                        <div>
+                            <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
+                            <p className="m-0" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
+                        </div>
+                        <Icon icon="akar-icons:circle-x" style={{fontSize:"2em"}}onClick={props.onClose}/>
+                    </div>
                     <div className="container">
-                        <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
-                        <p className="m-0" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
-                        <div className="">
+                        <div id="scrollBarActivity" style={{height:"100%", width:"100%", overflow:"auto"}}>
                         {
                             transaction.roster_ids.map((roster, i) =>
                             <div key={i} className="my-4 p-2" style={{borderRadius:"5px", border: "1px solid black"}}>
                                 <div className="d-flex align-items-center">
-                                    <div style={{border:".5px solid black", borderRadius:"50%"}}>
+                                    <div style={{border:"", borderRadius:"50%"}}>
                                         <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
                                             roster.avatar}`
                                         }/>
@@ -91,11 +94,11 @@ export default function TradeModal(props) {
                                     <p className="m-0 mx-1">{roster.display_name}</p>
                                 </div> 
                                 <div className="d-flex my-2">
-                                    <div>
+                                    <div className="col">
                                         <p className="m-0 border-bottom" style={{fontSize:"12px"}}>receive</p>
                                     {
                                         Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).map((transactionID, i) => 
-                                        <div key={i} className="my-2">
+                                        <div key={i} className="my-3">
                                             <div className="d-flex">
                                                 <div className={
                                                     findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
@@ -115,35 +118,35 @@ export default function TradeModal(props) {
                                                         }}/>
                                                     </div> 
                                                 </div>
-                                                <div className="px-2">
-                                                    <p className="bold m-0 truncate"> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
+                                                <div className="px-4">
+                                                    <p className="bold m-0 text-truncate"> {findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name}</p>
                                                     <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team}</p>
                                                     <p className="m-0" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
                                                 </div>
                                             </div>
-                                            <div className="my-3">
-                                            {
-                                                transaction.draft_picks !== [] ?
-                                                    transaction.draft_picks.filter(picks => picks.owner_id === findOwner(transaction.adds[transactionID], transaction.roster_ids).roster_id)
-                                                    .map((transaction, i) => 
-                                                        <p key={i} className="m-0" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
-                                                            transaction.round === 1 ? "st" : 
-                                                            transaction.round === 2 ? "nd" :
-                                                            transaction.round === 3 ? "rd" : "th"
-                                                        }</p>
-                                                    )
-                                                :<></>
-                                            }
-                                            </div>
                                         </div>
                                         )
                                     }
+                                        <div className="my-3">
+                                        {
+                                            transaction.draft_picks !== [] ?
+                                                transaction.draft_picks.filter(picks => picks.owner_id === roster.roster_id)
+                                                .map((transaction, i) => 
+                                                    <p key={i} className="m-0" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
+                                                        transaction.round === 1 ? "st" : 
+                                                        transaction.round === 2 ? "nd" :
+                                                        transaction.round === 3 ? "rd" : "th"
+                                                    }</p>
+                                                )
+                                            :<></>
+                                        }
+                                        </div>
                                     </div>
-                                    <div>
+                                    <div className="col">
                                         <p className="m-0 border-bottom" style={{fontSize:"12px"}}>send</p>
                                     {
                                         Object.keys(transaction.drops).filter(i => transaction.drops[i] === roster.roster_id).map((transactionID, i) => 
-                                        <div key={i} className="m-2">
+                                        <div key={i} className="my-3">
                                             <div className="d-flex">
                                                 <div className={
                                                     findPlayer("drops", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
@@ -163,29 +166,29 @@ export default function TradeModal(props) {
                                                     }}/>
                                                 </div> 
                                                 </div>
-                                                <div className="px-2">
-                                                    <p className="bold m-0 truncate"> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player)}</p>
+                                                <div className="px-4">
+                                                    <p className="bold m-0 text-truncate"> {findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name}</p>
                                                     <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
                                                     <p className="m-0" style={{fontSize:"12px"}}> {findPlayer("drops", transaction.playerDB, transactionID).rating}</p>      
                                                 </div>
                                             </div>
-                                            <div className="my-3">
-                                            {
-                                                transaction.draft_picks !== [] ?
-                                                    transaction.draft_picks.filter(picks => picks.previous_owner_id === findOwner(transaction.drops[transactionID], transaction.roster_ids).roster_id)
-                                                    .map((transaction, i) => 
-                                                        <p key={i} className="m-0" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
-                                                            transaction.round === 1 ? "st" : 
-                                                            transaction.round === 2 ? "nd" : 
-                                                            transaction.round === 3 ? "rd" : "th"
-                                                        }</p>
-                                                    )
-                                                :<></>
-                                            }
-                                            </div>
                                         </div>
                                         )
                                     }
+                                        <div className="my-3">
+                                        {
+                                            transaction.draft_picks !== [] ?
+                                                transaction.draft_picks.filter(picks => picks.previous_owner_id === roster.roster_id)
+                                                .map((transaction, i) => 
+                                                    <p key={i} className="m-0" style={{fontSize:"14px"}}>{transaction.season} {transaction.round}{
+                                                        transaction.round === 1 ? "st" : 
+                                                        transaction.round === 2 ? "nd" :
+                                                        transaction.round === 3 ? "rd" : "th"
+                                                    }</p>
+                                                )
+                                            :<></>
+                                        }
+                                        </div>
                                     </div>
                                 </div>
                             </div>

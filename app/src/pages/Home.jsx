@@ -112,8 +112,8 @@ export default function Home () {
                                         <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2rem"}}/>
                                     </div>
                                 </div>
-                                {/* <div style={{height:"30rem", width:"100%", overflow:"auto"}}> */}
-                                <div className="container">
+                                <div id="scrollBarActivity" style={{height:"30rem", width:"100%", overflow:"auto"}}>
+                                {/* <div className=""> */}
                                     <Transaction
                                         loadTransactions={loadTransactions}
                                         transactions={transactions}

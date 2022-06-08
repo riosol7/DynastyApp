@@ -75,7 +75,7 @@ export default function Transaction(props) {
     return (
         <>
         {   loadTransactions ? <p>Loading </p> :
-                transactions.slice(0,3).map((transaction, i) => 
+                transactions.map((transaction, i) => 
                     <div key={i} className="my-2">
                     { transaction.type === "trade" ?
                         <div className="">
