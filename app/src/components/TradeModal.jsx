@@ -76,7 +76,7 @@ export default function TradeModal(props) {
                     <div className="d-flex justify-content-between">
                         <div>
                             <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
-                            <p className="m-0" style={{fontSize:"12px"}}>{toDateTime(transaction.created)}</p>
+                            <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
                         </div>
                         <Icon icon="akar-icons:circle-x" style={{fontSize:"2em"}}onClick={props.onClose}/>
                     </div>
@@ -120,7 +120,7 @@ export default function TradeModal(props) {
                                                 </div>
                                                 <div className="px-4">
                                                     <p className="bold m-0 text-truncate"> {findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name}</p>
-                                                    <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team}</p>
+                                                    <p className="m-0" style={{fontSize:"11px", color:"#cbcbcb"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team}</p>
                                                     <p className="m-0" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
                                                 </div>
                                             </div>
@@ -168,7 +168,7 @@ export default function TradeModal(props) {
                                                 </div>
                                                 <div className="px-4">
                                                     <p className="bold m-0 text-truncate"> {findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name}</p>
-                                                    <p className="m-0" style={{fontSize:"12px"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
+                                                    <p className="m-0" style={{fontSize:"11px", color:"#cbcbcb"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
                                                     <p className="m-0" style={{fontSize:"12px"}}> {findPlayer("drops", transaction.playerDB, transactionID).rating}</p>      
                                                 </div>
                                             </div>

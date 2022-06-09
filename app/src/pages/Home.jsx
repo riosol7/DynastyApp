@@ -123,8 +123,22 @@ export default function Home () {
                         </div>
                     </div>
                 </div>
-                <div className="p-2">
-                    <div className="p-2" style={{border:"5px solid black", borderRadius:"15px"}}>
+                <div className="p-2 col d-flex justify-content-center" style={{}}>
+                    <div className="p-4" style={{border:"1px solid white", borderRadius:"15px"}}>
+                        <div className="d-flex mb-3">
+                            <div className="" style={{border:"1px solid white", borderRadius:"10px"}}>
+                                <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
+                                    <Icon icon="akar-icons:crown" style={{marginRight:"5px", fontSize:"1rem"}}/>
+                                    DYNASTY
+                                </p>
+                            </div>
+                            <div className="mx-3" style={{border:"1px solid white", borderRadius:"10px"}}>
+                                <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
+                                    <Icon icon="ic:outline-offline-bolt" style={{marginRight:"5px", fontSize:"1.3rem"}}/>
+                                    POWER
+                                </p>
+                            </div>
+                        </div>
                         <DynastyRankings
                             loadRosters={loadRosters}
                             rosters={rosters}
