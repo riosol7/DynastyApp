@@ -105,7 +105,7 @@ export default function Home () {
                             />
                         </div>
                         <div className="p-2">
-                            <div className="pb-2" style={{border:"5px solid black", borderRadius:"15px", background:"#2a2c3e"}}>
+                            <div className="pt-1 pb-4" style={{borderRadius:"15px", background:"#2a2c3e"}}>
                                 <div className="d-flex justify-content-between align-items-center m-2">
                                     <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
                                     <div className="">
