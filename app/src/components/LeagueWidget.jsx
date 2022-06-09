@@ -9,11 +9,9 @@ export default function LeagueWidget(props) {
         {
             loadLeague ? <p>Loading </p> :
             <>
-                <div className="d-flex">
-                    <div className="mx-2">
-                        <p className="display-6 m-0">{league.name}</p>
-                        <p className="m-0 text-center">{league.season} {league.status === "pre_draft" ? "Pre-Draft" : ""}</p>
-                    </div>
+                <div className="d-flex align-items-center">
+                    <p className="bold m-0" style={{fontSize:"1.2rem"}}>{league.name}</p>
+                    <p className="m-0 mx-2 bold" style={{color:"#b0b0b2"}}>{league.season} {league.status === "pre_draft" ? "Pre-Draft" : ""}</p>
                 </div>
             </>
         }
