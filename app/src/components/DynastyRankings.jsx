@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+import DynastyModal from './DynastyModal';
 
 export default function DynastyRankings(props) {
     const rosters = props.rosters
     const loadRosters = props.loadRosters
 
     const [filter, setFilter] = useState("Team")
+    const [team, setTeam] = useState({})
+    const [isOpen, setIsOpen] = useState(false)
 
     const qbRankings = () => {
         if(filter === "QB"){
@@ -30,12 +33,20 @@ export default function DynastyRankings(props) {
         } else
         setFilter("TE")
     }
+    const dynastyModal = (data) => {
+        setTeam(data)
+        setIsOpen(true)
+    }
+    const closeModal = () => {
+        setTeam({})
+        setIsOpen(false)
+    }
 
     return (
         <>
         {
             loadRosters ? <p>Loading </p> :
-            <div className="" style={{width:"270px", border:"1px solid white"}}>
+            <div className="" style={{width:"270px"}}>
                 <div className="d-flex justify-content-center border-bottom pb-2">
                     <p 
                         style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}
@@ -198,7 +209,7 @@ export default function DynastyRankings(props) {
                     </div>    
                     ) : rosters.teamRank.map((roster, i) => 
                     <div key={i} className="my-2">
-                        <div className="d-flex">
+                        <div className="d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-md-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
@@ -206,18 +217,15 @@ export default function DynastyRankings(props) {
                                     </div>
                                 </div>
                                 <div className="text-truncate mx-1 border-bottom" style={{width:"100%"}}>
-                                {
-                                    roster.kct.owner.team_name ?
-                                    <>
-                                        <div className="d-flex" style={{fontSize:"13px"}}>
-                                            <span className="m-0">{roster.rank}.</span>
-                                            <div className="text-truncate mx-1">
-                                                <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
-                                                <p className="m-0 text-truncate" style={{fontSize:"11px",color:"#b0b0b2"}}>{roster.kct.owner.display_name}</p>
-                                            </div> 
-                                        </div>
-                                    </>
-                                    :        
+                                { roster.kct.owner.team_name ?
+                                    <div className="d-flex" style={{fontSize:"13px"}}>
+                                        <span className="m-0">{roster.rank}.</span>
+                                        <div className="text-truncate mx-1">
+                                            <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
+                                            <p className="m-0 text-truncate" style={{fontSize:"11px",color:"#b0b0b2"}}>{roster.kct.owner.display_name}</p>
+                                        </div> 
+                                    </div>
+                                :        
                                     <p className="m-0 text-truncate" style={{fontSize:"13px"}}>
                                         <span>{roster.rank}. </span> 
                                         <span className="bold">{roster.kct.owner.display_name}</span>
@@ -235,6 +243,11 @@ export default function DynastyRankings(props) {
                 </div>  
             </div>
         }
+        <DynastyModal
+            open={isOpen}
+            onClose={() => closeModal()}
+            team={team}
+        />
         </>
     )
 }

@@ -6,7 +6,6 @@ import Transaction from "../components/Transaction";
 import Standings from "../components/Standings";
 import AreaChart from "../components/AreaChart";
 import Tabs from "../components/Tabs";
-// import DynastyRanker from "../components/DynastyRanker"
 import { Icon } from '@iconify/react';
 
 export default function Home () {
@@ -69,7 +68,7 @@ export default function Home () {
         <>
             <div className="d-flex">
                 {/* Menu */}
-                <div className="p-2">
+                <div className="">
                     <Tabs
                         league={league}
                         loadLeague={loadLeague}
@@ -145,12 +144,6 @@ export default function Home () {
                         />
                     </div>
                 </div>
-                {/* <div className="col-md-10">
-                    <DynastyRanker 
-                        isLoading={isLoading}
-                        rosters={rosters}
-                    />
-                </div> */}
             </div>
         </>
     );

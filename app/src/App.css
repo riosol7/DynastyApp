@@ -217,7 +217,7 @@
     background-position: center;
     border-top-left-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
-    border: 1px solid whitesmoke;
+    /* border: 1px solid whitesmoke; */
 }
 
 .minusLogo {
