@@ -247,6 +247,7 @@ export default function DynastyRankings(props) {
             open={isOpen}
             onClose={() => closeModal()}
             team={team}
+            rosters={rosters}
         />
         </>
     )
