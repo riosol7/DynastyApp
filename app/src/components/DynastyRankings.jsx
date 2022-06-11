@@ -47,7 +47,7 @@ export default function DynastyRankings(props) {
         {
             loadRosters ? <p>Loading </p> :
             <div className="" style={{maxWidth:"100%"}}>
-                <div className="d-flex justify-content-center border-bottom pb-2">
+                <div className="d-flex justify-content-center border-bottom pb-3">
                     <p 
                         style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}
                         onClick={qbRankings}
@@ -73,14 +73,14 @@ export default function DynastyRankings(props) {
                 { 
                     filter === "QB" ? rosters.qbRank.map((roster, i) => 
                     <div key={i} className="my-2">
-                        <div className="d-flex">
+                        <div className="team d-flex">
                             <div className="col-md-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
-                                <div className="text-truncate mx-1 border-bottom" style={{width:"100%"}}>
+                                <div className="text-truncate mx-1" style={{width:"100%"}}>
                                 {
                                     roster.kct.owner.team_name ?
                                     <>
@@ -107,14 +107,14 @@ export default function DynastyRankings(props) {
                     </div>   
                     ) : filter === "RB" ? rosters.rbRank.map((roster, i) => 
                     <div key={i} className="my-2">
-                        <div className="d-flex">
+                        <div className="team d-flex">
                             <div className="col-md-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
-                                <div className="text-truncate mx-1 border-bottom" style={{width:"100%"}}>
+                                <div className="text-truncate mx-1" style={{width:"100%"}}>
                                 {
                                     roster.kct.owner.team_name ?
                                     <>
@@ -141,14 +141,14 @@ export default function DynastyRankings(props) {
                     </div>  
                     ) : filter === "WR" ? rosters.wrRank.map((roster, i) => 
                     <div key={i} className="my-2">
-                        <div className="d-flex">
+                        <div className="team d-flex">
                             <div className="col-md-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
-                                <div className="text-truncate mx-1 border-bottom" style={{width:"100%"}}>
+                                <div className="text-truncate mx-1" style={{width:"100%"}}>
                                 {
                                     roster.kct.owner.team_name ?
                                     <>
@@ -175,14 +175,14 @@ export default function DynastyRankings(props) {
                     </div>    
                     ) : filter === "TE" ? rosters.teRank.map((roster, i) => 
                     <div key={i} className="my-2">
-                        <div className="d-flex">
+                        <div className="team d-flex">
                             <div className="col-md-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
-                                <div className="text-truncate mx-1 border-bottom" style={{width:"100%"}}>
+                                <div className="text-truncate mx-1" style={{width:"100%"}}>
                                 {
                                     roster.kct.owner.team_name ?
                                     <>
@@ -209,14 +209,14 @@ export default function DynastyRankings(props) {
                     </div>    
                     ) : rosters.teamRank.map((roster, i) => 
                     <div key={i} className="my-2">
-                        <div className="d-flex" onClick={() => dynastyModal(roster)}>
+                        <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-md-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
-                                <div className="text-truncate mx-1 border-bottom" style={{width:"100%"}}>
+                                <div className="text-truncate mx-1" style={{width:"100%"}}>
                                 { roster.kct.owner.team_name ?
                                     <div className="d-flex" style={{fontSize:"13px"}}>
                                         <span className="m-0">{roster.rank}.</span>

@@ -27,9 +27,29 @@
 .thumb{
     width: 100%;
 }
-
+#displayMenu{
+    border-top: 20px solid transparent;
+    /* border-left: 15px solid red; */
+    border-right: 20px solid black;
+    border-bottom: 20px solid transparent;
+}
 .pointer{
     cursor:pointer
+}
+.team:hover{
+    background: #2a2c3e;
+    border-radius: 10px;
+}
+.btnAction{
+    border-radius:10px; 
+    background:linear-gradient(90deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%);
+    color:#2a2c3e
+}
+
+.btnOff{
+    border-radius:10px; 
+    background:#1c1c1c;  
+    color:white
 }
 
 #tradeBtn{
@@ -135,7 +155,7 @@
     position: relative;
     z-index: 1;
     top: 50px;
-    left:-7px;
+    left:0px;
     text-align: right; 
 }
 

@@ -74,9 +74,9 @@ export default function Home () {
                         loadLeague={loadLeague}
                     />
                 </div>
-                <div className="col-md-11 p-3" style={{background:"#1c1c1c"}}>
-                    <div className="d-flex p-4" style={{background:"black",  borderRadius:"25px"}}>
-                        <div className="col-md-10">
+                <div className="col-md-11 py-4" style={{background:"#1c1c1c", paddingRight:"1.5rem"}}>
+                    <div className="d-flex p-4 px-3" style={{background:"black",  borderRadius:"25px"}}>
+                        <div className="col-md-10 px-4">
                             <div className="">
                                 <LeagueWidget
                                     league={league}
@@ -104,7 +104,7 @@ export default function Home () {
                                         rosters={rosters}
                                     />
                                 </div> */}
-                                <div className=" p-2">
+                                <div className="p-2">
                                     <div className="pt-1 pb-4" style={{borderRadius:"15px", background:"#2a2c3e"}}>
                                         <div className="d-flex justify-content-between align-items-center m-2">
                                             <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
@@ -112,7 +112,7 @@ export default function Home () {
                                                 <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2rem"}}/>
                                             </div>
                                         </div>
-                                        <div id="scrollBarActivity" style={{height:"30rem", maxWidth:"100%", overflow:"auto"}}>
+                                        <div id="scrollBarActivity" style={{height:"30.5rem", maxWidth:"100%", overflow:"auto"}}>
                                         {/* <div className=""> */}
                                             <Transaction
                                                 loadTransactions={loadTransactions}
@@ -124,25 +124,28 @@ export default function Home () {
                             </div>
                         </div>
                         <div className="col-md-2">
-                            <div className="p-2">
-                                <div className="d-flex mb-3">
-                                    <div className="" style={{border:"0px solid white", borderRadius:"10px", background:"linear-gradient(90deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%)", color:"#2a2c3e"}}>
+                            <div className="px-2">
+                                <div className="d-flex align-items-center justify-content-between mb-3">
+                                    <div className={"btnAction p-1"}>
                                         <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
                                             <Icon icon="akar-icons:crown" style={{marginRight:"5px", fontSize:"1rem"}}/>
                                             DYNASTY
                                         </p>
                                     </div>
-                                    <div className="mx-3" style={{border:"1px solid grey", borderRadius:"10px", background:"#1c1c1c"}}>
+                                    <div className={"btnOff p-1"}>
                                         <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
                                             <Icon icon="ic:outline-offline-bolt" style={{marginRight:"5px", fontSize:"1.3rem"}}/>
                                             POWER
                                         </p>
                                     </div>
+                                    <Icon icon="akar-icons:more-vertical" style={{color:"#b0b0b2", fontSize:"1.5rem"}}/>
                                 </div>
-                                <DynastyRankings
-                                    loadRosters={loadRosters}
-                                    rosters={rosters}
-                                />
+                                <div>
+                                    <DynastyRankings
+                                        loadRosters={loadRosters}
+                                        rosters={rosters}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

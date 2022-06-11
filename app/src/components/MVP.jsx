@@ -31,7 +31,7 @@ export default function MVP(props) {
             <div className="d-flex" style={{maxWidth:"90rem", cursor:"grab"}}>
                 <Swiper 
                     slidesPerView={9} 
-                    spaceBetween={33} 
+                    spaceBetween={30} 
                     slidesPerGroup={1} 
                     loop={true} 
                     loopFillGroupWithBlank={true}  
