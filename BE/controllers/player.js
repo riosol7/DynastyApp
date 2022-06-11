@@ -22,15 +22,15 @@ playerController.get("/rosters", async (req, res) => {
 
         const getUsers = await fetch("https://api.sleeper.app/v1/league/786065005090189312/users")
         const parsedUsers = await getUsers.json()
-
-        const getKCT = await fetch("https://sheetdb.io/api/v1/vgfjvvvo0ao4p")
+        const getKCT = await fetch("https://sheetdb.io/api/v1/gultqvcl60sw9")
+        // const getKCT = await fetch("https://sheetdb.io/api/v1/vgfjvvvo0ao4p")
         const parsedKCT = await getKCT.json()
 
         let mergeKCT = parsedKCT.map(async kct => {
             const foundPlayers = await Player.find(
                 {  
-                    "full_name": kct.Player, 
-                    "position": kct.Position
+                    "full_name": kct.player, 
+                    "position": kct.position
                 }
             )
             let sleeperID = 0 
@@ -38,11 +38,11 @@ playerController.get("/rosters", async (req, res) => {
                 sleeperID = foundPlayers[i].player_id
                 return {
                     ...kct,
-                    player:kct.Player,
-                    team:kct.Team,
-                    position:kct.Position,
-                    age:kct.Age,
-                    rating:kct.Rating,
+                    // player:kct.Player,
+                    // team:kct.Team,
+                    // position:kct.Position,
+                    // age:kct.Age,
+                    // rating:kct.Rating,
                     player_id: sleeperID
                 }
             }

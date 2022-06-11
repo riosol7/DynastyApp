@@ -46,7 +46,7 @@ export default function DynastyRankings(props) {
         <>
         {
             loadRosters ? <p>Loading </p> :
-            <div className="" style={{width:"270px"}}>
+            <div className="" style={{maxWidth:"100%"}}>
                 <div className="d-flex justify-content-center border-bottom pb-2">
                     <p 
                         style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}

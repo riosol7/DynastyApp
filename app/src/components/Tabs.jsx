@@ -10,8 +10,8 @@ export default function Tabs(props) {
         {
             loadLeague ? <p>Loading </p> :
             <>
-                <div className="">
-                    <div className="p-2">
+                <div className="" style={{background:"#1c1c1c"}}>
+                    <div className="d-flex justify-content-center p-4">
                         <img className="leagueLogo rounded" alt="avatar" src={
                             `https://sleepercdn.com/avatars/thumbs/${
                                 league.avatar

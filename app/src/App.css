@@ -16,7 +16,7 @@
     background:hsl(120 100% 20% / 1);
 } */
 .App{
-    background-color: #000000;
+    background-color: #1c1c1c;
     color: white;
     user-select: none; /* supported by Chrome and Opera */
     -webkit-user-select: none; /* Safari */
@@ -52,7 +52,7 @@
     border-radius: 25%;
     position: relative;
     z-index: -1;
-    border: 0px solid #2a2c3e;
+    /* border: 2px solid white; */
 }
 
 .smallHeadShotQB{
@@ -128,8 +128,7 @@
     background-size:177px;
     height: 125px;
     width: 125.11px;
-    border-radius: 25%;
-    
+    border-radius: 25px;
 }
 
 .displayOwnerLogo{
@@ -201,7 +200,7 @@
 }
 
 .leagueLogo {
-    width: 100%;
+    max-width: 100%;
 }
 
 .ownerLogo {
