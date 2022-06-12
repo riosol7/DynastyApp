@@ -41,6 +41,14 @@
 .thumb{
     width: 100%;
 }
+.view{
+    border-bottom-style: solid;
+    border-bottom-color: #686b71;
+}
+.selectedView{
+    border-bottom-style: solid;
+    border-bottom-color: white;
+}
 #displayMenu{
     border-top: 20px solid transparent;
     /* border-left: 15px solid red; */

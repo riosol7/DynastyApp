@@ -24,7 +24,7 @@ export default function Standings(props) {
               <p className="m-0 mx-2" style={{fontSize:"1rem"}}>{league.metadata ? league.metadata.division_1 : ""}</p>  
             </div>
             <div className="d-flex">
-              <div className="col-lg-8">
+              <div className="col-lg-7">
 
               </div>
               <div className="col-lg-2">
@@ -34,12 +34,15 @@ export default function Standings(props) {
                 <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PF</p>
               </div>
               <div className="col-lg-1">
+                <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>MAX PF</p>
+              </div>
+              <div className="col-lg-1 d-flex justify-content-center">
                 <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PA</p>
               </div>
             </div>
           { division_1.map((division, i) => 
             <div key={i} className="d-flex my-1 align-items-center">
-              <div className="col-lg-8 text-truncate">
+              <div className="col-lg-7 text-truncate">
                 <div className="d-flex align-items-center">
                   <p className="m-0 mx-2 bold" style={{color:"#acb6c3", fontSize:".9rem"}}>{i + 1}</p>
                   <div className="">
@@ -79,6 +82,9 @@ export default function Standings(props) {
               <div className="col-lg-1">
                 <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
               </div>
+              <div className="col-lg-1 d-flex justify-content-center">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
+              </div>
             </div>
           )}
           </div>
@@ -88,7 +94,7 @@ export default function Standings(props) {
               <p className="m-0 mx-2" style={{fontSize:"1rem"}}>{league.metadata ? league.metadata.division_2 : ""}</p>  
             </div>
             <div className="d-flex">
-              <div className="col-lg-8">
+              <div className="col-lg-7">
 
               </div>
               <div className="col-lg-2">
@@ -98,12 +104,15 @@ export default function Standings(props) {
                 <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PF</p>
               </div>
               <div className="col-lg-1">
+                <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>MAX PF</p>
+              </div>
+              <div className="col-lg-1 d-flex justify-content-center">
                 <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PA</p>
               </div>
             </div>
           { division_2.map((division, i) => 
             <div key={i} className="d-flex my-1 align-items-center">
-              <div className="col-lg-8 text-truncate">
+              <div className="col-lg-7 text-truncate">
                 <div className="d-flex align-items-center">
                   <p className="m-0 mx-2 bold" style={{color:"#acb6c3", fontSize:".9rem"}}>{i + 1}</p>
                   <div className="">
@@ -142,6 +151,9 @@ export default function Standings(props) {
                   <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
               </div>
               <div className="col-lg-1">
+                  <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
+              </div>
+              <div className="col-lg-1 d-flex justify-content-center">
                   <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
               </div>
             </div>
