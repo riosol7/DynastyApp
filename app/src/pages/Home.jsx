@@ -74,7 +74,7 @@ export default function Home () {
                         loadLeague={loadLeague}
                     />
                 </div>
-                <div className="col-md-11 py-4" style={{background:"#1c1c1c", paddingRight:"1.5rem"}}>
+                <div className="col-md-11 py-3" style={{background:"#1c1c1c", paddingRight:"1rem"}}>
                     <div className="d-flex p-4 px-3" style={{background:"black",  borderRadius:"25px"}}>
                         <div className="col-md-10 px-4">
                             <div className="">
@@ -90,14 +90,6 @@ export default function Home () {
                                 />
                             </div>
                             <div className="d-flex my-4">
-                                <div className="col-md-5 p-2">
-                                    <Standings
-                                        loadLeague={loadLeague}
-                                        league={league}
-                                        loadRosters={loadRosters}
-                                        rosters={rosters}
-                                    />
-                                </div>
                                 {/* <div className="col">
                                     <AreaChart
                                         loadRosters={loadRosters}
@@ -121,6 +113,14 @@ export default function Home () {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-md-5 p-2">
+                                    <Standings
+                                        loadLeague={loadLeague}
+                                        league={league}
+                                        loadRosters={loadRosters}
+                                        rosters={rosters}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="col-md-2">
@@ -141,6 +141,7 @@ export default function Home () {
                                     <Icon icon="akar-icons:more-vertical" style={{color:"#b0b0b2", fontSize:"1.5rem"}}/>
                                 </div>
                                 <div>
+                                {/* <div id="scrollBarRanking" style={{height:"51.2314rem", maxWidth:"100%", overflow:"auto"}}> */}
                                     <DynastyRankings
                                         loadRosters={loadRosters}
                                         rosters={rosters}

@@ -12,6 +12,20 @@
     border-radius: 100vw;
     /* border: 1px solid white; */
 }
+#scrollBarRanking::-webkit-scrollbar{
+    width: .8em;
+    /* background: #2a2c3e; */
+}
+#scrollBarRanking::-webkit-scrollbar-track{
+    /* background: hsl(120 75% 50% / 1); */
+    border-radius: 100vw;
+    margin-block: .5em;
+}
+#scrollBarRanking::-webkit-scrollbar-thumb{
+    background:  #232227;
+    border-radius: 100vw;
+    border: 1px solid #1c1c1c;
+}
 /* #scrollBarActivity:-webkit-scrollbar-thumb:hover{
     background:hsl(120 100% 20% / 1);
 } */
@@ -38,7 +52,7 @@
 }
 .team:hover{
     background: #2a2c3e;
-    border-radius: 10px;
+    border-radius: 2px;
 }
 .btnAction{
     border-radius:10px; 
