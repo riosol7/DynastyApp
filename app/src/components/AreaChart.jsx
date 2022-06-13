@@ -7,7 +7,7 @@ export default function AreaChart(props) {
     let lineSeries = rosters.totalRoster && rosters.totalRoster.map(roster => {
         return {
             name:roster.owner_id.display_name,
-            data:roster.owner_id ? roster.owner_id.dynasty.map(data => data.value) : []
+            data:roster.owner_id ? roster.owner_id.dynasty.slice().map(data => data.value) : []
         }
     })
     let dates = rosters.totalRoster && rosters.totalRoster.map(roster => roster.owner_id.dynasty.map(data => new Date(data.date).toLocaleDateString()))
@@ -15,7 +15,7 @@ export default function AreaChart(props) {
     const options = {
         chart: {
             background: '#000000',
-            foreColor: '#ebebeb',
+            foreColor: '#9fa0a1',
             toolbar: {
                 show: false
             },
@@ -23,22 +23,19 @@ export default function AreaChart(props) {
             type: 'line',
             stacked: false,
             animations: {
-              enabled: true,
-              easing: 'linear',
-              dynamicAnimation: {
-                speed: 5000
-              }
+                enabled: true,
+                easing: 'linear',
+                dynamicAnimation: {
+                    speed: 1000
+                }
             },
             dropShadow: {
                 enabled: true,
-                opacity: 0.3,
-                blur: 5,
-                left: -7,
-                top: 15
-            },
-        },
-        theme: {
-            mode: 'dark', 
+                top: 3,
+                left: 2,
+                blur: 4,
+                opacity: 1,
+            }
         },
         colors:[
             "#FF009C","#ff8008","#0072ff",
@@ -46,6 +43,9 @@ export default function AreaChart(props) {
             "#c9d6ff","#24fe41","#a80077",
             "#c8b387","#9733ee","#ffff1c"
         ],
+        dataLabels: {
+            enabled: false
+        },
         fill: {
             type: 'gradient',
             gradient: {
@@ -57,31 +57,37 @@ export default function AreaChart(props) {
                 ]
             }
         },
+        grid: {
+            show: false,
+            padding: {
+              bottom: 0
+            }
+          },
         legend:{
             show:false
         },
         markers: {
             size: 0,
+            strokeWidth: 0,
             hover: {
-              size: 0
+                size: 5
             }
-          },
-        dataLabels: {
-            enabled: false
         },
         stroke: {
-            show:true,
             curve: 'smooth',
-            lineCap:"butt"
+            width: 3
         },
-        xaxis: { 
-            type: 'date',
-            categories: dates !== undefined ? dates[0] : []
+        theme: {
+            mode: 'dark', 
         },
         tooltip: {
             x: {
             format: 'dd/MM/yy HH:mm'
             },
+        },
+        xaxis: { 
+            type: 'date',
+            categories: dates !== undefined ? dates[0] : []
         },
         zoom: {
             enabled: false

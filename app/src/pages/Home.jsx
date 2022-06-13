@@ -4,7 +4,7 @@ import DynastyRankings from "../components/DynastyRankings";
 import MVP from "../components/MVP";
 import Transaction from "../components/Transaction";
 import Standings from "../components/Standings";
-// import AreaChart from "../components/AreaChart";
+import AreaChart from "../components/AreaChart";
 import Tabs from "../components/Tabs";
 import { Icon } from '@iconify/react';
 import vs from "../assets/vs.png"
@@ -71,12 +71,12 @@ export default function Home () {
                 {/* Menu */}
                 <div className="" style={{width:"5rem"}}>
                     <Tabs
-                        league={league}
-                        loadLeague={loadLeague}
+                        // league={league}
+                        // loadLeague={loadLeague}
                     />
                 </div>
                 <div className="col py-2" style={{background:"#1c1c1c", paddingRight:".5rem"}}>
-                    <div className="d-flex p-4 px-3" style={{background:"black",  borderRadius:"25px"}}>
+                    <div className="d-flex py-4" style={{background:"black",  borderRadius:"25px"}}>
                         <div className="col-md-10 px-4">
                             <div className="">
                                 <LeagueWidget
@@ -110,12 +110,6 @@ export default function Home () {
                                     <div className="col-sm-9"></div>
                                 </div>
                                 <div className="d-flex">
-                                    {/* <div className="col">
-                                        <AreaChart
-                                            loadRosters={loadRosters}
-                                            rosters={rosters}
-                                        />
-                                    </div> */}
                                     <div className="col">
                                         <div className="" style={{borderRight:"1px solid #686b71"}}>
                                             <div className="d-flex justify-content-between align-items-center m-2">
@@ -133,13 +127,20 @@ export default function Home () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-10 px-3 pt-2" id="scrollBar" style={{height:"818.49px", maxWidth:"100%", overflow:"auto"}}>
+                                    <div className="col-md-10 px-3 pt-2" id="scrollBar" style={{height:"818.49px", maxWidth:"100%", overflow:"auto"}}>  
                                         <div className=""> 
                                             <MVP
                                                 loadRosters={loadRosters}
                                                 rosters={rosters}
                                             />
                                             <p className="m-0 bold MVP">MVPs</p>
+                                        </div>
+                                        <div className="col pt-3 pb-4">
+                                            <p className="m-0 bold">Dynasty</p>
+                                            <AreaChart
+                                                loadRosters={loadRosters}
+                                                rosters={rosters}
+                                            />
                                         </div>
                                         <div className="m-0">
                                             <Standings
@@ -153,7 +154,7 @@ export default function Home () {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-2 px-1">
                             <div className="px-2">
                                 <div className="d-flex align-items-center justify-content-between mb-3">
                                     <div className={"btnAction p-1"}>
@@ -171,7 +172,7 @@ export default function Home () {
                                     <Icon icon="akar-icons:more-vertical" style={{color:"#b0b0b2", fontSize:"1.5rem"}}/>
                                 </div>
                                 <div>
-                                {/* <div id="scrollBarRanking" style={{height:"51.2314rem", maxWidth:"100%", overflow:"auto"}}> */}
+                                {/* <div id="scrollBar" style={{height:"51.2314rem", maxWidth:"100%", overflow:"auto"}}> */}
                                     <DynastyRankings
                                         loadRosters={loadRosters}
                                         rosters={rosters}

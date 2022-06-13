@@ -71,6 +71,8 @@ playerController.get("/rosters", async (req, res) => {
             const foundReserve = await Player.find({"player_id": roster.reserve}, filtered)
             const foundTaxi = await Player.find({"player_id": roster.taxi}, filtered)
 
+            //make an update where parsedUsers is no longer needed...
+            //have all the previous owners in the DB and find by roster ID
             let foundUser = parsedUsers.find(user => user.user_id === roster.owner_id)
 
             let qbFiltered = kctRankings.filter(player => player.position === "QB")
@@ -91,6 +93,7 @@ playerController.get("/rosters", async (req, res) => {
         
             let teamTotal = qbTotal + rbTotal + wrTotal + teTotal
 
+            //Collect the previous yrs value of per team
             const updateOwner = await Owner.findOneAndUpdate(
                 {
                     "user_id":foundUser.user_id,
