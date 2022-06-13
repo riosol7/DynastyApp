@@ -1,9 +1,9 @@
 #scrollBarActivity::-webkit-scrollbar{
     width: .8em;
-    background: #2a2c3e;
+    /* background: #2a2c3e; */
 }
 #scrollBarActivity::-webkit-scrollbar-track{
-    /* background: hsl(120 75% 50% / 1); */
+    /* background: #686b71; */
     border-radius: 100vw;
     margin-block: .5em;
 }
@@ -47,7 +47,10 @@
 }
 .selectedView{
     border-bottom-style: solid;
-    border-bottom-color: white;
+    border-bottom-color:#a9dfd8;
+    z-index: 1;
+    position: relative;
+    top: 3px;
 }
 #displayMenu{
     border-top: 20px solid transparent;

@@ -90,15 +90,23 @@ export default function Home () {
                                 />
                             </div>
                             <div className="my-3">
-                                <div className="d-flex">
-                                    <div className="selectedView">
-                                        <p className="m-0 pb-2" style={{paddingRight:"1.5rem"}}>Overview</p>
+                                <div className="d-flex view">
+                                    <div className="">
+                                        <p className="pb-2 m-0 mx-4">Overview</p>
+                                        <div className="selectedView"></div>
                                     </div>
-                                    <div className="view">
-                                        <p className="m-0 mx-4" style={{color:"#686b71"}}>Matchups</p>
+                                    <div className="">
+                                        <p className="pb-2 m-0 mx-4" style={{color:"#686b71"}}>Matchups</p>
+                                        <div className=""></div>
                                     </div>
-                                   
-                                    <p className="m-0"></p>
+                                    <div className="">
+                                        <p className="pb-2 m-0 mx-4" style={{color:"#686b71"}}>Playoffs</p>
+                                        <div className=""></div>
+                                    </div>
+                                    <div className="">
+                                        <p className="pb-2 m-0 mx-4" style={{color:"#686b71"}}>Blog</p>
+                                        <div className=""></div>
+                                    </div>
                                 </div>
                                 <div className="d-flex">
                                     {/* <div className="col">
@@ -108,11 +116,11 @@ export default function Home () {
                                         />
                                     </div> */}
                                     <div className="">
-                                        <div className="pt-1 pb-4" style={{borderRadius:"15px", background:"#2a2c3e"}}>
+                                        <div className="pt-1 pb-4" style={{borderRight:"1px solid #686b71"}}>
                                             <div className="d-flex justify-content-between align-items-center m-2">
                                                 <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
                                                 <div className="">
-                                                    <Icon icon="fluent:more-circle-32-regular" style={{fontSize:"2rem"}}/>
+                                                    <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
                                                 </div>
                                             </div>
                                             <div id="scrollBarActivity" style={{height:"30.5rem", maxWidth:"100%", overflow:"auto"}}>
@@ -124,7 +132,7 @@ export default function Home () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-5">
+                                    <div className="col-md-10">
                                         <Standings
                                             loadLeague={loadLeague}
                                             league={league}

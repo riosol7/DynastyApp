@@ -13,11 +13,12 @@ export default function Standings(props) {
   return (
     <>
     { loadRosters ? <p>Loading </p> :
-      <div className="pb-4 pt-1" style={{background:"#2a2c3e", borderRadius:"15px"}}>
+      <div className="pb-4 pt-1">
         <div className="p-2">
           <p className="m-0 bold" style={{}}>Standings</p>
         </div>
-        <div className="container" id="scrollBarActivity" style={{height:"24rem", width:"100%", overflow:"auto"}}>
+        {/* <div className="container"> */}
+        <div className="container" id="scrollBarActivity" style={{height:"31.593rem", width:"100%", overflow:"auto"}}>
           <div className="mb-5 mt-2" style={{fontSize:"14px"}}>
             <div className="d-flex align-items-center">
               <Icon icon="uim:layer-group" style={{fontSize:"1.35rem"}}/>
