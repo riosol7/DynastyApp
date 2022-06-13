@@ -10,7 +10,7 @@ const MODAL_STYLES = {
     background: "#2a2c3e",
     borderRadius:'4px',
     padding: '2rem',
-    zIndex: 1
+    zIndex: 5
 }
 
 const OVERLAY_STYLES = {
@@ -20,7 +20,7 @@ const OVERLAY_STYLES = {
     right: 0,
     bottom: 0,
     background: 'rgba(0,0,0,0.6)',
-    zIndex:1
+    zIndex:5
 }
 
 export default function TradeModal(props) {

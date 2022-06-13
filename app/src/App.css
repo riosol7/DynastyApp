@@ -1,34 +1,34 @@
-#scrollBarActivity::-webkit-scrollbar{
-    width: .8em;
-    /* background: #2a2c3e; */
+#scrollBar::-webkit-scrollbar{
+    width: 5px;
+    background: none;
 }
-#scrollBarActivity::-webkit-scrollbar-track{
+#scrollBar::-webkit-scrollbar-track{
     /* background: #686b71; */
     border-radius: 100vw;
     margin-block: .5em;
 }
-#scrollBarActivity::-webkit-scrollbar-thumb{
+#scrollBar::-webkit-scrollbar-thumb{
     background:  #40414e;
     border-radius: 100vw;
-    /* border: 1px solid white; */
+    border: 0px solid white;
 }
-#scrollBarRanking::-webkit-scrollbar{
-    width: .8em;
-    /* background: #2a2c3e; */
+/* #scrollBar:-webkit-scrollbar-thumb:hover{
+    background:hsl(120 100% 20% / 1);
+} */
+::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+    background: #1c1c1c;
 }
-#scrollBarRanking::-webkit-scrollbar-track{
+::-webkit-scrollbar-track{
     /* background: hsl(120 75% 50% / 1); */
     border-radius: 100vw;
     margin-block: .5em;
 }
-#scrollBarRanking::-webkit-scrollbar-thumb{
-    background:  #232227;
+::-webkit-scrollbar-thumb{
+    background:  #40414e;;
     border-radius: 100vw;
-    border: 1px solid #1c1c1c;
 }
-/* #scrollBarActivity:-webkit-scrollbar-thumb:hover{
-    background:hsl(120 100% 20% / 1);
-} */
 .App{
     background-color: #1c1c1c;
     color: white;
@@ -37,6 +37,11 @@
     -khtml-user-select: none; /* Konqueror HTML */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */  
+}
+.MVP{
+    position: relative;
+    bottom:13.6em;
+    font-size: 1rem;
 }
 .thumb{
     width: 100%;
@@ -50,13 +55,13 @@
     border-bottom-color:#a9dfd8;
     z-index: 1;
     position: relative;
-    top: 3px;
+    top: 7px;
 }
 #displayMenu{
-    border-top: 20px solid transparent;
-    /* border-left: 15px solid red; */
-    border-right: 20px solid black;
-    border-bottom: 20px solid transparent;
+    background:linear-gradient(360deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%);
+    width: 5px;
+    height: 45px;
+    border-radius: 2px;
 }
 .pointer{
     cursor:pointer
@@ -67,7 +72,7 @@
 }
 .btnAction{
     border-radius:10px; 
-    background:linear-gradient(90deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%);
+    background:#a9dfd8;
     color:#2a2c3e
 }
 
@@ -78,7 +83,7 @@
 }
 
 #tradeBtn{
-    background:linear-gradient(90deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%);
+    background:#a9dfd8;
     width:195px;
     border-radius:25px;
     padding-top:.5rem;
@@ -98,6 +103,14 @@
     position: relative;
     z-index: -1;
     /* border: 2px solid white; */
+}
+.headShot{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:177px;
+    height: 125px;
+    width: 125.11px;
+    border-radius: 25px;
 }
 
 .smallHeadShotQB{
@@ -166,16 +179,6 @@
     border-radius: 50%;
     border: 1px solid black;
 }
-
-.headShot{
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size:177px;
-    height: 125px;
-    width: 125.11px;
-    border-radius: 25px;
-}
-
 .displayOwnerLogo{
     position: relative;
     z-index: 1;

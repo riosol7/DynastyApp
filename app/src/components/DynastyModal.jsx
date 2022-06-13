@@ -188,7 +188,7 @@ export default function DynastyModal(props) {
                                     )}</p>
                                 </div>
                             </div>
-                            <div id="scrollBarActivity" style={{height:"40rem", overflow:"auto"}}>
+                            <div id="scrollBar" style={{height:"40rem", overflow:"auto"}}>
                                 <div className="">
                                     <div className="d-flex justify-content-between">
                                         <p>

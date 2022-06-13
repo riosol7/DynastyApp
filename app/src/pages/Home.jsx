@@ -7,6 +7,7 @@ import Standings from "../components/Standings";
 // import AreaChart from "../components/AreaChart";
 import Tabs from "../components/Tabs";
 import { Icon } from '@iconify/react';
+import vs from "../assets/vs.png"
 
 export default function Home () {
     const [league, setLeague] = useState({})
@@ -68,13 +69,13 @@ export default function Home () {
         <>
             <div className="d-flex">
                 {/* Menu */}
-                <div className="col-md-1">
+                <div className="" style={{width:"5rem"}}>
                     <Tabs
                         league={league}
                         loadLeague={loadLeague}
                     />
                 </div>
-                <div className="col-md-11 py-3" style={{background:"#1c1c1c", paddingRight:"1rem"}}>
+                <div className="col py-2" style={{background:"#1c1c1c", paddingRight:".5rem"}}>
                     <div className="d-flex p-4 px-3" style={{background:"black",  borderRadius:"25px"}}>
                         <div className="col-md-10 px-4">
                             <div className="">
@@ -83,30 +84,30 @@ export default function Home () {
                                     loadLeague={loadLeague}
                                 />
                             </div>
-                            <div className="">
-                                <MVP
-                                    loadRosters={loadRosters}
-                                    rosters={rosters}
-                                />
-                            </div>
-                            <div className="my-3">
-                                <div className="d-flex view">
-                                    <div className="">
-                                        <p className="pb-2 m-0 mx-4">Overview</p>
+                            <div className="mt-4">
+                                <div className="d-flex view pb-1">
+                                    <div className="col-sm-1">
+                                        <div className="d-flex align-items-center justify-content-center">
+                                            <Icon icon="fluent:content-view-gallery-24-regular" style={{fontSize:"1.5rem", color:"#a9dfd8"}}/>
+                                            <p className="m-0 mx-1">Overview</p>
+                                        </div>
                                         <div className="selectedView"></div>
                                     </div>
-                                    <div className="">
-                                        <p className="pb-2 m-0 mx-4" style={{color:"#686b71"}}>Matchups</p>
+                                    <div className="col-sm-1">
+                                        <div className="d-flex align-items-center justify-content-center">
+                                            <img src={vs} alt="test" style={{}}/>
+                                            <p className="m-0 mx-1"style={{color:"#686b71"}}>Matchups</p>
+                                        </div>
                                         <div className=""></div>
                                     </div>
-                                    <div className="">
-                                        <p className="pb-2 m-0 mx-4" style={{color:"#686b71"}}>Playoffs</p>
+                                    <div className="col-sm-1">
+                                        <div className="d-flex align-items-center justify-content-center">
+                                            <Icon icon="carbon:blog" style={{fontSize:"1.5rem", color:"#686b71"}}/>
+                                            <p className="m-0 mx-1"style={{color:"#686b71"}}>Blog</p>
+                                        </div>
                                         <div className=""></div>
                                     </div>
-                                    <div className="">
-                                        <p className="pb-2 m-0 mx-4" style={{color:"#686b71"}}>Blog</p>
-                                        <div className=""></div>
-                                    </div>
+                                    <div className="col-sm-9"></div>
                                 </div>
                                 <div className="d-flex">
                                     {/* <div className="col">
@@ -115,15 +116,15 @@ export default function Home () {
                                             rosters={rosters}
                                         />
                                     </div> */}
-                                    <div className="">
-                                        <div className="pt-1 pb-4" style={{borderRight:"1px solid #686b71"}}>
+                                    <div className="col">
+                                        <div className="" style={{borderRight:"1px solid #686b71"}}>
                                             <div className="d-flex justify-content-between align-items-center m-2">
                                                 <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
                                                 <div className="">
                                                     <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
                                                 </div>
                                             </div>
-                                            <div id="scrollBarActivity" style={{height:"30.5rem", maxWidth:"100%", overflow:"auto"}}>
+                                            <div id="scrollBar" style={{height:"776.7px", maxWidth:"100%", overflow:"auto"}}>
                                             {/* <div className=""> */}
                                                 <Transaction
                                                     loadTransactions={loadTransactions}
@@ -132,13 +133,22 @@ export default function Home () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-10">
-                                        <Standings
-                                            loadLeague={loadLeague}
-                                            league={league}
-                                            loadRosters={loadRosters}
-                                            rosters={rosters}
-                                        />
+                                    <div className="col-md-10 px-3 pt-2" id="scrollBar" style={{height:"818.49px", maxWidth:"100%", overflow:"auto"}}>
+                                        <div className=""> 
+                                            <MVP
+                                                loadRosters={loadRosters}
+                                                rosters={rosters}
+                                            />
+                                            <p className="m-0 bold MVP">MVPs</p>
+                                        </div>
+                                        <div className="m-0">
+                                            <Standings
+                                                loadLeague={loadLeague}
+                                                league={league}
+                                                loadRosters={loadRosters}
+                                                rosters={rosters}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
