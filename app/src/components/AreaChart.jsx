@@ -14,14 +14,6 @@ export default function AreaChart(props) {
     const series =  lineSeries !== undefined ? lineSeries : [{name:"", data:[]}]
     const options = {
         chart: {
-            background: '#000000',
-            foreColor: '#9fa0a1',
-            toolbar: {
-                show: false
-            },
-            height: 350,
-            type: 'line',
-            stacked: false,
             animations: {
                 enabled: true,
                 easing: 'linear',
@@ -29,13 +21,20 @@ export default function AreaChart(props) {
                     speed: 1000
                 }
             },
+            background: '#000000',
             dropShadow: {
                 enabled: true,
                 top: 3,
                 left: 2,
                 blur: 4,
                 opacity: 1,
-            }
+            },
+            foreColor: '#9fa0a1',
+            toolbar: {
+                show: false
+            },
+            type: 'line',
+            stacked: false,
         },
         colors:[
             "#FF009C","#ff8008","#0072ff",
@@ -80,6 +79,10 @@ export default function AreaChart(props) {
         theme: {
             mode: 'dark', 
         },
+        // title:{
+        //     text:"Dynasty Growth",
+        //     align:"left"
+        // },
         tooltip: {
             x: {
             format: 'dd/MM/yy HH:mm'
@@ -103,7 +106,7 @@ export default function AreaChart(props) {
                     options={options} 
                     series={series} 
                     type="line" 
-                    height={500}
+                    height={450}
                     // width={600} 
                 />
             </div>

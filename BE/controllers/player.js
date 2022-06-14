@@ -22,8 +22,12 @@ playerController.get("/rosters", async (req, res) => {
 
         const getUsers = await fetch("https://api.sleeper.app/v1/league/786065005090189312/users")
         const parsedUsers = await getUsers.json()
-        const getKCT = await fetch("https://sheetdb.io/api/v1/gultqvcl60sw9")
+        //piraiojeda@gmail.com
+        // const getKCT = await fetch("https://sheetdb.io/api/v1/gultqvcl60sw9")
+        //CSUN
         // const getKCT = await fetch("https://sheetdb.io/api/v1/vgfjvvvo0ao4p")
+        // notriosol
+        const getKCT = await fetch("https://sheetdb.io/api/v1/gzyqw2qiluj5k")
         const parsedKCT = await getKCT.json()
 
         let mergeKCT = parsedKCT.map(async kct => {

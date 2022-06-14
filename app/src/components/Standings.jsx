@@ -14,8 +14,9 @@ export default function Standings(props) {
     <>
     { loadRosters ? <p>Loading </p> :
       <div className="pb-4 pt-1">
-        <div className="py-2">
-          <p className="m-0 bold" style={{}}>Standings</p>
+        <div className="d-flex align-items-center py-2">
+          <Icon icon="icon-park-outline:ranking" style={{color:"#a9dfd8",fontSize:"1rem"}}/>
+          <p className="m-0 mx-1 bold" style={{}}>Standings</p>
         </div>
         <div className="">
         {/* <div className="container" id="scrollBarActivity" style={{height:"31.593rem", width:"100%", overflow:"auto"}}> */}

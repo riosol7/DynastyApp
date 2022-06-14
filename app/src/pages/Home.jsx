@@ -4,10 +4,11 @@ import DynastyRankings from "../components/DynastyRankings";
 import MVP from "../components/MVP";
 import Transaction from "../components/Transaction";
 import Standings from "../components/Standings";
-import AreaChart from "../components/AreaChart";
+// import AreaChart from "../components/AreaChart";
 import Tabs from "../components/Tabs";
 import { Icon } from '@iconify/react';
 import vs from "../assets/vs.png"
+import PowerRankings from "../components/PowerRankings";
 
 export default function Home () {
     const [league, setLeague] = useState({})
@@ -18,6 +19,8 @@ export default function Home () {
     
     const [transactions, setTransactions] = useState([])
     const [loadTransactions, setLoadTransactions] = useState(true)
+
+    const [rankings, setRankings] = useState("Dynasty")
 
     let round = 1
 
@@ -85,7 +88,7 @@ export default function Home () {
                                 />
                             </div>
                             <div className="mt-4">
-                                <div className="d-flex view pb-1">
+                                <div className="d-flex view pb-2">
                                     <div className="col-sm-1">
                                         <div className="d-flex align-items-center justify-content-center">
                                             <Icon icon="fluent:content-view-gallery-24-regular" style={{fontSize:"1.5rem", color:"#a9dfd8"}}/>
@@ -118,7 +121,7 @@ export default function Home () {
                                                     <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
                                                 </div>
                                             </div>
-                                            <div id="scrollBar" style={{height:"776.7px", maxWidth:"100%", overflow:"auto"}}>
+                                            <div id="scrollBar" style={{height:"772.71px", maxWidth:"100%", overflow:"auto"}}>
                                             {/* <div className=""> */}
                                                 <Transaction
                                                     loadTransactions={loadTransactions}
@@ -127,22 +130,24 @@ export default function Home () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-10 px-3 pt-2" id="scrollBar" style={{height:"818.49px", maxWidth:"100%", overflow:"auto"}}>  
+                                    <div className="col-md-10 px-3" id="scrollBar" style={{height:"814px", maxWidth:"100%", overflow:"auto"}}>  
                                         <div className=""> 
                                             <MVP
                                                 loadRosters={loadRosters}
                                                 rosters={rosters}
                                             />
-                                            <p className="m-0 bold MVP">MVPs</p>
+                                            <div className="d-flex align-items-center  MVP">
+                                                <Icon icon="fluent:star-line-horizontal-3-24-regular" style={{color:"#a9dfd8", fontSize:"1.1rem"}}/>
+                                                <p className="m-0 mx-1 bold">MVPs</p>
+                                            </div>
                                         </div>
-                                        <div className="col pt-3 pb-4">
-                                            <p className="m-0 bold">Dynasty</p>
+                                        {/* <div className="col pt-2 pb-4">
                                             <AreaChart
                                                 loadRosters={loadRosters}
                                                 rosters={rosters}
                                             />
-                                        </div>
-                                        <div className="m-0">
+                                        </div> */}
+                                        <div className="m-0 mt-2">
                                             <Standings
                                                 loadLeague={loadLeague}
                                                 league={league}
@@ -157,13 +162,13 @@ export default function Home () {
                         <div className="col-md-2 px-1">
                             <div className="px-2">
                                 <div className="d-flex align-items-center justify-content-between mb-3">
-                                    <div className={"btnAction p-1"}>
+                                    <div className={rankings ==="Dynasty"? "btnAction" : "btnOff"} onClick={() => setRankings("Dynasty")}>
                                         <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
                                             <Icon icon="akar-icons:crown" style={{marginRight:"5px", fontSize:"1rem"}}/>
                                             DYNASTY
                                         </p>
                                     </div>
-                                    <div className={"btnOff p-1"}>
+                                    <div className={rankings ==="Power"? "btnAction" : "btnOff"} onClick={() => setRankings("Power")}>
                                         <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
                                             <Icon icon="ic:outline-offline-bolt" style={{marginRight:"5px", fontSize:"1.3rem"}}/>
                                             POWER
@@ -171,12 +176,19 @@ export default function Home () {
                                     </div>
                                     <Icon icon="akar-icons:more-vertical" style={{color:"#b0b0b2", fontSize:"1.5rem"}}/>
                                 </div>
-                                <div>
-                                {/* <div id="scrollBar" style={{height:"51.2314rem", maxWidth:"100%", overflow:"auto"}}> */}
+                                {/* <div className=""> */}
+                                <div id="scrollBar" style={{height:"851.5px", maxWidth:"100%", overflow:"auto"}}>
+                                { rankings === "Dynasty"?
                                     <DynastyRankings
                                         loadRosters={loadRosters}
                                         rosters={rosters}
                                     />
+                                :
+                                    <PowerRankings
+                                        loadRosters={loadRosters}
+                                        rosters={rosters}
+                                    />
+                                }
                                 </div>
                             </div>
                         </div>

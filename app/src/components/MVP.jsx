@@ -28,10 +28,10 @@ export default function MVP(props) {
     return (
         <>
         { loadRosters ? <p>Loading </p> :
-            <div className="d-flex" style={{maxWidth:"73.5rem", cursor:"grab"}}>
+            <div className="d-flex" style={{maxWidth:"1195.2px", cursor:"grab"}}>
                 <Swiper 
                     slidesPerView={7} 
-                    spaceBetween={45} 
+                    spaceBetween={49.5} 
                     slidesPerGroup={1} 
                     loop={true} 
                     loopFillGroupWithBlank={true}  

@@ -40,7 +40,7 @@
 }
 .MVP{
     position: relative;
-    bottom:13.6em;
+    bottom:13.25em;
     font-size: 1rem;
 }
 .thumb{
@@ -55,7 +55,7 @@
     border-bottom-color:#a9dfd8;
     z-index: 1;
     position: relative;
-    top: 7px;
+    top: 11px;
 }
 #displayMenu{
     background:linear-gradient(360deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%);
@@ -73,13 +73,15 @@
 .btnAction{
     border-radius:10px; 
     background:#a9dfd8;
-    color:#2a2c3e
+    color:#2a2c3e;
+    padding: .25em;
 }
 
 .btnOff{
     border-radius:10px; 
     background:#1c1c1c;  
-    color:white
+    color:white;
+    padding: .25em;
 }
 
 #tradeBtn{
