@@ -22,7 +22,8 @@ export default function OverviewWidget(props) {
                 getTop2.map((roster, i) =>
                     <div key={i} className="d-flex justify-content-between">
                         <div>
-                            <p className="m-0">{league.previous_league.season}</p>
+                            <p className="m-0">{league.name} {league.previous_league.season}</p>
+                            <p className="m-0">CHAMPION</p>
                             <p className="m-0">{findOwner(roster.w, league.owners).display_name}</p>
                         </div>
                         <div className="" style={{width:"250px"}}>
@@ -31,9 +32,14 @@ export default function OverviewWidget(props) {
                         <div>
                         { getTop4.map((team, i) => 
                             <div key={i}>
-                                <p className="m-0">2nd {findOwner(roster.l, league.owners).display_name}</p>
-                                <p className="m-0">3rd {findOwner(team.w, league.owners).display_name}</p>
-                                {/* <p className="m-0">4th {findOwner(team.l, league.owners).display_name}</p> */}
+                                <div className="d-flex align-items-center">
+                                    <Icon icon="noto:2nd-place-medal" style={{fontSize:"2rem"}}/>
+                                    <p className="m-0">{findOwner(roster.l, league.owners).display_name}</p>
+                                </div>
+                                <div className="d-flex align-items-center">
+                                    <Icon icon="noto:3rd-place-medal" style={{fontSize:"2rem"}}/>
+                                    <p className="m-0">{findOwner(team.w, league.owners).display_name}</p>
+                                </div>
                             </div> 
                         )}
                         </div>
