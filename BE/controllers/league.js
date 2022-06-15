@@ -6,9 +6,25 @@ const KCT = require("../models/KCT")
 
 leagueController.get("/", async (req, res) => {
     try{
+        const ownerFiltered = {
+            user_id:1, 
+            metadata:{
+                team_name:1,
+                avatar:1
+            },
+            league_id:1,
+            display_name:1,
+            avatar:1,
+            roster_id:1
+        }
+        let foundOwners = await Owner.find({}, ownerFiltered)
+
         // 2022
         const getLeague = await fetch(`https://api.sleeper.app/v1/league/786065005090189312`)
         const parsedLeague = await getLeague.json()
+
+        const getDraft = await fetch(`https://api.sleeper.app/v1/draft/${parsedLeague.draft_id}`)
+        const parsedDraft = await getDraft.json()        
 
         // 2021
         const getPrevLeague = await fetch(`https://api.sleeper.app/v1/league/${parsedLeague.previous_league_id}`)
@@ -42,31 +58,12 @@ leagueController.get("/", async (req, res) => {
             loserBracket:prevLoserBracket,
             previousLeague:previousLeague
         }
-        // const getRosters = await fetch("https://api.sleeper.app/v1/league/786065005090189312/rosters")
-        // const parsedRosters = await getRosters.json()
-
-        // const getUsers = await fetch("https://api.sleeper.app/v1/league/786065005090189312/users")
-        // const parsedUsers = await getUsers.json()
-
-        // let division_1 = parsedRosters.filter(roster => roster.settings.division === 1).map((roster) => {
-        //     let foundUser = parsedUsers.find(user => user.user_id === roster.owner_id)
-        //     if(foundUser){
-        //         return foundUser.display_name
-        //     } else
-        //     return ""
-        // })
-
-        // let division_2 = parsedRosters.filter(roster => roster.settings.division === 2).map((roster) => {
-        //     let foundUser = parsedUsers.find(user => user.user_id === roster.owner_id)
-        //     if(foundUser){
-        //         return foundUser.display_name
-        //     } else 
-        //     return ""
-        // })
 
         const league = {
             ...parsedLeague,
-            previous_league: prevLeague
+            previous_league: prevLeague,
+            owners:foundOwners,
+            draft:parsedDraft
         }
         res.status(200).json(league)
     } catch (err) {

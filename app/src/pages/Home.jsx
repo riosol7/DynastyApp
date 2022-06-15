@@ -6,9 +6,11 @@ import Transaction from "../components/Transaction";
 import Standings from "../components/Standings";
 // import AreaChart from "../components/AreaChart";
 import Tabs from "../components/Tabs";
-import { Icon } from '@iconify/react';
-import vs from "../assets/vs.png"
 import PowerRankings from "../components/PowerRankings";
+import OverviewWidget from "../components/OverviewWidget";
+
+import { Icon } from '@iconify/react';
+import vs from "../assets/vs.png";
 
 export default function Home () {
     const [league, setLeague] = useState({})
@@ -73,10 +75,7 @@ export default function Home () {
             <div className="d-flex">
                 {/* Menu */}
                 <div className="" style={{width:"5rem"}}>
-                    <Tabs
-                        // league={league}
-                        // loadLeague={loadLeague}
-                    />
+                    <Tabs/>
                 </div>
                 <div className="col py-2" style={{background:"#1c1c1c", paddingRight:".5rem"}}>
                     <div className="d-flex py-4" style={{background:"black",  borderRadius:"25px"}}>
@@ -114,14 +113,14 @@ export default function Home () {
                                 </div>
                                 <div className="d-flex">
                                     <div className="col">
-                                        <div className="pt-1" style={{borderRight:"1px solid #686b71"}}>
-                                            <div className="d-flex justify-content-between align-items-center m-2">
+                                        <div className="pt-2" style={{borderRight:"1px solid #686b71"}}>
+                                            <div className="d-flex justify-content-between align-items-center mx-2">
                                                 <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
                                                 <div className="">
                                                     <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
                                                 </div>
                                             </div>
-                                            <div id="scrollBar" style={{height:"768px", maxWidth:"100%", overflow:"auto"}}>
+                                            <div id="scrollBar" style={{height:"780.7px", maxWidth:"100%", overflow:"auto"}}>
                                             {/* <div className=""> */}
                                                 <Transaction
                                                     loadTransactions={loadTransactions}
@@ -131,7 +130,13 @@ export default function Home () {
                                         </div>
                                     </div>
                                     <div className="col-md-10 px-3" id="scrollBar" style={{height:"814px", maxWidth:"100%", overflow:"auto"}}>  
-                                        
+                                        <div className="py-3">
+                                            <OverviewWidget
+                                                loadRosters={loadRosters}
+                                                rosters={rosters}
+                                                league={league}
+                                            />
+                                        </div>
                                         <div className="pt-2"> 
                                             <MVP
                                                 loadRosters={loadRosters}
