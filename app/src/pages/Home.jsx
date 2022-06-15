@@ -114,14 +114,14 @@ export default function Home () {
                                 </div>
                                 <div className="d-flex">
                                     <div className="col">
-                                        <div className="" style={{borderRight:"1px solid #686b71"}}>
+                                        <div className="pt-1" style={{borderRight:"1px solid #686b71"}}>
                                             <div className="d-flex justify-content-between align-items-center m-2">
                                                 <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
                                                 <div className="">
                                                     <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
                                                 </div>
                                             </div>
-                                            <div id="scrollBar" style={{height:"772.71px", maxWidth:"100%", overflow:"auto"}}>
+                                            <div id="scrollBar" style={{height:"768px", maxWidth:"100%", overflow:"auto"}}>
                                             {/* <div className=""> */}
                                                 <Transaction
                                                     loadTransactions={loadTransactions}
@@ -131,7 +131,8 @@ export default function Home () {
                                         </div>
                                     </div>
                                     <div className="col-md-10 px-3" id="scrollBar" style={{height:"814px", maxWidth:"100%", overflow:"auto"}}>  
-                                        <div className=""> 
+                                        
+                                        <div className="pt-2"> 
                                             <MVP
                                                 loadRosters={loadRosters}
                                                 rosters={rosters}
@@ -176,8 +177,8 @@ export default function Home () {
                                     </div>
                                     <Icon icon="akar-icons:more-vertical" style={{color:"#b0b0b2", fontSize:"1.5rem"}}/>
                                 </div>
-                                {/* <div className=""> */}
-                                <div id="scrollBar" style={{height:"851.5px", maxWidth:"100%", overflow:"auto"}}>
+                                <div className="">
+                                {/* <div id="scrollBar" style={{height:"851.5px", maxWidth:"100%", overflow:"auto"}}> */}
                                 { rankings === "Dynasty"?
                                     <DynastyRankings
                                         loadRosters={loadRosters}

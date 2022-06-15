@@ -6,11 +6,42 @@ const KCT = require("../models/KCT")
 
 leagueController.get("/", async (req, res) => {
     try{
+        // 2022
         const getLeague = await fetch(`https://api.sleeper.app/v1/league/786065005090189312`)
         const parsedLeague = await getLeague.json()
-        // const getPrevLeague = await fetch(`https://api.sleeper.app/v1/league/${parsedLeague.previous_league_id}`)
-        // const parsedPrevLeague = await getPrevLeague.json()
 
+        // 2021
+        const getPrevLeague = await fetch(`https://api.sleeper.app/v1/league/${parsedLeague.previous_league_id}`)
+        const parsedPrevLeague = await getPrevLeague.json()
+
+        const getPrevWinnerBracket = await fetch(`https://api.sleeper.app/v1/league/${parsedLeague.previous_league_id}/winners_bracket`)
+        const prevWinnerBracket = await getPrevWinnerBracket.json()
+
+        const getPrevLoserBracket = await fetch(`https://api.sleeper.app/v1/league/${parsedLeague.previous_league_id}/losers_bracket`)
+        const prevLoserBracket = await getPrevLoserBracket.json()
+       
+        // 2020
+        const getPreviousLeague = await fetch(`https://api.sleeper.app/v1/league/${parsedPrevLeague.previous_league_id}`)
+        const parsedPreviousLeague = await getPreviousLeague.json()
+
+        const getPreviousWinnerBracket = await fetch(`https://api.sleeper.app/v1/league/${parsedPrevLeague.previous_league_id}/winners_bracket`)
+        const previousWinnerBracket = await getPreviousWinnerBracket.json()
+
+        const getPreviousLoserBracket = await fetch(`https://api.sleeper.app/v1/league/${parsedPrevLeague.previous_league_id}/losers_bracket`)
+        const previousLoserBracket = await getPreviousLoserBracket.json()
+        
+        const previousLeague = {
+            ...parsedPreviousLeague,
+            winnerBracket:previousWinnerBracket,
+            loserBracket:previousLoserBracket
+        }
+        // 2021
+        const prevLeague = {
+            ...parsedPrevLeague,
+            winnerBracket:prevWinnerBracket,
+            loserBracket:prevLoserBracket,
+            previousLeague:previousLeague
+        }
         // const getRosters = await fetch("https://api.sleeper.app/v1/league/786065005090189312/rosters")
         // const parsedRosters = await getRosters.json()
 
@@ -32,7 +63,12 @@ leagueController.get("/", async (req, res) => {
         //     } else 
         //     return ""
         // })
-        res.status(200).json(parsedLeague)
+
+        const league = {
+            ...parsedLeague,
+            previous_league: prevLeague
+        }
+        res.status(200).json(league)
     } catch (err) {
         res.status(400).json({
             error: err.message

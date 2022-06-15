@@ -6,7 +6,7 @@ export default function PowerRankings(props) {
 
     return (
         rosters.totalRoster.map((roster, i) => 
-        <div key={i} className="my-3">
+        <div key={i} className="mt-3">
             <div className="d-flex">
                 <div className="col-md-9 d-flex">
                     <div className="displayOwnerLogoMD">
