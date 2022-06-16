@@ -78,8 +78,8 @@ export default function Home () {
                     <Tabs/>
                 </div>
             { loadRosters && loadLeague && loadTransactions? <div style={{height:"100vh"}}></div>:
-                <div className="col py-2" style={{background:"#1c1c1c", paddingRight:".5rem"}}>
-                    <div className="d-flex py-4" style={{background:"black",  borderRadius:"25px"}}>
+                <div className="col py-1" style={{background:"#1c1c1c", paddingRight:".25rem"}}>
+                    <div className="d-flex py-3" style={{background:"black",  borderRadius:"25px"}}>
                         <div className="col-sm-10 px-4">
                             <div className="">
                                 <div className="d-flex align-items-center pb-3">
@@ -115,13 +115,13 @@ export default function Home () {
                                 <div className="d-flex">
                                     <div className="col">
                                         <div className="pt-2">
-                                            <div className="d-flex justify-content-between align-items-center mx-2">
+                                            <div className="d-flex justify-content-between align-items-center mx-2 mb-2">
                                                 <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
                                                 <div className="">
                                                     <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
                                                 </div>
                                             </div>
-                                            <div id="scrollBar" style={{height:"826.7px", maxWidth:"100%", overflow:"auto"}}>
+                                            <div id="scrollBar" style={{height:"842.7px", maxWidth:"100%", overflow:"auto"}}>
                                             {/* <div className=""> */}
                                                 <Transaction
                                                     loadTransactions={loadTransactions}
@@ -130,7 +130,7 @@ export default function Home () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-10 px-3" id="scrollBar" style={{height:"860px", maxWidth:"100%", overflow:"auto"}}>  
+                                    <div className="col-sm-10 px-3" id="scrollBar" style={{height:"884.3px", maxWidth:"100%", overflow:"auto"}}>  
                                         <div className="py-3">
                                             <OverviewWidget
                                                 loadRosters={loadRosters}

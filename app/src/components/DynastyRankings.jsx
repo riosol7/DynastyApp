@@ -47,7 +47,7 @@ export default function DynastyRankings(props) {
         {
             loadRosters ? <p>Loading </p> :
             <div className="" style={{maxWidth:"100%"}}>
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mb-1 bold">
                     <p style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}
                         onClick={qbRankings}
                         className="pointer m-0 mx-3">QB
@@ -65,7 +65,7 @@ export default function DynastyRankings(props) {
                         className="pointer m-0 mx-3">TE
                     </p>
                 </div>
-                <div id="scrollBar" style={{height:"808px", maxWidth:"100%", overflow:"auto"}}>
+                <div id="scrollBar" style={{height:"847.5px", maxWidth:"100%", overflow:"auto"}}>
                 { filter === "QB" ? rosters.qbRank.map((roster, i) => 
                     <div key={i} className="my-3">
                         <div className="team d-flex">

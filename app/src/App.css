@@ -46,10 +46,10 @@
 .thumb{
     width: 100%;
 }
-.view{
+/* .view{
     border-bottom-style: solid;
     border-bottom-color: #686b71;
-}
+} */
 .selectedView{
     border-bottom-style: solid;
     border-bottom-color:#a9dfd8;
@@ -67,8 +67,8 @@
     cursor:pointer
 }
 .team:hover{
-    background: #2a2c3e;
-    border-radius: 2px;
+    background: #1b2025;
+    border-radius: 1px;
 }
 .btnAction{
     border-radius:10px; 
