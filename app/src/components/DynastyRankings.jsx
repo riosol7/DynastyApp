@@ -48,30 +48,25 @@ export default function DynastyRankings(props) {
             loadRosters ? <p>Loading </p> :
             <div className="" style={{maxWidth:"100%"}}>
                 <div className="d-flex justify-content-center">
-                    <p 
-                        style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}
+                    <p style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}
                         onClick={qbRankings}
                         className="pointer m-0 mx-3">QB
                     </p>
-                    <p 
-                        style={filter === "RB"?{color:"#36ceb8"}:{color:"gray"}}
+                    <p style={filter === "RB"?{color:"#36ceb8"}:{color:"gray"}}
                         onClick={rbRankings}
                         className="pointer m-0 mx-3">RB
                     </p>
-                    <p 
-                        style={filter === "WR"?{color:"#58a7ff"}:{color:"gray"}}
+                    <p style={filter === "WR"?{color:"#58a7ff"}:{color:"gray"}}
                         onClick={wrRankings}
                         className="pointer m-0 mx-3">WR
                     </p>
-                    <p
-                        style={filter === "TE"?{color:"#faae58"}:{color:"gray"}}
+                    <p style={filter === "TE"?{color:"#faae58"}:{color:"gray"}}
                         onClick={teRankings} 
                         className="pointer m-0 mx-3">TE
                     </p>
                 </div>
                 <div id="scrollBar" style={{height:"808px", maxWidth:"100%", overflow:"auto"}}>
-                { 
-                    filter === "QB" ? rosters.qbRank.map((roster, i) => 
+                { filter === "QB" ? rosters.qbRank.map((roster, i) => 
                     <div key={i} className="my-3">
                         <div className="team d-flex">
                             <div className="col-sm-9 d-flex">
@@ -238,8 +233,7 @@ export default function DynastyRankings(props) {
                             </div>
                         </div>
                     </div>    
-                    ) 
-                }    
+                )}    
                 </div>  
             </div>
         }

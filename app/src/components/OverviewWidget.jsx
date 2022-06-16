@@ -33,7 +33,6 @@ export default function OverviewWidget(props) {
                                                     <Icon icon="noto:1st-place-medal" style={{fontSize:"2rem"}}/>
                                                     {findOwner(roster.w, league.owners).metadata.team_name}
                                                 </p>
-                                                {/* <p className="m-0" style={{color:"#2a2c3e", fontSize:".9rem"}}>@{findOwner(roster.w, league.owners).display_name}</p> */}
                                                 <p className="m-0 text-center" style={{color:"#2a2c3e", fontSize:".9rem"}}>
                                                     {((findOwner(roster.w, rosters.totalRoster).metadata.record).match(/W/g) || []).length} - {((findOwner(roster.w, rosters.totalRoster).metadata.record).match(/L/g) || []).length}
                                                 </p>

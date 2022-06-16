@@ -1,6 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
+// import {logos} from "../assets/logos";
 
 export default function MVP(props) {
     const rosters = props.rosters
@@ -24,7 +25,10 @@ export default function MVP(props) {
         return splitName[0].charAt(0) + ". " + splitName[1]
     };
 
-
+    // let findLogo = (DB) => {
+    //     let foundLogo = logos.filter(logo => logo[DB])
+    //     return Object.values(foundLogo[0])[0]
+    // }
     return (
         <>
         { loadRosters ? <p>Loading </p> :
@@ -57,6 +61,8 @@ export default function MVP(props) {
                                             getMVP(roster.kct.owner.display_name).player_id}.jpg)`,
                                     }}>
                                         <div className="backgroundShot"></div>
+                                        {/* <div className="backgroundShot" style={{backgroundImage:`url(${findLogo(getMVP(roster.kct.owner.display_name).team)})`, 
+                                            backgroundSize:"35%", backgroundPosition:"top 10% left 10%", backgroundRepeat:"no-repeat"}}></div> */}
                                 </div> 
                                 <div className="displayHUD">
                                     <span 

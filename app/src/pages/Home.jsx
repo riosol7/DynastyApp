@@ -77,17 +77,18 @@ export default function Home () {
                 <div className="" style={{width:"5rem"}}>
                     <Tabs/>
                 </div>
+            { loadRosters && loadLeague && loadTransactions? <div style={{height:"100vh"}}></div>:
                 <div className="col py-2" style={{background:"#1c1c1c", paddingRight:".5rem"}}>
                     <div className="d-flex py-4" style={{background:"black",  borderRadius:"25px"}}>
                         <div className="col-sm-10 px-4">
                             <div className="">
-                                <LeagueWidget
-                                    league={league}
-                                    loadLeague={loadLeague}
-                                />
-                            </div>
-                            <div className="mt-4">
-                                <div className="d-flex view pb-2">
+                                <div className="d-flex align-items-center pb-3">
+                                    <div className="col-sm-8">
+                                        <LeagueWidget
+                                            league={league}
+                                            loadLeague={loadLeague}
+                                        />
+                                    </div>
                                     <div className="col-sm-1">
                                         <div className="d-flex align-items-center justify-content-center">
                                             <Icon icon="fluent:content-view-gallery-24-regular" style={{fontSize:"1.5rem", color:"#a9dfd8"}}/>
@@ -109,7 +110,7 @@ export default function Home () {
                                         </div>
                                         <div className=""></div>
                                     </div>
-                                    <div className="col-sm-9"></div>
+                                    <div className="col-sm-1"></div>
                                 </div>
                                 <div className="d-flex">
                                     <div className="col">
@@ -120,7 +121,7 @@ export default function Home () {
                                                     <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
                                                 </div>
                                             </div>
-                                            <div id="scrollBar" style={{height:"780.7px", maxWidth:"100%", overflow:"auto"}}>
+                                            <div id="scrollBar" style={{height:"826.7px", maxWidth:"100%", overflow:"auto"}}>
                                             {/* <div className=""> */}
                                                 <Transaction
                                                     loadTransactions={loadTransactions}
@@ -129,7 +130,7 @@ export default function Home () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-10 px-3" id="scrollBar" style={{height:"814px", maxWidth:"100%", overflow:"auto"}}>  
+                                    <div className="col-sm-10 px-3" id="scrollBar" style={{height:"860px", maxWidth:"100%", overflow:"auto"}}>  
                                         <div className="py-3">
                                             <OverviewWidget
                                                 loadRosters={loadRosters}
@@ -200,6 +201,7 @@ export default function Home () {
                         </div>
                     </div>
                 </div>
+            }
             </div>
         </>
     );
