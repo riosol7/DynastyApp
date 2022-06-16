@@ -79,7 +79,7 @@ export default function Home () {
                 </div>
                 <div className="col py-2" style={{background:"#1c1c1c", paddingRight:".5rem"}}>
                     <div className="d-flex py-4" style={{background:"black",  borderRadius:"25px"}}>
-                        <div className="col-md-10 px-4">
+                        <div className="col-sm-10 px-4">
                             <div className="">
                                 <LeagueWidget
                                     league={league}
@@ -113,7 +113,7 @@ export default function Home () {
                                 </div>
                                 <div className="d-flex">
                                     <div className="col">
-                                        <div className="pt-2" style={{borderRight:"1px solid #686b71"}}>
+                                        <div className="pt-2">
                                             <div className="d-flex justify-content-between align-items-center mx-2">
                                                 <p className="m-0" style={{fontSize:"1rem"}}>Recent Activity</p>
                                                 <div className="">
@@ -129,7 +129,7 @@ export default function Home () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-10 px-3" id="scrollBar" style={{height:"814px", maxWidth:"100%", overflow:"auto"}}>  
+                                    <div className="col-sm-10 px-3" id="scrollBar" style={{height:"814px", maxWidth:"100%", overflow:"auto"}}>  
                                         <div className="py-3">
                                             <OverviewWidget
                                                 loadRosters={loadRosters}
@@ -165,7 +165,7 @@ export default function Home () {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-2 px-1">
+                        <div className="col-sm-2 px-1">
                             <div className="px-2">
                                 <div className="d-flex align-items-center justify-content-between mb-3">
                                     <div className={rankings ==="Dynasty"? "btnAction" : "btnOff"} onClick={() => setRankings("Dynasty")}>

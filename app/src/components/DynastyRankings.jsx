@@ -47,7 +47,7 @@ export default function DynastyRankings(props) {
         {
             loadRosters ? <p>Loading </p> :
             <div className="" style={{maxWidth:"100%"}}>
-                <div className="d-flex justify-content-center border-bottom pb-3">
+                <div className="d-flex justify-content-center">
                     <p 
                         style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}
                         onClick={qbRankings}
@@ -74,7 +74,7 @@ export default function DynastyRankings(props) {
                     filter === "QB" ? rosters.qbRank.map((roster, i) => 
                     <div key={i} className="my-3">
                         <div className="team d-flex">
-                            <div className="col-md-9 d-flex">
+                            <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
@@ -100,7 +100,7 @@ export default function DynastyRankings(props) {
                                 }
                                 </div> 
                             </div>
-                            <div className="col-md-3 d-flex justify-content-center">
+                            <div className="col-sm-3 d-flex justify-content-center">
                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.qb.total}</p>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ export default function DynastyRankings(props) {
                     ) : filter === "RB" ? rosters.rbRank.map((roster, i) => 
                     <div key={i} className="my-3">
                         <div className="team d-flex">
-                            <div className="col-md-9 d-flex">
+                            <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
@@ -134,7 +134,7 @@ export default function DynastyRankings(props) {
                                 }
                                 </div> 
                             </div>
-                            <div className="col-md-3 d-flex justify-content-center">
+                            <div className="col-sm-3 d-flex justify-content-center">
                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.rb.total}</p>
                             </div>
                         </div>
@@ -142,7 +142,7 @@ export default function DynastyRankings(props) {
                     ) : filter === "WR" ? rosters.wrRank.map((roster, i) => 
                     <div key={i} className="my-3">
                         <div className="team d-flex">
-                            <div className="col-md-9 d-flex">
+                            <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
@@ -168,7 +168,7 @@ export default function DynastyRankings(props) {
                                 }
                                 </div> 
                             </div>
-                            <div className="col-md-3 d-flex justify-content-center">
+                            <div className="col-sm-3 d-flex justify-content-center">
                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.wr.total}</p>
                             </div>
                         </div>
@@ -176,7 +176,7 @@ export default function DynastyRankings(props) {
                     ) : filter === "TE" ? rosters.teRank.map((roster, i) => 
                     <div key={i} className="my-3">
                         <div className="team d-flex">
-                            <div className="col-md-9 d-flex">
+                            <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
@@ -202,7 +202,7 @@ export default function DynastyRankings(props) {
                                 }
                                 </div> 
                             </div>
-                            <div className="col-md-3 d-flex justify-content-center">
+                            <div className="col-sm-3 d-flex justify-content-center">
                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.te.total}</p>
                             </div>
                         </div>
@@ -210,7 +210,7 @@ export default function DynastyRankings(props) {
                     ) : rosters.teamRank.map((roster, i) => 
                     <div key={i} className="my-3">
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
-                            <div className="col-md-9 d-flex">
+                            <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
@@ -233,7 +233,7 @@ export default function DynastyRankings(props) {
                                 }
                                 </div> 
                             </div>
-                            <div className="col-md-3 d-flex justify-content-center">
+                            <div className="col-sm-3 d-flex justify-content-center">
                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.teamTotal}</p>
                             </div>
                         </div>

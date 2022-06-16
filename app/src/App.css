@@ -76,14 +76,19 @@
     color:#2a2c3e;
     padding: .25em;
 }
-
 .btnOff{
     border-radius:10px; 
     background:#1c1c1c;  
     color:white;
     padding: .25em;
 }
-
+#trophy{
+    background-repeat: no-repeat;
+    width:100%;
+    height:100%;
+    background-size: 75%;
+    /* background-position:; */
+}
 #tradeBtn{
     background:#a9dfd8;
     width:195px;
@@ -170,7 +175,6 @@
     border-radius: 50%;
     border: 2px solid #bd66ff;
 }
-
 .smallHeadShot{
     background-color:#edf4f6;
     background-repeat: no-repeat;
