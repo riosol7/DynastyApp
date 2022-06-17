@@ -65,7 +65,7 @@ export default function DynastyRankings(props) {
                         className="pointer m-0 mx-3">TE
                     </p>
                 </div>
-                <div id="scrollBar" style={{height:"847.5px", maxWidth:"100%", overflow:"auto"}}>
+                <div id="scrollBar" style={{height:"855.7px", maxWidth:"100%", overflow:"auto"}}>
                 { filter === "QB" ? rosters.qbRank.map((roster, i) => 
                     <div key={i} className="my-3">
                         <div className="team d-flex">

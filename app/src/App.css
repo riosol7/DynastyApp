@@ -30,7 +30,7 @@
     border-radius: 100vw;
 }
 .App{
-    background-color: #1c1c1c;
+    background-color:black;
     color: white;
     user-select: none; /* supported by Chrome and Opera */
     -webkit-user-select: none; /* Safari */
