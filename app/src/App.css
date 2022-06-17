@@ -46,16 +46,21 @@
 .thumb{
     width: 100%;
 }
-/* .view{
-    border-bottom-style: solid;
-    border-bottom-color: #686b71;
-} */
 .selectedView{
     border-bottom-style: solid;
     border-bottom-color:#a9dfd8;
     z-index: 1;
     position: relative;
-    top: 11px;
+    bottom: 20px;
+    border-radius: 5px;
+}
+.selectView{
+    border-bottom-style: solid;
+    border-bottom-color:black;
+    z-index: 1;
+    position: relative;
+    bottom: 20px;
+    border-radius: 5px;
 }
 #displayMenu{
     background:linear-gradient(360deg, rgba(116,178,221,1) 0%, rgba(114,202,224,1) 20%, rgba(51,193,189,1) 50%, rgba(80,204,147,1) 100%);

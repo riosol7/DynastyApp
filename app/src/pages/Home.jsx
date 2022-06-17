@@ -10,7 +10,6 @@ import PowerRankings from "../components/PowerRankings";
 import OverviewWidget from "../components/OverviewWidget";
 
 import { Icon } from '@iconify/react';
-import vs from "../assets/vs.png";
 
 export default function Home () {
     const [league, setLeague] = useState({})
@@ -83,32 +82,25 @@ export default function Home () {
                         <div className="col-sm-10 px-2">
                             <div className="">
                                 <div className="d-flex align-items-center pb-2">
-                                    <div className="col-sm-8">
+                                    <div className="col-sm-9">
                                         <LeagueWidget
                                             league={league}
                                             loadLeague={loadLeague}
                                         />
                                     </div>
                                     <div className="col-sm-1">
+                                        <div className="selectedView"></div>
                                         <div className="d-flex align-items-center justify-content-center">
                                             <Icon icon="fluent:content-view-gallery-24-regular" style={{fontSize:"1.5rem", color:"#a9dfd8"}}/>
                                             <p className="m-0 mx-1">Overview</p>
                                         </div>
-                                        <div className="selectedView"></div>
                                     </div>
                                     <div className="col-sm-1">
+                                        <div className="selectView"></div>
                                         <div className="d-flex align-items-center justify-content-center">
-                                            <img src={vs} alt="test" style={{}}/>
-                                            <p className="m-0 mx-1"style={{color:"#686b71"}}>Matchups</p>
+                                            <Icon icon="tabler:device-analytics" style={{fontSize:"1.5rem",color:"#686b71"}} />
+                                            <p className="m-0 mx-1"style={{color:"#686b71"}}>Analytics</p>
                                         </div>
-                                        <div className=""></div>
-                                    </div>
-                                    <div className="col-sm-1">
-                                        <div className="d-flex align-items-center justify-content-center">
-                                            <Icon icon="carbon:blog" style={{fontSize:"1.5rem", color:"#686b71"}}/>
-                                            <p className="m-0 mx-1"style={{color:"#686b71"}}>Blog</p>
-                                        </div>
-                                        <div className=""></div>
                                     </div>
                                     <div className="col-sm-1"></div>
                                 </div>

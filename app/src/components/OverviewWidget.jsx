@@ -47,7 +47,7 @@ export default function OverviewWidget(props) {
                                 { getTop4.map((team, i) => 
                                     <div key={i} className="m-3 bold">
                                         <div className="d-flex justify-content-end">
-                                            <Icon icon="tabler:tournament" style={{fontSize:"2rem", color:"#18204a"}}/>
+                                            <Icon icon="tabler:tournament" style={{fontSize:"1.7rem", color:"#18204a"}}/>
                                         </div>
                                         {/* <div className="mb-3 d-flex align-items-center">
                                             <div className="d-flex align-items-center justify-content-end">
