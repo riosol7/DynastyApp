@@ -30,6 +30,7 @@ import SF from "./niners.webp";
 import TB from "./bucs.webp";
 import TEN from "./titans.webp";
 import WAS from "./commanders.webp";
+import NFL from "./nfl.png"
 
 export const logos = [
     {ATL:ATL},
@@ -43,7 +44,8 @@ export const logos = [
     {DAL:DAL},
     {DEN:DEN},
     {DET:DET},
-    {GB:GB},
+    {FA:NFL},
+    {GBP:GB},
     {HOU:HOU},
     {IND:IND},
     {JAC:JAX},
@@ -53,15 +55,15 @@ export const logos = [
     {LVR:LV},
     {MIA:MIA},
     {MIN:MIN},
-    {NE:NE},
-    {NO:NO},
+    {NEP:NE},
+    {NOS:NO},
     {NYG:NYG},
     {NYJ:NYJ},
     {PHI:PHI},
     {PIT:PIT},
     {SEA:SEA},
     {SFO:SF},
-    {TB:TB},
+    {TBB:TB},
     {TEN:TEN},
     {WAS:WAS}
 ]
