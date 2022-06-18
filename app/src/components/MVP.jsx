@@ -1,7 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
-// import {logos} from "../assets/logos";
 
 export default function MVP(props) {
     const rosters = props.rosters
@@ -24,18 +23,13 @@ export default function MVP(props) {
         var splitName = name.split(" ");
         return splitName[0].charAt(0) + ". " + splitName[1]
     };
-
-    // let findLogo = (DB) => {
-    //     let foundLogo = logos.filter(logo => logo[DB])
-    //     return Object.values(foundLogo[0])[0]
-    // }
     return (
         <>
         { loadRosters ? <p>Loading </p> :
-            <div className="d-flex" style={{maxWidth:"1195.2px", cursor:"grab"}}>
+            <div className="d-flex" style={{maxWidth:"1227.44px", cursor:"grab"}}>
                 <Swiper 
                     slidesPerView={7} 
-                    spaceBetween={49.5} 
+                    spaceBetween={55} 
                     slidesPerGroup={1} 
                     loop={true} 
                     loopFillGroupWithBlank={true}  
@@ -43,7 +37,7 @@ export default function MVP(props) {
                     autoplay={{
                         delay: 5500,
                         disableOnInteraction: false,
-                      }}
+                    }}
                     className="mySwiper"
                 >
                 {rosters.teamRank.map((roster, i) => 

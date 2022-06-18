@@ -233,7 +233,9 @@ export default function Transaction(props) {
                                         <div>
                                             <p className="bold m-0 text-center truncate text-center" style={{fontSize:"14px"}}> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                             <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team || "FA"}</p>
-                                            <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("adds", transaction.playerDB, transactionID).rating || 0} </p>
+                                            <p className="m-0 d-flex align-items-center justify-content-center" style={{fontSize:"12px"}}>
+                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px"}}/>
+                                            {findPlayer("adds", transaction.playerDB, transactionID).rating || 0}</p>  
                                         </div>
                                     </div>
                                 </div>
@@ -270,7 +272,9 @@ export default function Transaction(props) {
                                         <div>
                                             <p className="bold m-0 text-center truncate text-center" style={{fontSize:"14px"}}> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
                                             <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team || "FA"}</p>
-                                            <p className="m-0 text-center" style={{fontSize:"12px"}}> {findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>
+                                            <p className="m-0 text-center" style={{fontSize:"12px"}}>
+                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px"}}/>
+                                            {findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>  
                                         </div>
                                     </div>
                                 </div>

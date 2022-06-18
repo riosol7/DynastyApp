@@ -9,7 +9,7 @@ const MODAL_STYLES = {
     transform: 'translate(-50%, -50%)',
     background: "#1b2025",
     borderRadius:'4px',
-    padding: '2rem',
+    // padding: '2rem',
     zIndex: 5
 }
 
@@ -74,11 +74,13 @@ export default function TradeModal(props) {
             <div style={OVERLAY_STYLES}>
                 <div style={MODAL_STYLES}>
                     <div className="d-flex justify-content-between">
-                        <div>
-                            <p className="m-0" style={{fontSize:"14.9px"}}>Trade completed</p>
+                        <div className="p-2">
+                            <p className="m-0" style={{fontSize:"16px"}}>Trade completed</p>
                             <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
                         </div>
-                        <Icon icon="akar-icons:circle-x" style={{fontSize:"2em"}}onClick={props.onClose}/>
+                        <div className="py-1 px-2">
+                            <Icon icon="octicon:x-circle-fill-24" style={{fontSize:"1em", color:"#f25b57"}}onClick={props.onClose}/>
+                        </div>
                     </div>
                     <div className="container">
                         <div id="scrollBarActivity" style={{height:"100%", width:"100%", overflow:"auto"}}>

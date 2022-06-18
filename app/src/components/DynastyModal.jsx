@@ -31,35 +31,41 @@ export default function DynastyModal(props) {
     const roundToHundredth = (value) => {
         return Number(value.toFixed(2));
     }
-
+    const closeModal = () => {
+        props.onClose()
+        setShowQBs(false)
+        setQbArrow(true)
+        setShowRBs(false)
+        setRbArrow(true)
+        setShowWRs(false)
+        setWrArrow(true)
+        setShowTEs(false)
+        setTeArrow(true)
+    }
     const [showQBs, setShowQBs] = useState(false)
     const [qbArrow, setQbArrow] = useState(true)
     const showMoreQBs = () => {
         setShowQBs(!showQBs)
         setQbArrow(!qbArrow)
     }
-
     const [showRBs, setShowRBs] = useState(false)
     const [rbArrow, setRbArrow] = useState(true)
     const showMoreRBs = () => {
         setShowRBs(!showRBs)
         setRbArrow(!rbArrow)
     }
-
     const [showWRs, setShowWRs] = useState(false)
     const [wrArrow, setWrArrow] = useState(true)
     const showMoreWRs = () => {
         setShowWRs(!showWRs)
         setWrArrow(!wrArrow)
     }
-
     const [showTEs, setShowTEs] = useState(false)
     const [teArrow, setTeArrow] = useState(true)
     const showMoreTEs = () => {
         setShowTEs(!showTEs)
         setTeArrow(!teArrow)
     }
-
     function qbRankings (roster) {
         let foundTeam = rosters.qbRank.find(team => team.kct.owner.display_name === roster.kct.owner.display_name)
         let rank = 0
@@ -204,14 +210,14 @@ export default function DynastyModal(props) {
                                                 </span>
                                             </p>
                                         </div>
-                                        <div className="mx-4 pt-1">
+                                        <div className="pt-1" style={{marginLeft:"4em"}}>
                                             <RadarChart roster={roster}/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="py-1 px-2">
-                                <Icon icon="octicon:x-circle-fill-24" style={{fontSize:"1em", color:"#f25b57"}}onClick={props.onClose}/>
+                                <Icon icon="octicon:x-circle-fill-24" style={{fontSize:"1em", color:"#f25b57"}}onClick={closeModal}/>
                             </div>
                         </div>
                         <div id="scrollBar" className="py-2" style={{height:"29rem", overflow:"auto", background:"#111111"}}>

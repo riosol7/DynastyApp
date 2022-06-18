@@ -68,7 +68,7 @@ export default function DynastyRankings(props) {
                 <div id="scrollBar" style={{height:"855.7px", maxWidth:"100%", overflow:"auto"}}>
                 { filter === "QB" ? rosters.qbRank.map((roster, i) => 
                     <div key={i} className="my-3">
-                        <div className="team d-flex">
+                        <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
@@ -102,7 +102,7 @@ export default function DynastyRankings(props) {
                     </div>   
                     ) : filter === "RB" ? rosters.rbRank.map((roster, i) => 
                     <div key={i} className="my-3">
-                        <div className="team d-flex">
+                        <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
@@ -136,7 +136,7 @@ export default function DynastyRankings(props) {
                     </div>  
                     ) : filter === "WR" ? rosters.wrRank.map((roster, i) => 
                     <div key={i} className="my-3">
-                        <div className="team d-flex">
+                        <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
@@ -170,7 +170,7 @@ export default function DynastyRankings(props) {
                     </div>    
                     ) : filter === "TE" ? rosters.teRank.map((roster, i) => 
                     <div key={i} className="my-3">
-                        <div className="team d-flex">
+                        <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
