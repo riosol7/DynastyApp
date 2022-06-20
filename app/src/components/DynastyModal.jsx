@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import RadarChart from "./RadarChart";
+import ColumnChart from "./ColumnChart";
+
 import { Icon } from '@iconify/react';
 import {logos} from "../assets/logos";
 
@@ -28,6 +30,7 @@ const OVERLAY_STYLES = {
 export default function DynastyModal(props) {
     const roster = props.team
     const rosters = props.rosters
+    
     const roundToHundredth = (value) => {
         return Number(value.toFixed(2));
     }
@@ -159,7 +162,7 @@ export default function DynastyModal(props) {
                     <div>
                         <div className="d-flex justify-content-between">
                             <div className="d-flex">
-                                <div className="px-3 py-4">
+                                <div className="px-3 pt-3">
                                     <img style={{border:"4px solid #203a43", background:"#acb6c3", borderRadius:"15px"}} alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar}`
                                     }/>
@@ -190,34 +193,37 @@ export default function DynastyModal(props) {
                                         </p>
                                     }
                                     </div>
-                                    <div className="d-flex">
-                                        <div className="pt-1" style={{fontSize:"14px"}}>
-                                            <div className="d-flex align-items-center">
-                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"1rem", marginRight:"2px"}}/>
-                                                <p className="m-0">{roster.kct.qb.players.length + roster.kct.rb.players.length + roster.kct.wr.players.length + roster.kct.te.players.length} </p>
-                                            </div>
-                                            <p className="m-0 d-flex align-items-center" style={{fontSize:"14px", color:"#b0b0b2"}}>
-                                                <Icon icon="ri:stock-line"style={{color:"#a9dfd8",fontSize:"1.3rem", marginRight:"2px"}}/>
-                                                <span className="mx-1" style={{color:"whitesmoke"}}>{roster.kct.teamTotal}</span>
-                                            </p>
-                                            <p className="m-0" style={{fontSize:"14px", color:"#b0b0b2"}}>avg 
-                                                <span className="mx-1" style={{color:"whitesmoke"}}>
-                                                { roundToHundredth(roundToHundredth((roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length) +
-                                                roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length) +
-                                                roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length) +
-                                                roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length))/4
-                                                )}
-                                                </span>
-                                            </p>
+                                    <div className="d-flex justify-content-between p-2 mt-2" style={{fontSize:"14px", borderRadius:"5px", borderBottom:"4px solid #203a43", width:"16.5em"}}>
+                                        <div className="d-flex align-items-center">
+                                            <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"1rem", marginRight:"2px"}}/>
+                                            <p className="m-0">{roster.kct.qb.players.length + roster.kct.rb.players.length + roster.kct.wr.players.length + roster.kct.te.players.length} </p>
                                         </div>
-                                        <div className="pt-1" style={{marginLeft:"4em"}}>
-                                            <RadarChart roster={roster}/>
+                                        <div className="m-0 d-flex align-items-center" style={{fontSize:"14px", color:"#b0b0b2"}}>
+                                            <Icon icon="ri:stock-line"style={{color:"#a9dfd8",fontSize:"1.3rem"}}/>
+                                            <span className="mx-1" style={{color:"whitesmoke"}}>{roster.kct.teamTotal}</span>
+                                        </div>
+                                        <div className="m-0 d-flex" style={{fontSize:"14px", color:"#b0b0b2"}}><p className="m-0">avg</p> 
+                                            <span className="mx-1" style={{color:"whitesmoke"}}>
+                                            { roundToHundredth(roundToHundredth((roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length) +
+                                            roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length) +
+                                            roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length) +
+                                            roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length))/4
+                                            )}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="py-1 px-2">
                                 <Icon icon="octicon:x-circle-fill-24" style={{fontSize:"1em", color:"#f25b57"}}onClick={closeModal}/>
+                            </div>
+                        </div>
+                        <div className="d-flex pt-1">
+                            <div className="">
+                                <ColumnChart roster={roster} rosters={rosters}/>
+                            </div>
+                            <div className="">
+                                <RadarChart roster={roster} rosters={rosters}/>
                             </div>
                         </div>
                         <div id="scrollBar" className="py-2" style={{height:"29rem", overflow:"auto", background:"#111111"}}>
