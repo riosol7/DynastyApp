@@ -320,7 +320,6 @@ export default function DynastyModal(props) {
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{player.rating}</p>
                                                     </div>
                                                 </div>
-                                                {/* Display breakout indicator */}
                                             </div>
                                         </div>
                                         )
@@ -563,7 +562,20 @@ export default function DynastyModal(props) {
                                                 <p className="m-0 bold">{player.player}</p>
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{player.position} - {player.team}</p>
                                                 <div className="d-flex align-items-center">
-                                                    <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{player.age}</span></p>
+                                                    <p className="m-0" style={player.age < "26"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #42f3e9"}
+                                                    : player.age < "28"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #3cf20a"}
+                                                    : player.age < "29"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f2c306"}
+                                                    : player.age < "30"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f26307"}
+                                                    : player.age < "35"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #e9230b"}
+                                                    : {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid white"}
+                                                    }>
+                                                        age <span style={{color:"whitesmoke"}}>{player.age}</span>
+                                                    </p>
                                                     <div className="d-flex align-items-center mx-4">
                                                         <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{player.rating}</p>
@@ -590,7 +602,20 @@ export default function DynastyModal(props) {
                                                 <p className="m-0 bold">{getTopWR(roster.kct.owner.display_name).player}</p>
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{getTopWR(roster.kct.owner.display_name).position} - {getTopWR(roster.kct.owner.display_name).team}</p>
                                                 <div className="d-flex align-items-center">
-                                                    <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{getTopWR(roster.kct.owner.display_name).age}</span></p>
+                                                    <p className="m-0" style={getTopWR(roster.kct.owner.display_name).age < "26"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #42f3e9"}
+                                                    : getTopWR(roster.kct.owner.display_name).age < "28"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #3cf20a"}
+                                                    : getTopWR(roster.kct.owner.display_name).age < "29"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f2c306"}
+                                                    : getTopWR(roster.kct.owner.display_name).age < "30"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f26307"}
+                                                    : getTopWR(roster.kct.owner.display_name).age < "35"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #e9230b"}
+                                                    : {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid white"}
+                                                    }>
+                                                        age <span style={{color:"whitesmoke"}}>{getTopWR(roster.kct.owner.display_name).age}</span>
+                                                    </p>
                                                     <div className="d-flex align-items-center mx-4">
                                                         <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{getTopWR(roster.kct.owner.display_name).rating}</p>
