@@ -69,11 +69,16 @@ export default function ColumnChart(props) {
         },
         stroke: {
             show: true,
-            width: 5,
+            width: 2,
             colors: ['transparent']
         },
         tooltip: {
-            theme:"dark"
+            theme:"dark",
+            y:{
+                formatter: function (val) {
+                  return val + " years"
+                },
+            },
         },
         xaxis: {
             categories: ["All","QB","RB","WR","TE"]

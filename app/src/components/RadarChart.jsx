@@ -45,7 +45,12 @@ export default function RadarChart(props) {
             show:false
         },
         tooltip: {
-            theme:"dark"
+            theme:"dark",
+            y:{
+                formatter: function (val) {
+                  return val + " value"
+                },
+            },
         },
         xaxis: {
             categories: ['QB', 'RB', 'WR', 'TE', 'Picks']

@@ -167,17 +167,17 @@ export default function DynastyModal(props) {
                                     <Icon icon="akar-icons:crown" style={{marginRight:"5px", fontSize:"1rem", color:"#a9dfd8"}}/>
                                     <p className="m-0">Dynasty</p>
                                 </div>
-                                <div className="d-flex align-items-center mx-4 mt-2 pt-2 pb-2">
+                                <div className="d-flex align-items-center mx-4 mt-2 pt-2 pb-2" style={{color:"#b0b0b2"}}>
                                     <Icon icon="ic:outline-offline-bolt" style={{marginRight:"5px", fontSize:"1.3rem"}}/>
                                     <p className="m-0">Power</p>
                                 </div>
                             </div>
-                            <div className="py-1 px-2 ">
+                            <div className="py-2 px-3">
                                 <Icon icon="octicon:x-circle-fill-24" style={{fontSize:"1em", color:"#f25b57"}}onClick={closeModal}/>
                             </div>
                         </div>
                         <div style={{background:"#111111"}}>
-                            <div className="d-flex pt-2">
+                            <div className="d-flex pt-3">
                                 <div className="d-flex">
                                     <div className="px-3">
                                         <img style={{border:"4px solid #203a43", background:"#acb6c3", borderRadius:"15px"}} alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
@@ -212,11 +212,11 @@ export default function DynastyModal(props) {
                                         </div>
                                         <div className="d-flex justify-content-between p-2 mt-2" style={{fontSize:"14px", borderRadius:"2px", borderBottom:"4px solid #203a43", width:"16.5em"}}>
                                             <div className="d-flex align-items-center">
-                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"1rem", marginRight:"2px"}}/>
+                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"21px", marginRight:"2px"}}/>
                                                 <p className="m-0">{roster.kct.qb.players.length + roster.kct.rb.players.length + roster.kct.wr.players.length + roster.kct.te.players.length} </p>
                                             </div>
                                             <div className="m-0 d-flex align-items-center" style={{fontSize:"14px", color:"#b0b0b2"}}>
-                                                <Icon icon="ri:stock-line"style={{color:"#a9dfd8",fontSize:"1.3rem"}}/>
+                                                <Icon icon="fluent:tag-multiple-16-filled"style={{color:"#a9dfd8",fontSize:"21px"}}/>
                                                 <span className="mx-1" style={{color:"whitesmoke"}}>{roster.kct.teamTotal}</span>
                                             </div>
                                             <div className="m-0 d-flex" style={{fontSize:"14px", color:"#b0b0b2"}}><p className="m-0">avg</p> 
@@ -240,10 +240,10 @@ export default function DynastyModal(props) {
                                     <RadarChart roster={roster} rosters={rosters}/>
                                 </div>
                             </div>
-                            <div id="scrollBar" className="py-2" style={{height:"29.1rem", overflow:"auto", background:"#111111"}}>
+                            <div id="scrollBar" className="py-2" style={{height:"479px", overflow:"auto", background:"#111111"}}>
                                 <div className="mx-2">
-                                    <div className="d-flex align-items-center" style={{height:"26px"}}>
-                                        <div className="d-flex align-items-center" style={{width:"336px"}}>
+                                    <div className="d-flex align-items-center" style={{height:"27px"}}>
+                                        <div className="d-flex align-items-center" style={{width:"355px"}}>
                                         { qbArrow ?
                                             <Icon
                                                 icon='akar-icons:circle-chevron-down'
@@ -273,7 +273,7 @@ export default function DynastyModal(props) {
                                             </div>
                                         </div>
                                         <div className="d-flex align-items-center" style={{fontFamily:"Arial"}}>
-                                            <div className="d-flex align-items-center" style={{width:"100px"}}>
+                                            <div className="d-flex align-items-center" style={{width:"85px"}}>
                                                 <div style={{}}>
                                                     <img src={age} alt="age" style={{marginRight:"4px"}}/>
                                                 </div>
@@ -281,12 +281,12 @@ export default function DynastyModal(props) {
                                                     {roundToHundredth(roster.kct.qb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.qb.players.length)}
                                                 </p>
                                             </div>
-                                            <div className="d-flex align-items-center" style={{width:"100px"}}>
-                                                <Icon icon="fluent:person-tag-20-regular" style={{fontSize:"18px", color:"#a9dfd8", marginRight:"6px"}}/>
+                                            <div className="d-flex align-items-center" style={{width:"95px"}}>
+                                                <Icon icon="fluent:person-tag-20-regular" style={{fontSize:"24px", color:"#a9dfd8", marginRight:"6px"}}/>
                                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.qb.total}</p>
                                             </div>
                                             <div className="d-flex align-items-center" style={{width:"50px"}}>
-                                                <Icon icon="fluent:people-team-28-filled"style={{color:"#a9dfd8",fontSize:"18px", marginRight:"4px"}}/>
+                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"21px", marginRight:"4px"}}/>
                                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.qb.players.length}</p>
                                             </div>
                                         </div>
@@ -315,7 +315,7 @@ export default function DynastyModal(props) {
                                                 <p className="m-0"style={{fontSize:"10px", color:"#cbcbcb"}}>{player.position} - {player.team}</p>
                                                 <div className="d-flex align-items-center">
                                                     <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{player.age}</span></p>
-                                                    <div className="d-flex align-items-center mx-3">
+                                                    <div className="d-flex align-items-center mx-4">
                                                         <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{player.rating}</p>
                                                     </div>
@@ -343,8 +343,8 @@ export default function DynastyModal(props) {
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{getTopQB(roster.kct.owner.display_name).position} - {getTopQB(roster.kct.owner.display_name).team}</p>
                                                 <div className="d-flex align-items-center">
                                                     <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{getTopQB(roster.kct.owner.display_name).age}</span></p>
-                                                    <div className="d-flex align-items-center mx-3">
-                                                        <Icon icon="ri:stock-line" style={{color:"#a9dfd8"}}/>
+                                                    <div className="d-flex align-items-center mx-4">
+                                                        <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{getTopQB(roster.kct.owner.display_name).rating}</p>
                                                     </div>
                                                 </div>
@@ -354,8 +354,8 @@ export default function DynastyModal(props) {
                                     </div>                          
                                 </div>
                                 <div className="mx-2">
-                                    <div className="d-flex align-items-center" style={{}}>
-                                        <div className="d-flex align-items-center" style={{width:"336px"}}>
+                                    <div className="d-flex align-items-center" style={{height:"27px"}}>
+                                        <div className="d-flex align-items-center" style={{width:"355px"}}>
                                         { rbArrow ?
                                             <Icon
                                                 icon='akar-icons:circle-chevron-down'
@@ -380,25 +380,25 @@ export default function DynastyModal(props) {
                                             />
                                         }
                                             <div className="m-0 mx-2 d-flex align-items-center"> 
-                                                <p className="m-0 bold" style={{fontSize:"16px", color:"#36ceb8", marginRight:"6px"}}>RB</p> 
+                                                <p className="m-0 bold" style={{fontSize:"16px",color:"#36ceb8", marginRight:"6px"}}>RB</p> 
                                                 <p className="m-0 mx-1"style={{color:"#b0b0b2", fontSize:"14px"}}>{rbRankings(roster)}</p> 
                                             </div>
                                         </div>
                                         <div className="d-flex align-items-center" style={{fontFamily:"Arial"}}>
-                                            <div className="d-flex align-items-center" style={{width:"100px"}}>
+                                            <div className="d-flex align-items-center" style={{width:"85px"}}>
                                                 <div style={{}}>
                                                     <img src={age} alt="age" style={{marginRight:"4px"}}/>
                                                 </div>
-                                                <p className="m-0 mx-1 d-flex align-items-center" style={{}}>
+                                                <p className="m-0 mx-1 d-flex align-items-center" style={{fontSize:"14px"}}>
                                                     {roundToHundredth(roster.kct.rb.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.rb.players.length)}
                                                 </p>
                                             </div>
-                                            <div className="d-flex align-items-center" style={{width:"100px"}}>
-                                                <Icon icon="fluent:person-tag-20-regular" style={{fontSize:"18px", color:"#a9dfd8", marginRight:"6px"}}/>
+                                            <div className="d-flex align-items-center" style={{width:"95px"}}>
+                                                <Icon icon="fluent:person-tag-20-regular" style={{fontSize:"24px", color:"#a9dfd8", marginRight:"6px"}}/>
                                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.rb.total}</p>
                                             </div>
                                             <div className="d-flex align-items-center" style={{width:"50px"}}>
-                                                <Icon icon="fluent:people-team-28-filled"style={{color:"#a9dfd8",fontSize:"18px", marginRight:"4px"}}/>
+                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"21px", marginRight:"4px"}}/>
                                                 <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.rb.players.length}</p>
                                             </div>
                                         </div>
@@ -426,9 +426,22 @@ export default function DynastyModal(props) {
                                                 <p className="m-0 bold">{player.player}</p>
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{player.position} - {player.team}</p>
                                                 <div className="d-flex align-items-center">
-                                                    <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{player.age}</span></p>
-                                                    <div className="d-flex align-items-center mx-3">
-                                                        <Icon icon="ri:stock-line" style={{color:"#a9dfd8"}}/>
+                                                    <p className="m-0" style={player.age < "24"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #42f3e9"}
+                                                    :  player.age < "26"?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #3cf20a"}
+                                                    : player.age < "27" ?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f2c306"}
+                                                    : player.age < "28" ?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f26307"}
+                                                    : player.age < "35" ?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #e9230b"}
+                                                    :   {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid white"}
+                                                    }>
+                                                        age <span style={{color:"whitesmoke"}}>{player.age}</span>
+                                                    </p>
+                                                    <div className="d-flex align-items-center mx-4">
+                                                        <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{player.rating}</p>
                                                     </div>
                                                 </div>
@@ -453,9 +466,22 @@ export default function DynastyModal(props) {
                                                 <p className="m-0 bold">{getTopRB(roster.kct.owner.display_name).player}</p>
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{getTopRB(roster.kct.owner.display_name).position} - {getTopRB(roster.kct.owner.display_name).team}</p>
                                                 <div className="d-flex align-items-center">
-                                                    <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{getTopRB(roster.kct.owner.display_name).age}</span></p>
-                                                    <div className="d-flex align-items-center mx-3">
-                                                        <Icon icon="ri:stock-line" style={{color:"#a9dfd8"}}/>
+                                                    <p className="m-0" style={getTopRB(roster.kct.owner.display_name).age < "24" ?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #42f3e9"}
+                                                    :  getTopRB(roster.kct.owner.display_name).age < "26" ?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #3cf20a"}
+                                                    : getTopRB(roster.kct.owner.display_name).age < "27" ?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f2c306"}
+                                                    : getTopRB(roster.kct.owner.display_name).age < "28" ?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f26307"}
+                                                    : getTopRB(roster.kct.owner.display_name).age < "35" ?
+                                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #e9230b"}
+                                                    :   {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #3cf20a"}
+                                                    }>
+                                                        age <span style={{color:"whitesmoke"}}>{getTopRB(roster.kct.owner.display_name).age}</span>
+                                                    </p>
+                                                    <div className="d-flex align-items-center mx-4">
+                                                        <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{getTopRB(roster.kct.owner.display_name).rating}</p>
                                                     </div>
                                                 </div>
@@ -465,8 +491,8 @@ export default function DynastyModal(props) {
                                     </div>                          
                                 </div>
                                 <div className="mx-2">
-                                    <div className="d-flex align-items-center">
-                                        <div className="d-flex align-items-center" style={{width:"385px"}}>
+                                    <div className="d-flex align-items-center" style={{height:"27px"}}>
+                                        <div className="d-flex align-items-center" style={{width:"355px"}}>
                                         { wrArrow ?
                                             <Icon
                                                 icon='akar-icons:circle-chevron-down'
@@ -490,25 +516,27 @@ export default function DynastyModal(props) {
                                                 }}
                                             />
                                         }
-                                            <p className="m-0 mx-2 d-flex align-items-center"> 
-                                                <span className="bold" style={{color:"#58a7ff", marginRight:"6px"}}>WR</span> 
-                                                <span style={{color:"#b0b0b2", fontSize:"14px"}}>{wrRankings(roster)}</span> 
-                                            </p>
+                                            <div className="m-0 mx-2 d-flex align-items-center"> 
+                                                <p className="m-0 bold" style={{fontSize:"16px",color:"#58a7ff", marginRight:"6px"}}>WR</p> 
+                                                <p className="m-0 mx-1"style={{color:"#b0b0b2", fontSize:"14px"}}>{wrRankings(roster)}</p> 
+                                            </div>
                                         </div>
-                                        <div className="d-flex align-items-center">
-                                            <div className="d-flex align-items-center" style={{width:"50px"}}>
-                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"1rem", marginRight:"2px"}}/>
-                                                <p className="m-0" style={{fontSize:"13px"}}>{roster.kct.wr.players.length}</p>
-                                            </div>
-                                            <div className="d-flex align-items-center" style={{width:"80px"}}>
-                                                <Icon icon="ri:stock-line" style={{fontSize:"1.3rem", color:"#a9dfd8", marginRight:"2px"}}/>
-                                                <p className="m-0" style={{fontSize:"13px"}}>{roster.kct.wr.total}</p>
-                                            </div>
-                                            <div className="d-flex align-items-center" style={{width:"70px"}}>
-                                                <p className="m-0 mx-1 d-flex align-items-center" style={{fontSize:"13px"}}>
-                                                    <span style={{fontSize:"14px", color:"#b0b0b2", marginRight:"3px"}}>avg </span> 
+                                        <div className="d-flex align-items-center" style={{fontFamily:"Arial"}}>
+                                            <div className="d-flex align-items-center" style={{width:"85px"}}>
+                                                <div style={{}}>
+                                                    <img src={age} alt="age" style={{marginRight:"4px"}}/>
+                                                </div>
+                                                <p className="m-0 mx-1 d-flex align-items-center" style={{fontSize:"14px"}}>
                                                     {roundToHundredth(roster.kct.wr.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.wr.players.length)}
                                                 </p>
+                                            </div>
+                                            <div className="d-flex align-items-center" style={{width:"95px"}}>
+                                                <Icon icon="fluent:person-tag-20-regular" style={{fontSize:"24px", color:"#a9dfd8", marginRight:"6px"}}/>
+                                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.wr.total}</p>
+                                            </div>
+                                            <div className="d-flex align-items-center" style={{width:"50px"}}>
+                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"21px", marginRight:"4px"}}/>
+                                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.wr.players.length}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -536,8 +564,8 @@ export default function DynastyModal(props) {
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{player.position} - {player.team}</p>
                                                 <div className="d-flex align-items-center">
                                                     <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{player.age}</span></p>
-                                                    <div className="d-flex align-items-center mx-3">
-                                                        <Icon icon="ri:stock-line" style={{color:"#a9dfd8"}}/>
+                                                    <div className="d-flex align-items-center mx-4">
+                                                        <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{player.rating}</p>
                                                     </div>
                                                 </div>
@@ -563,8 +591,8 @@ export default function DynastyModal(props) {
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{getTopWR(roster.kct.owner.display_name).position} - {getTopWR(roster.kct.owner.display_name).team}</p>
                                                 <div className="d-flex align-items-center">
                                                     <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{getTopWR(roster.kct.owner.display_name).age}</span></p>
-                                                    <div className="d-flex align-items-center mx-3">
-                                                        <Icon icon="ri:stock-line" style={{color:"#a9dfd8"}}/>
+                                                    <div className="d-flex align-items-center mx-4">
+                                                        <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{getTopWR(roster.kct.owner.display_name).rating}</p>
                                                     </div>
                                                 </div>
@@ -574,8 +602,8 @@ export default function DynastyModal(props) {
                                     </div>                          
                                 </div>
                                 <div className="mx-2">
-                                    <div className="d-flex align-items-center">
-                                        <div className="d-flex align-items-center" style={{width:"385px"}}>
+                                    <div className="d-flex align-items-center" style={{height:"27px"}}>
+                                        <div className="d-flex align-items-center" style={{width:"355px"}}>
                                         { teArrow ?
                                             <Icon
                                                 icon='akar-icons:circle-chevron-down'
@@ -599,25 +627,27 @@ export default function DynastyModal(props) {
                                                 }}
                                             />
                                         }
-                                            <p className="m-0 mx-2 d-flex align-items-center"> 
-                                                <span className="bold" style={{color:"#faae58", marginRight:"6px"}}>TE</span> 
-                                                <span style={{color:"#b0b0b2", fontSize:"14px"}}>{teRankings(roster)}</span> 
-                                            </p>
+                                            <div className="m-0 mx-2 d-flex align-items-center"> 
+                                                <p className="m-0 bold" style={{fontSize:"16px",color:"#faae58", marginRight:"6px"}}>TE</p> 
+                                                <p className="m-0 mx-1"style={{color:"#b0b0b2", fontSize:"14px"}}>{teRankings(roster)}</p> 
+                                            </div>
                                         </div>
-                                        <div className="d-flex align-items-center">
-                                            <div className="d-flex align-items-center" style={{width:"50px"}}>
-                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"1rem", marginRight:"2px"}}/>
-                                                <p className="m-0" style={{fontSize:"13px"}}>{roster.kct.te.players.length}</p>
-                                            </div>
-                                            <div className="d-flex align-items-center" style={{width:"80px"}}>
-                                                <Icon icon="ri:stock-line" style={{fontSize:"1.3rem", color:"#a9dfd8", marginRight:"2px"}}/>
-                                                <p className="m-0" style={{fontSize:"13px"}}>{roster.kct.te.total}</p>
-                                            </div>
-                                            <div className="d-flex align-items-center" style={{width:"70px"}}>
-                                                <p className="m-0 mx-1 d-flex align-items-center" style={{fontSize:"13px"}}>
-                                                    <span style={{fontSize:"14px", color:"#b0b0b2", marginRight:"3px"}}>avg </span> 
+                                        <div className="d-flex align-items-center" style={{fontFamily:"Arial"}}>
+                                            <div className="d-flex align-items-center" style={{width:"85px"}}>
+                                                <div style={{}}>
+                                                    <img src={age} alt="age" style={{marginRight:"4px"}}/>
+                                                </div>
+                                                <p className="m-0 mx-1 d-flex align-items-center" style={{fontSize:"14px"}}>
                                                     {roundToHundredth(roster.kct.te.players.reduce((r,c) => r + Number(c.age), 0)/ roster.kct.te.players.length)}
                                                 </p>
+                                            </div>
+                                            <div className="d-flex align-items-center" style={{width:"95px"}}>
+                                                <Icon icon="fluent:person-tag-20-regular" style={{fontSize:"24px", color:"#a9dfd8", marginRight:"6px"}}/>
+                                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.te.total}</p>
+                                            </div>
+                                            <div className="d-flex align-items-center" style={{width:"50px"}}>
+                                                <Icon icon="fluent:people-team-16-filled"style={{color:"#a9dfd8",fontSize:"21px", marginRight:"4px"}}/>
+                                                <p className="m-0" style={{fontSize:"14px"}}>{roster.kct.te.players.length}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -645,8 +675,8 @@ export default function DynastyModal(props) {
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{player.position} - {player.team}</p>
                                                 <div className="d-flex align-items-center">
                                                     <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{player.age}</span></p>
-                                                    <div className="d-flex align-items-center mx-3">
-                                                        <Icon icon="ri:stock-line" style={{color:"#a9dfd8"}}/>
+                                                    <div className="d-flex align-items-center mx-4">
+                                                        <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{player.rating}</p>
                                                     </div>
                                                 </div>
@@ -672,8 +702,8 @@ export default function DynastyModal(props) {
                                                 <p className="m-0" style={{fontSize:"10px", color:"#cbcbcb"}}>{getTopTE(roster.kct.owner.display_name).position} - {getTopTE(roster.kct.owner.display_name).team}</p>
                                                 <div className="d-flex align-items-center">
                                                     <p className="m-0" style={{fontSize:"12px", color:"#b0b0b2"}}>age <span style={{color:"whitesmoke"}}>{getTopTE(roster.kct.owner.display_name).age}</span></p>
-                                                    <div className="d-flex align-items-center mx-3">
-                                                        <Icon icon="ri:stock-line" style={{color:"#a9dfd8"}}/>
+                                                    <div className="d-flex align-items-center mx-4">
+                                                        <Icon icon="fluent:tag-16-filled" style={{color:"#a9dfd8"}}/>
                                                         <p className="m-0 mx-1" style={{fontSize:"13px"}}>{getTopTE(roster.kct.owner.display_name).rating}</p>
                                                     </div>
                                                 </div>
