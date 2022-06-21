@@ -19,7 +19,7 @@ export default function PowerRankings(props) {
         <>
         { rosters.totalRoster.map((roster, i) => 
         <div key={i} className="mt-3">
-            <div className="d-flex" onClick={() => powerModal(roster)}>
+            <div className="d-flex team" onClick={() => powerModal(roster)}>
                 <div className="col-md-9 d-flex">
                     <div className="displayOwnerLogoMD">
                         <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
@@ -43,17 +43,19 @@ export default function PowerRankings(props) {
                     }
                     </div> 
                 </div>
-                <div className="col-md-3">
-                    <p className="m-0" style={{fontSize:"14px"}}>{roster.settings.wins} - {roster.settings.losses}</p>
-                { roster.metadata.streak.includes("W") === true ?
-                    <span className="mx-1" style={{fontSize:".6rem"}}>
-                        <Icon icon="bi:caret-up-fill" style={{color:"#368727", fontSize:".7rem"}}/>{roster.metadata.streak}
-                    </span>
-                :
-                    <span className="mx-1" style={{fontSize:".6rem"}}>
-                        <Icon icon="bi:caret-down-fill" style={{color:"#cc1d00", fontSize:".7rem"}}/>{roster.metadata.streak}
-                    </span>
-                }
+                <div className="col-md-3 d-flex justify-content-center">
+                    <div>
+                        <p className="m-0" style={{fontSize:"14px"}}>{roster.settings.wins} - {roster.settings.losses}</p>
+                    { roster.metadata.streak.includes("W") === true ?
+                        <span className="mx-1" style={{fontSize:".6rem"}}>
+                            <Icon icon="bi:caret-up-fill" style={{color:"#368727", fontSize:".7rem"}}/>{roster.metadata.streak}
+                        </span>
+                    :
+                        <span className="mx-1" style={{fontSize:".6rem"}}>
+                            <Icon icon="bi:caret-down-fill" style={{color:"#cc1d00", fontSize:".7rem"}}/>{roster.metadata.streak}
+                        </span>
+                    }
+                    </div>
                 </div>
             </div>
         </div>    
