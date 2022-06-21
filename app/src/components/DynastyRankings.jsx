@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import DynastyModal from './DynastyModal';
+import Modal from "./Modal";
 
 export default function DynastyRankings(props) {
     const rosters = props.rosters
@@ -237,11 +237,12 @@ export default function DynastyRankings(props) {
                 </div>  
             </div>
         }
-        <DynastyModal
+        <Modal
             open={isOpen}
             onClose={() => closeModal()}
             team={team}
             rosters={rosters}
+            tab={"Dynasty"}
         />
         </>
     )

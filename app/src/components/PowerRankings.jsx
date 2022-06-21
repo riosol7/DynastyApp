@@ -1,13 +1,25 @@
-import React from 'react'
+import React,{useState} from 'react';
+import Modal from "./Modal";
+
 import { Icon } from '@iconify/react';
 
 export default function PowerRankings(props) {
     const rosters = props.rosters
-
+    const [team, setTeam] = useState({})
+    const [isOpen, setIsOpen] = useState(false)
+    const powerModal = (data) => {
+        setTeam(data)
+        setIsOpen(true)
+    }
+    const closeModal = () => {
+        setTeam({})
+        setIsOpen(false)
+    }
     return (
-        rosters.totalRoster.map((roster, i) => 
+        <>
+        { rosters.totalRoster.map((roster, i) => 
         <div key={i} className="mt-3">
-            <div className="d-flex">
+            <div className="d-flex" onClick={() => powerModal(roster)}>
                 <div className="col-md-9 d-flex">
                     <div className="displayOwnerLogoMD">
                         <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
@@ -45,6 +57,14 @@ export default function PowerRankings(props) {
                 </div>
             </div>
         </div>    
-        ) 
+        )}
+        <Modal
+            open={isOpen}
+            onClose={() => closeModal()}
+            team={team}
+            rosters={rosters}
+            tab={"Power"}
+        />
+        </>
     )
 }
