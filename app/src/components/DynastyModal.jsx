@@ -706,8 +706,8 @@ export default function DynastyModal(props) {
                                     : getTopTE(roster.kct.owner.display_name).age < "31"?
                                         {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #f26307"}
                                     : getTopTE(roster.kct.owner.display_name).age < "37"?
-                                    {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #e9230b"}
-                                    :{fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid white"}
+                                        {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid #e9230b"}
+                                    : {fontSize:"12px", color:"#b0b0b2", borderBottom:"1px solid white"}
                                     }>
                                         age <span style={{color:"whitesmoke"}}>{getTopTE(roster.kct.owner.display_name).age}</span>    
                                     </p>
