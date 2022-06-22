@@ -16,6 +16,9 @@ export default function DynastyModal(props) {
     const wrArrow = props.wrArrow
     const teArrow = props.teArrow
 
+    let findTeamRank = rosters.teamRank.filter(team => team.kct.owner.display_name === roster.kct.owner.display_name)[0]
+    // let findTotalRoster = rosters.totalRoster.filter(team => team.kct.owner.display_name === roster.kct.owner.display_name)[0]
+
     const roundToHundredth = (value) => {
         return Number(value.toFixed(2));
     }
@@ -117,22 +120,22 @@ export default function DynastyModal(props) {
                         <div className="d-flex align-items-center">
                             <Icon icon="icon-park-outline:ranking"style={{color:"#a9dfd8",fontSize:"1.2rem", marginRight:"2px"}}/>
                         { roster.kct.owner.team_name ?
-                            <p className="m-0" style={{color:"#b0b0b2"}}>{roster.rank}
+                            <p className="m-0" style={{color:"#b0b0b2"}}>{findTeamRank.rank}
                                 <span style={{fontSize:"12px"}}>
-                                {   roster.rank === 1? "st" : 
-                                    roster.rank === 2? "nd" : 
-                                    roster.rank === 3? "rd" : "th"
+                                {   findTeamRank.rank === 1? "st" : 
+                                    findTeamRank.rank === 2? "nd" : 
+                                    findTeamRank.rank === 3? "rd" : "th"
                                 }
                                 </span>
                                 <span className="bold mx-1 mb-0" style={{fontSize:"21px", color:"white"}}>{roster.kct.owner.team_name}</span> 
                                 <span style={{color:"#7f7f7f", fontWeight:"lighter",marginLeft:"6px"}}>@{roster.kct.owner.display_name}</span>
                             </p>
                         :
-                            <p className="m-0" style={{color:"#b0b0b2"}}>{roster.rank}
+                            <p className="m-0" style={{color:"#b0b0b2"}}>{findTeamRank.rank}
                                 <span style={{fontSize:"12px"}}>
-                                {   roster.rank === 1? "st" : 
-                                    roster.rank === 2? "nd" : 
-                                    roster.rank === 3? "rd" : "th"
+                                {   findTeamRank.rank === 1? "st" : 
+                                    findTeamRank.rank === 2? "nd" : 
+                                    findTeamRank.rank === 3? "rd" : "th"
                                 }
                                 </span>
                                 <span className="bold mx-1 mb-0" style={{fontSize:"21px", color:"white"}}>{roster.kct.owner.display_name}</span> 

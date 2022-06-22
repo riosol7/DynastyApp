@@ -30,8 +30,8 @@ const OVERLAY_STYLES = {
 export default function Modal(props) {
     const roster = props.team
     const rosters = props.rosters
-    
-    const [tab, setTab] = useState(props.tab)
+
+    const [tab, setTab] = useState(props.tab || "Dynasty" || "Power")
     const [showQBs, setShowQBs] = useState(false)
     const [qbArrow, setQbArrow] = useState(true)
     const [showRBs, setShowRBs] = useState(false)
@@ -54,8 +54,8 @@ export default function Modal(props) {
         setWrArrow(!wrArrow)
     }
     const showMoreTEs = () => {
-        props.setShowTEs(!showTEs)
-        props.setTeArrow(!teArrow)
+        setShowTEs(!showTEs)
+        setTeArrow(!teArrow)
     }
     const closeModal = () => {
         props.onClose()
@@ -122,8 +122,7 @@ export default function Modal(props) {
                                 showWRs={showWRs}
                                 showTEs={showTEs}
                             />
-                        :
-                            <PowerModal
+                        : <PowerModal
                                 roster={roster}
                                 rosters={rosters}
                             />
