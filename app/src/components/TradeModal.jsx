@@ -61,10 +61,10 @@ export default function TradeModal(props) {
     function toDateTime(secs) {
         var t = Number(secs);
         let dateObj = new Date(t);
-        var month = dateObj.getUTCMonth() + 1;
+        var month = dateObj.toLocaleString('default', { month: 'long' });
         var day = dateObj.getUTCDate();
         var year = dateObj.getUTCFullYear();
-        return  month + "/" + day + "/" + year
+        return  month + " " + day + ", " + year
     }
 
     return (
@@ -80,14 +80,14 @@ export default function TradeModal(props) {
                             </p>
                             <p className="m-0 px-2 pt-1" style={{fontSize:"12px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
                         </div>
-                        <div className="py-1 px-2">
+                        <div className="py-2 px-3">
                             <Icon icon="octicon:x-circle-fill-24" style={{fontSize:"1em", color:"#f25b57"}}onClick={props.onClose}/>
                         </div>
                     </div>
                     <div className="container">
                         <div id="scrollBarActivity" style={{height:"100%", width:"100%", overflow:"auto"}}>
                         { transaction.roster_ids.map((roster, i) =>
-                            <div key={i} className="my-4 p-2" style={{borderRadius:"5px", border: "1px solid black", background:"#111111"}}>
+                            <div key={i} className="my-4 p-2" style={{borderRadius:"5px", background:"#111111"}}>
                                 <div className="d-flex align-items-center">
                                     <div style={{border:"", borderRadius:"50%"}}>
                                         <img className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
@@ -96,9 +96,15 @@ export default function TradeModal(props) {
                                     </div>
                                     <p className="m-0 mx-1">{roster.display_name}</p>
                                 </div> 
-                                <div className="d-flex my-2">
+                                <div className="d-flex mt-3">
                                     <div className="col">
-                                        <p className="m-0" style={{fontSize:"12px", borderBottom:"1px solid #383838"}}>receive</p>
+                                        <div className="d-flex justify-content-between"  style={{fontSize:"12px", borderBottom:"1px solid #383838"}}>
+                                            <p className="m-0">receive</p>
+                                            <p className="m-0 bold"> <Icon icon="mdi:tag-check" className="mx-1" style={{color:"#a9dfd8", fontSize:"1.6em"}}/>
+                                                {Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).reduce((a,b) => Number(a) + Number(findPlayer("adds", transaction.playerDB, b).rating), 0)}
+                                            </p>
+                                            <div></div>
+                                        </div>
                                     { Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).map((transactionID, i) => 
                                         <div key={i} className="my-3">
                                             <div className="d-flex">
@@ -200,7 +206,13 @@ export default function TradeModal(props) {
                                         </div>
                                     </div>
                                     <div className="col">
-                                        <p className="m-0" style={{fontSize:"12px", borderBottom:"1px solid #383838"}}>send</p>
+                                        <div className="d-flex justify-content-between"  style={{fontSize:"12px", borderBottom:"1px solid #383838"}}>
+                                            <p className="m-0">send</p>
+                                            <p className="m-0 bold"> <Icon icon="mdi:tag-arrow-right" className="mx-1" style={{color:"#a9dfd8", fontSize:"1.6em"}}/>
+                                                {Object.keys(transaction.drops).filter(i => transaction.drops[i] === roster.roster_id).reduce((a,b) => Number(a) + Number(findPlayer("drops", transaction.playerDB, b).rating), 0)}
+                                            </p>
+                                            <div></div>
+                                        </div>
                                     { Object.keys(transaction.drops).filter(i => transaction.drops[i] === roster.roster_id).map((transactionID, i) => 
                                         <div key={i} className="my-3">
                                             <div className="d-flex">

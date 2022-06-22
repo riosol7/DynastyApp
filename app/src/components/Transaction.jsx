@@ -51,10 +51,10 @@ export default function Transaction(props) {
     function toDateTime(secs) {
         var t = Number(secs);
         let dateObj = new Date(t);
-        var month = dateObj.getUTCMonth() + 1;
+        var month = dateObj.toLocaleString('default', { month: 'long' });
         var day = dateObj.getUTCDate();
         var year = dateObj.getUTCFullYear();
-        return  month + "/" + day + "/" + year
+        return  month + " " + day + ", " + year
     }
     const transactionModal = (data) => {
         setTransaction(data)
@@ -84,8 +84,7 @@ export default function Transaction(props) {
                                 <p className="m-0 pb-2" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
                             </div>
                             <div className="d-flex align-items-center container">
-                            { 
-                                Object.keys(transaction.adds).length > 2 ?
+                            { Object.keys(transaction.adds).length > 2 ?
                                 transaction.roster_ids.map((roster,idx) =>
                                 <div key={idx} className={idx === 1? "mx-4 pb-2": "pb-2"}>
                                      <div className="container">
@@ -109,17 +108,15 @@ export default function Transaction(props) {
                                         <p className="bold m-0 text-center truncate" style={{fontSize:"14px"}}> {getInitials(getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).player)}</p>
                                         <p className="m-0 text-center" style={{fontSize:"10px", color:"#cbcbcb"}}>{getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).position} - {getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).team}</p>      
                                         <p className="m-0 d-flex align-items-center justify-content-center" style={{fontSize:"12px"}}>
-                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px"}}/>
+                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
                                             {getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).rating}</p>      
                                     </div>
                                     <div>
-                                    {
-                                        Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length > 1?
-                                            <p style ={{fontSize:".8rem"}} className="m-0 text-center">+{ 
+                                    { Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length > 1?
+                                        <p style ={{fontSize:".8rem"}} className="m-0 text-center">+{ 
                                             Object.keys(transaction.adds).filter(i => transaction.adds[i] === roster.roster_id).length + transaction.draft_picks.filter(picks => picks.owner_id === roster.roster_id).length - 1
-                                            } assets
-                                            </p>
-                                        : <></>
+                                        } assets
+                                        </p>: <></>
                                     }
                                     </div>
                                 </div>
@@ -148,7 +145,7 @@ export default function Transaction(props) {
                                         <p className="bold m-0 text-center truncate" style={{fontSize:"14px"}}> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player)}</p>
                                         <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team || "FA"}</p>
                                         <p className="m-0 d-flex justify-content-center align-items-center" style={{fontSize:"12px"}}> 
-                                        <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px"}}/>
+                                        <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
                                         {findPlayer("adds", transaction.playerDB, transactionID).rating}</p>      
                                     </div>
                                     <div>
@@ -181,16 +178,22 @@ export default function Transaction(props) {
                         transaction.adds !== null && transaction.drops !== null && transaction.type !== "trade"?
                         <div className="container">
                         { transaction.type === "commissioner" ?
-                            <p className="m-0" style={{fontSize:"14px"}}>Commissioner made a move</p> 
+                            <>
+                                <p className="m-0" style={{fontSize:"14px"}}>Commissioner made a move</p> 
+                                <p className="m-0" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
+                            </>
                         :
-                        <div className="d-flex align-items-center">
-                            <div className="">
-                                <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
-                                    findOwner(transaction.roster_ids[0].roster_id, transaction.roster_ids).avatar}`
-                                }/>
-                            </div>
-                            <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator}<span style={{color:"#cbcbcb"}}> made a move</span></p> 
-                        </div>
+                            <>
+                                <div className="d-flex align-items-center">
+                                    <div className="">
+                                        <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                            findOwner(transaction.roster_ids[0].roster_id, transaction.roster_ids).avatar}`
+                                        }/>
+                                    </div>
+                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator}<span style={{color:"#cbcbcb"}}> made a move</span></p> 
+                                </div>
+                                <p className="m-0 mx-4" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
+                            </>
                         }
                             <div className="d-flex align-items-center py-3">
                             { Object.keys(transaction.adds).map((transactionID, i) => 
@@ -234,7 +237,7 @@ export default function Transaction(props) {
                                             <p className="bold m-0 text-center truncate text-center" style={{fontSize:"14px"}}> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                             <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team || "FA"}</p>
                                             <p className="m-0 d-flex align-items-center justify-content-center" style={{fontSize:"12px"}}>
-                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px"}}/>
+                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
                                             {findPlayer("adds", transaction.playerDB, transactionID).rating || 0}</p>  
                                         </div>
                                     </div>
@@ -273,7 +276,7 @@ export default function Transaction(props) {
                                             <p className="bold m-0 text-center truncate text-center" style={{fontSize:"14px"}}> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
                                             <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team || "FA"}</p>
                                             <p className="m-0 text-center" style={{fontSize:"12px"}}>
-                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px"}}/>
+                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
                                             {findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>  
                                         </div>
                                     </div>
@@ -287,16 +290,22 @@ export default function Transaction(props) {
                         Object.keys(transaction.drops).map((transactionID, i) =>
                         <div key={i} className="container">
                         { transaction.type === "commissioner" ?
-                            <p className="m-0" style={{fontSize:"14px"}}>Commissioner released FA</p> 
+                            <>
+                                <p className="m-0" style={{fontSize:"14px"}}>Commissioner released FA</p> 
+                                <p className="m-0" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
+                            </>
                         :
-                            <div className="d-flex align-items-center">
-                                <div className="">
-                                    <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
-                                        findOwner(transaction.drops[transactionID], transaction.roster_ids).avatar}`
-                                    }/>
+                            <>
+                                <div className="d-flex align-items-center">
+                                    <div className="">
+                                        <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                            findOwner(transaction.drops[transactionID], transaction.roster_ids).avatar}`
+                                        }/>
+                                    </div>
+                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator}<span style={{color:"#cbcbcb"}}> released FA</span></p> 
                                 </div>
-                                <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator}<span style={{color:"#cbcbcb"}}> released FA</span></p> 
-                            </div>                        
+                                <p className="m-0 mx-4" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p> 
+                            </>
                         }
                             <div className="container d-flex p-2 py-3">
                                 <div className={
@@ -324,7 +333,7 @@ export default function Transaction(props) {
                                     <p className="m-0 bold text-center" style={{fontSize:"14px"}}>{getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
                                     <p className="m-0" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
                                     <p className="m-0 d-flex align-items-center" style={{fontSize:"12px"}}>
-                                        <Icon icon="mdi:tag-minus" style={{marginRight:"2px"}}/>
+                                        <Icon icon="mdi:tag-minus-outline" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
                                         {findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>
                                 </div>  
                             </div>
@@ -336,16 +345,22 @@ export default function Transaction(props) {
                         Object.keys(transaction.adds).map((transactionID, i) =>
                         <div key={i} className="container">
                         { transaction.type === "commissioner" ?
-                            <p className="m-0" style={{fontSize:"14px"}}>Commissioner signed</p> 
+                            <>
+                                <p className="m-0" style={{fontSize:"14px"}}>Commissioner signed</p> 
+                                <p className="m-0" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
+                            </>
                         :
-                            <div className="d-flex align-items-center">
-                                <div className="">
-                                    <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
-                                        findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
-                                    }/>
+                            <>  
+                                <div className="d-flex align-items-center">
+                                    <div className="">
+                                        <img style={{width:"22px"}}className="ownerLogo" alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${
+                                            findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
+                                        }/>
+                                    </div>
+                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator} <span style={{color:"#cbcbcb"}}>signed</span></p> 
                                 </div>
-                                <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator} <span style={{color:"#cbcbcb"}}>signed</span></p> 
-                            </div>  
+                                <p className="m-0 mx-4" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
+                            </>
                         }
                             <div className="container d-flex p-2 py-3">
                                 <div className={
@@ -381,7 +396,7 @@ export default function Transaction(props) {
                                     <p className="m-0 bold text-center" style={{fontSize:"14px"}}>{getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                     <p className="m-0" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team}</p>
                                     <p className="m-0 d-flex align-items-center" style={{fontSize:"12px"}}>
-                                        <Icon icon="mdi:tag-plus" style={{marginRight:"2px"}}/>
+                                        <Icon icon="mdi:tag-plus-outline" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
                                         {findPlayer("adds", transaction.playerDB, transactionID).rating || 0}</p>
                                 </div>  
                             </div>
