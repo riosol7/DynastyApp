@@ -37,25 +37,26 @@ export default function AreaChart(props) {
             stacked: false,
         },
         colors:[
-            "#FF009C","#ff8008","#0072ff",
-            "#fd1d1d","#00EFD1","#feb47b",
-            "#c9d6ff","#24fe41","#a80077",
-            "#c8b387","#9733ee","#ffff1c"
+            "#0072ff","#9733ee","#FF009C",
+            "#f4ab6f","#a80077","#ff8008",
+            "#fd1d1d","#00EFD1","#7573ff",
+            "#c9d6ff","#24fe41",
+            "#ffff1c"
         ],
         dataLabels: {
             enabled: false
         },
-        fill: {
-            type: 'gradient',
-            gradient: {
-              gradientToColors: [
-                  "#5B146F","#f09819","#00c6ff",
-                  "#7a2828","#00ACEA","#ff7e5f",
-                  "#757f9a","#FFB612","#d38312",
-                  "#D3BC8D","#89216b","#FFC20E"
-                ]
-            }
-        },
+        // fill: {
+        //     type: 'gradient',
+        //     gradient: {
+        //       gradientToColors: [
+        //           "#5B146F","#f09819","#00c6ff",
+        //           "#7a2828","#00ACEA","#ff7e5f",
+        //           "#757f9a","#FFB612","#d38312",
+        //           "#D3BC8D","#89216b","#FFC20E"
+        //         ]
+        //     }
+        // },
         grid: {
             show: false,
             padding: {

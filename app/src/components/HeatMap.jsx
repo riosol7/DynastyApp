@@ -4,8 +4,7 @@ import Chart from 'react-apexcharts';
 export default function HeatMap(props) {
     const loadRosters = props.loadRosters
     const rosters = props.rosters
-
-    const data = rosters.totalRoster.sort((a,b) => a.players.length - b.players.length).map(roster => {
+    const data = rosters.totalRoster.map(roster => {
         return {
             name:roster.owner_id.display_name,
             data:[{
@@ -32,38 +31,45 @@ export default function HeatMap(props) {
     const series = data
     const options = {
         chart: {
+            background: '#000000',
             foreColor: '#9fa0a1',
             toolbar: {
                 show: false
             },
         },
         legend:{
-            show:true
+            show:false
         },
         plotOptions: {
             heatmap: {
-              colorScale: {
-                ranges: [{
-                    from: 0,
-                    to: 4,
-                    color: '#00A100',
-                    name: 'low',
-                  },
-                  {
-                    from: 5,
-                    to: 8,
-                    color: '#128FD9',
-                    name: 'medium',
-                  },
-                  {
-                    from: 9,
-                    to: 45,
-                    color: '#FFB200',
-                    name: 'high',
-                  }
-                ]
-              }
-            }
+                colorScale: {
+                    ranges: [{
+                        from: 0,
+                        to: 2,
+                        color: '#f8296d',
+                        name: 'low',
+                    },
+                    {
+                        from: 3,
+                        to: 5,
+                        color: '#fcd846',
+                        name: 'medium',
+                    },
+                    {
+                        from: 6,
+                        to: 8,
+                        color: '#41d87e',
+                        name: 'high',
+                    },
+                    {
+                        from: 9,
+                        to: 20,
+                        color: '#30a7f8',
+                        name: 'very high',
+                    }
+                    ]
+                },
+            },
         },
         theme: {
             mode: 'dark', 
