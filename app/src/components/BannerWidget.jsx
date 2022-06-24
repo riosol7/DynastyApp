@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { Icon } from '@iconify/react';
 import trophy from "../assets/trophy2.png";
 import wreath from "../assets/wreath.png";
+import PlayoffModal from './PlayoffModal';
 
 export default function BannerWidget(props) {
     const loadRosters = props.loadRosters
@@ -11,7 +12,14 @@ export default function BannerWidget(props) {
 
     const getTop4 = league.previous_league? league.previous_league.winnerBracket.filter(b => b.r === 3).filter(c => Object.keys(c.t1_from).includes("l")) : []
     const getTop2 = league.previous_league? league.previous_league.winnerBracket.filter(b => b.r === 3).filter(c => Object.keys(c.t1_from).includes("w")) : []
-
+   
+    const [isOpen, setIsOpen] = useState(false)
+    const playoffModal = () => {
+        setIsOpen(true)
+    }
+    const closeModal = () => {
+        setIsOpen(false)
+    }
     let findOwner = (ownerID, owners) => {
         let foundOwner = owners.filter(owner => owner.roster_id === ownerID)
         return foundOwner[0]
@@ -49,7 +57,7 @@ export default function BannerWidget(props) {
                                 { getTop4.map((team, i) => 
                                     <div key={i} className="m-3 bold">
                                         <div className="d-flex justify-content-end">
-                                            <Icon icon="tabler:tournament" style={{fontSize:"1.7rem", color:"#18204a"}}/>
+                                            <Icon icon="tabler:tournament" onClick={() => playoffModal()} style={{fontSize:"1.7rem", color:"#18204a"}}/>
                                         </div>
                                         {/* <div className="mb-3 d-flex align-items-center">
                                             <div className="d-flex align-items-center justify-content-end">
@@ -72,6 +80,12 @@ export default function BannerWidget(props) {
                 </div>
             </div>
         }
+         <PlayoffModal
+            open={isOpen}
+            onClose={() => closeModal()}
+            league={league}
+            rosters={rosters}
+        />
         </>
     )
 }

@@ -80,8 +80,11 @@ export default function Transaction(props) {
                     { transaction.type === "trade" ?
                         <div className="">
                             <div className="container">
-                                <p className="m-0" style={{fontSize:"12px"}}>Trade completed</p>
-                                <p className="m-0 pb-2" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
+                                <div className="d-flex align-items-center">
+                                    <Icon icon="ri:exchange-line" style={{color:"#a9dfd8", fontSize:"1.25em"}}/>
+                                    <p className="m-0 mx-1" style={{fontSize:"12px"}}>Trade completed</p>
+                                </div>
+                                <p className="m-0 pb-2 mx-4" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
                             </div>
                             <div className="d-flex align-items-center container">
                             { Object.keys(transaction.adds).length > 2 ?
@@ -105,7 +108,7 @@ export default function Transaction(props) {
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="bold m-0 text-center truncate" style={{fontSize:"14px"}}> {getInitials(getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).player)}</p>
+                                        <p className="bold m-0 text-center truncate" style={{fontSize:"13.5px"}}> {getInitials(getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).player)}</p>
                                         <p className="m-0 text-center" style={{fontSize:"10px", color:"#cbcbcb"}}>{getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).position} - {getKeyByValue(transaction.adds ,roster.roster_id, transaction.playerDB).team}</p>      
                                         <p className="m-0 d-flex align-items-center justify-content-center" style={{fontSize:"12px"}}>
                                             <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
@@ -234,7 +237,7 @@ export default function Transaction(props) {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="bold m-0 text-center truncate text-center" style={{fontSize:"14px"}}> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
+                                            <p className="bold m-0 text-center truncate text-center" style={{fontSize:"13.5px"}}> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                             <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team || "FA"}</p>
                                             <p className="m-0 d-flex align-items-center justify-content-center" style={{fontSize:"12px"}}>
                                             <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
@@ -273,7 +276,7 @@ export default function Transaction(props) {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className="bold m-0 text-center truncate text-center" style={{fontSize:"14px"}}> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
+                                            <p className="bold m-0 text-center truncate text-center" style={{fontSize:"13.5px"}}> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
                                             <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team || "FA"}</p>
                                             <p className="m-0 text-center" style={{fontSize:"12px"}}>
                                             <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
@@ -330,7 +333,7 @@ export default function Transaction(props) {
                                     </div>  
                                 </div>
                                 <div className="px-4">
-                                    <p className="m-0 bold text-center" style={{fontSize:"14px"}}>{getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
+                                    <p className="m-0 bold text-center" style={{fontSize:"13.5px"}}>{getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
                                     <p className="m-0" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team}</p>
                                     <p className="m-0 d-flex align-items-center" style={{fontSize:"12px"}}>
                                         <Icon icon="mdi:tag-minus-outline" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
@@ -362,7 +365,7 @@ export default function Transaction(props) {
                                 <p className="m-0 mx-4" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
                             </>
                         }
-                            <div className="container d-flex p-2 py-3">
+                            <div className="container d-flex px-2 py-3">
                                 <div className={
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "QB" ? "smallHeadShotQB" :
                                     findPlayer("adds", transaction.playerDB, transactionID).position === "RB" ? "smallHeadShotRB" :
@@ -393,7 +396,7 @@ export default function Transaction(props) {
                                 }  
                                 </div>
                                 <div className="px-4">
-                                    <p className="m-0 bold text-center" style={{fontSize:"14px"}}>{getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
+                                    <p className="m-0 bold text-center" style={{fontSize:"13.5px"}}>{getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                     <p className="m-0" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team}</p>
                                     <p className="m-0 d-flex align-items-center" style={{fontSize:"12px"}}>
                                         <Icon icon="mdi:tag-plus-outline" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>

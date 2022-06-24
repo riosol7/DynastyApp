@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
+
 import LeagueWidget from "../components/LeagueWidget";
 import DynastyRankings from "../components/DynastyRankings";
-import MVP from "../components/MVP";
-import Transaction from "../components/Transaction";
-import Standings from "../components/Standings";
-// import AreaChart from "../components/AreaChart";
 import Tabs from "../components/Tabs";
 import PowerRankings from "../components/PowerRankings";
-import OverviewWidget from "../components/BannerWidget";
+import Overview from "../components/Overview";
 
 import { Icon } from '@iconify/react';
+import Analytics from "../components/Analytics";
 
 export default function Home () {
     const [dashboard, setDashboard] = useState("Overview")
@@ -75,7 +73,7 @@ export default function Home () {
         <>
             <div className="d-flex" style={{height:"100vh"}}>
                 {/* Menu */}
-                <div className="" style={{minWidth:"5rem"}}>
+                <div className="" style={{minWidth:"4rem", marginRight:".8em"}}>
                     <Tabs/>
                 </div>
             { loadRosters && loadLeague && loadTransactions? <div style={{height:"100vh"}}></div>:
@@ -90,77 +88,61 @@ export default function Home () {
                                     />
                                 </div>
                                 <div className="col-sm-1">
+                                { dashboard === "Overview"?
+                                <>
                                     <div className="selectedView"></div>
                                     <div className="d-flex align-items-center justify-content-center" onClick={() => setDashboard("Overview")}>
                                         <Icon icon="fluent:content-view-gallery-24-regular" style={{fontSize:"1.5rem", color:"#a9dfd8"}}/>
                                         <p className="m-0 mx-1">Overview</p>
                                     </div>
+                                </>
+                                :
+                                <>
+                                    <div className="selectView"></div>
+                                    <div className="d-flex align-items-center justify-content-center" onClick={() => setDashboard("Overview")}>
+                                        <Icon icon="fluent:content-view-gallery-24-regular" style={{fontSize:"1.5rem",color:"#686b71"}} />
+                                        <p className="m-0 mx-1"style={{color:"#686b71"}}>Overview</p>
+                                    </div>
+                                </>
+                                }
                                 </div>
                                 <div className="col-sm-1">
+                                { dashboard === "Analytics"?
+                                <>
+                                    <div className="selectedView"></div>
+                                    <div className="d-flex align-items-center justify-content-center" onClick={() => setDashboard("Analytics")}>
+                                        <Icon icon="tabler:device-analytics" style={{fontSize:"1.5rem", color:"#a9dfd8"}}/>
+                                        <p className="m-0 mx-1">Analytics</p>
+                                    </div>
+                                </>
+                                :
+                                <>
                                     <div className="selectView"></div>
                                     <div className="d-flex align-items-center justify-content-center" onClick={() => setDashboard("Analytics")}>
                                         <Icon icon="tabler:device-analytics" style={{fontSize:"1.5rem",color:"#686b71"}} />
                                         <p className="m-0 mx-1"style={{color:"#686b71"}}>Analytics</p>
                                     </div>
+                                </>
+                                }
                                 </div>
                                 <div className="col-sm-1"></div>
                             </div>
                         { dashboard === "Overview" ?
-                            <div className="d-flex">
-                                <div className="col">
-                                    <div className="pt-2">
-                                        <div className="d-flex justify-content-between align-items-center mx-2 mb-2">
-                                            <p className="m-0" style={{fontSize:".95rem"}}>League Activity</p>
-                                            <div className="">
-                                                <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
-                                            </div>
-                                        </div>
-                                        <div id="scrollBar" style={{height:"858.7px", maxWidth:"100%", overflow:"auto"}}>
-                                        {/* <div className=""> */}
-                                            <Transaction
-                                                loadTransactions={loadTransactions}
-                                                transactions={transactions}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-sm-10 px-3" id="scrollBar" style={{height:"900.49px", maxWidth:"100%", overflow:"auto"}}>  
-                                    <div className="py-3">
-                                        <OverviewWidget
-                                            loadRosters={loadRosters}
-                                            rosters={rosters}
-                                            league={league}
-                                        />
-                                    </div>
-                                    <div className="pt-2"> 
-                                        <MVP
-                                            loadRosters={loadRosters}
-                                            rosters={rosters}
-                                        />
-                                        <div className="d-flex align-items-center  MVP">
-                                            <Icon icon="fluent:star-line-horizontal-3-24-regular" style={{color:"#a9dfd8", fontSize:"1.1rem"}}/>
-                                            <p className="m-0 mx-1 bold">MVPs</p>
-                                        </div>
-                                    </div>
-                                    <div className="m-0 mt-2">
-                                        <Standings
-                                            loadLeague={loadLeague}
-                                            league={league}
-                                            loadRosters={loadRosters}
-                                            rosters={rosters}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <Overview
+                                loadRosters={loadRosters}
+                                rosters={rosters}
+                                loadTransactions={loadTransactions}
+                                transactions={transactions}
+                                loadLeague={loadLeague}
+                                league={league}
+                            />
                         :
-                            <div>
-                                {/* <div className="col pt-2 pb-4">
-                                    <AreaChart
-                                        loadRosters={loadRosters}
-                                        rosters={rosters}
-                                    />
-                                </div> */}
-                            </div>
+                            <Analytics
+                                loadLeague={loadLeague}
+                                league={league}
+                                rosters={rosters}
+                                loadRosters={loadRosters}
+                            />
                         }
                         </div>
                     </div>
@@ -189,10 +171,12 @@ export default function Home () {
                                     rosters={rosters}
                                 />
                             :
-                                <PowerRankings
-                                    loadRosters={loadRosters}
-                                    rosters={rosters}
-                                />
+                                <div className="mt-4">
+                                    <PowerRankings
+                                        loadRosters={loadRosters}
+                                        rosters={rosters}
+                                    />
+                                </div>
                             }
                             </div>
                         </div>

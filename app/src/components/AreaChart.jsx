@@ -85,7 +85,7 @@ export default function AreaChart(props) {
         // },
         tooltip: {
             x: {
-            format: 'dd/MM/yy HH:mm'
+                format: 'dd/MM/yy HH:mm'
             },
         },
         xaxis: { 
@@ -107,7 +107,7 @@ export default function AreaChart(props) {
                     series={series} 
                     type="line" 
                     height={450}
-                    // width={600} 
+                    width={600} 
                 />
             </div>
         }
