@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Icon } from '@iconify/react';
 
 export default function Standings(props) {
   const loadRosters = props.loadRosters
   const rosters = props.rosters
   const league = props.league
+
+  const [standings,setStandings] = useState("Present")
 
   let division_1 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 1)
   let division_2 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 2)
@@ -19,7 +21,20 @@ export default function Standings(props) {
             <Icon icon="icon-park-outline:ranking" style={{color:"#a9dfd8",fontSize:"1rem"}}/>
             <p className="m-0 mx-1 bold" style={{}}>Standings</p>
           </div>
-          {/* <Icon icon="tabler:tournament" style={{fontSize:"1.3rem", color:"#686b71"}}/> */}
+          <div className="d-flex align-items-center px-1" style={{fontSize:".8em", borderRadius:"25px", border:"0px solid black", background:"#232227"}}>
+            <p className="m-0 px-1" onClick={() => setStandings("Present")}
+              style={standings === "Present"?
+                {border:"2px solid #3bdbba", borderRadius:"25px", color:"white", background:"black", fontWeight:"bold"}
+              : {fontWeight:"normal"}
+              }>{league.season}
+            </p>
+            <p className="m-0 px-1" onClick={() => setStandings("All Time")}
+              style={standings === "All Time"?
+                {border:"2px solid #3bdbba", borderRadius:"25px", color:"white", background:"black", fontWeight:"bold"}
+              : {fontWeight:"normal"}
+              }>All Time
+            </p>
+          </div>
         </div>
         <div className="">
         {/* <div className="container" id="scrollBarActivity" style={{height:"31.593rem", width:"100%", overflow:"auto"}}> */}
