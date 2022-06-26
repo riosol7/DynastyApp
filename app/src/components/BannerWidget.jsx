@@ -10,8 +10,13 @@ export default function BannerWidget(props) {
     const rosters = props.rosters
     const league = props.league
 
-    const getTop4 = league.previous_league? league.previous_league.winnerBracket.filter(b => b.r === 3).filter(c => Object.keys(c.t1_from).includes("l")) : []
-    const getTop2 = league.previous_league? league.previous_league.winnerBracket.filter(b => b.r === 3).filter(c => Object.keys(c.t1_from).includes("w")) : []
+    const previous_league = league.history.find(l => l.league.league_id === league.previous_league_id)
+
+    const getTop4 = previous_league? previous_league.league.brackets.winner.bracket.filter(b => b.r === 3).filter(c => Object.keys(c.t1_from).includes("l")) : []
+    const getTop2 = previous_league? previous_league.league.brackets.winner.bracket.filter(b => b.r === 3).filter(c => Object.keys(c.t1_from).includes("w")) : []
+
+    // const getTop4 = league.previous_league? league.previous_league.winnerBracket.filter(b => b.r === 3).filter(c => Object.keys(c.t1_from).includes("l")) : []
+    // const getTop2 = league.previous_league? league.previous_league.winnerBracket.filter(b => b.r === 3).filter(c => Object.keys(c.t1_from).includes("w")) : []
    
     const [isOpen, setIsOpen] = useState(false)
     const playoffModal = () => {
@@ -35,7 +40,7 @@ export default function BannerWidget(props) {
                             <div key={i} className="d-flex">
                                 <div className="col-sm-10 d-flex">
                                     <div className="col-sm-8 p-5 m-2" style={{backgroundImage:`url(${wreath})`, backgroundSize:"45%", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}>
-                                        <p className="m-0 bold d-flex justify-content-center" style={{fontSize:"2.4rem", textShadow:"6px 6px 0px rgba(0,0,0,0.2)"}}>{league.previous_league.season} CHAMPION</p>
+                                        <p className="m-0 bold d-flex justify-content-center" style={{fontSize:"2.4rem", textShadow:"6px 6px 0px rgba(0,0,0,0.2)"}}>{previous_league.year} CHAMPION</p>
                                         <div className="d-flex align-items-center justify-content-center">  
                                         { findOwner(roster.w, league.owners).metadata.team_name ?
                                             <div className="bold">

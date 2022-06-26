@@ -138,8 +138,8 @@ export default function Home () {
                             />
                         :
                             <Analytics
-                                loadLeague={loadLeague}
-                                league={league}
+                                // loadLeague={loadLeague}
+                                // league={league}
                                 rosters={rosters}
                                 loadRosters={loadRosters}
                             />

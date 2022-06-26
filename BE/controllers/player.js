@@ -27,10 +27,11 @@ playerController.get("/rosters", async (req, res) => {
         //CSUN
         // const getKCT = await fetch("https://sheetdb.io/api/v1/vgfjvvvo0ao4p")
         // notriosol
-        const getKCT = await fetch("https://sheetdb.io/api/v1/gzyqw2qiluj5k")
+        // const getKCT = await fetch("https://sheetdb.io/api/v1/gzyqw2qiluj5k")
+        const getKCT = await fetch("https://api.sheety.co/fa27cea4aebee399c58753e7b1c0fcf7/kctRankings/sheet1")
         const parsedKCT = await getKCT.json()
 
-        let mergeKCT = parsedKCT.map(async kct => {
+        let mergeKCT = parsedKCT.sheet1.map(async kct => {
             const foundPlayers = await Player.find(
                 {  
                     "full_name": kct.player, 
