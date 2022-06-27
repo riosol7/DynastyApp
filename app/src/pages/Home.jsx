@@ -75,7 +75,7 @@ export default function Home () {
                 </div>
             { loadRosters && loadLeague && loadTransactions? <div style={{height:"100vh"}}></div>:
                 <div className="d-flex" style={{width:"1840px", background:"black"}}>
-                    <div className="col-sm-10 px-2 pt-3">
+                    <div className="col-sm-10 px-3 pt-3">
                         <div className="">
                             <div className="d-flex align-items-center pb-2">
                                 <div className="col-sm-9">

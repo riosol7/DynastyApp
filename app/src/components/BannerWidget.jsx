@@ -34,13 +34,13 @@ export default function BannerWidget(props) {
         { loadRosters ? <p>Loading </p> :
             <div>
                 <div className="d-flex"> 
-                    <div className="col-sm-12" style={{border:"0px solid black", borderRadius:"5px", backgroundColor: "#abe9cd", backgroundImage:"linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%)", color:"white"}}>
+                    <div className="col-sm-12" style={{border:"0px solid black", borderRadius:"5px", backgroundColor: "#abe9cd", backgroundImage:"linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%)", color:"white", opacity:"0.9"}}>
                     { league.previous_league !== null || undefined?
                         getTop2.map((roster, i) =>
                             <div key={i} className="d-flex">
                                 <div className="col-sm-10 d-flex">
                                     <div className="col-sm-8 p-5 m-2" style={{backgroundImage:`url(${wreath})`, backgroundSize:"45%", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}>
-                                        <p className="m-0 bold d-flex justify-content-center" style={{fontSize:"2.4rem", textShadow:"6px 6px 0px rgba(0,0,0,0.2)"}}>{previous_league.year} CHAMPION</p>
+                                        <p className="m-0 bold d-flex justify-content-center" style={{fontSize:"2.5rem", textShadow:"6px 6px 0px rgba(0,0,0,0.2)"}}>{previous_league.year} CHAMPION</p>
                                         <div className="d-flex align-items-center justify-content-center">  
                                         { findOwner(roster.w, league.owners).metadata.team_name ?
                                             <div className="bold">
@@ -48,7 +48,7 @@ export default function BannerWidget(props) {
                                                     <Icon icon="noto:1st-place-medal" style={{fontSize:"2rem"}}/>
                                                     {findOwner(roster.w, league.owners).metadata.team_name}
                                                 </p>
-                                                <p className="m-0 text-center" style={{color:"#2a2c3e", fontSize:".9rem"}}>
+                                                <p className="m-0 text-center bold" style={{color:"#383838", fontSize:".9rem"}}>
                                                     {((findOwner(roster.w, rosters.totalRoster).metadata.record).match(/W/g) || []).length} - {((findOwner(roster.w, rosters.totalRoster).metadata.record).match(/L/g) || []).length}
                                                 </p>
                                             </div>
@@ -56,7 +56,7 @@ export default function BannerWidget(props) {
                                         }
                                         </div>
                                     </div>
-                                    <div id="trophy" className="col" style={{backgroundImage:`url(${trophy})`}}></div>
+                                    <div id="trophy" className="" style={{backgroundImage:`url(${trophy})`}}></div>
                                 </div>
                                 <div className="col-sm-2">
                                 { getTop4.map((team, i) => 

@@ -23,9 +23,10 @@ export default function DynastyRankings(props) {
         <>
         { loadRosters ? <p>Loading </p> :
             <div className="" style={{maxWidth:"100%"}}>
-                <div id="scrollBar" style={{height:"883.7px", maxWidth:"100%", overflow:"auto"}}>
+                <div>
+                {/* <div id="scrollBar" style={{height:"883.7px", maxWidth:"100%", overflow:"auto"}}> */}
                 { filter === "QB" ? rosters.qbRank.map((roster, i) => 
-                    <div key={i} className="mt-3">
+                    <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
@@ -59,7 +60,7 @@ export default function DynastyRankings(props) {
                         </div>
                     </div>   
                     ) : filter === "RB" ? rosters.rbRank.map((roster, i) => 
-                    <div key={i} className="mt-3">
+                    <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
@@ -93,7 +94,7 @@ export default function DynastyRankings(props) {
                         </div>
                     </div>  
                     ) : filter === "WR" ? rosters.wrRank.map((roster, i) => 
-                    <div key={i} className="mt-3">
+                    <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
@@ -127,7 +128,7 @@ export default function DynastyRankings(props) {
                         </div>
                     </div>    
                     ) : filter === "TE" ? rosters.teRank.map((roster, i) => 
-                    <div key={i} className="mt-3">
+                    <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
@@ -161,7 +162,7 @@ export default function DynastyRankings(props) {
                         </div>
                     </div>    
                     ) : rosters.teamRank.map((roster, i) => 
-                    <div key={i} className="mt-3">
+                    <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">

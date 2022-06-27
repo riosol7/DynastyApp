@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react';
 // import RankModal from './RankModal';
 const MODAL_STYLES = {
     position: 'fixed',
-    top: '5%',
+    top: '4.5%',
     left: '91.7%',
     width:'19em',
     height:"4em",

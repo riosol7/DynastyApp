@@ -193,7 +193,7 @@ export default function Transaction(props) {
                                             findOwner(transaction.roster_ids[0].roster_id, transaction.roster_ids).avatar}`
                                         }/>
                                     </div>
-                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator}<span style={{color:"#cbcbcb"}}> made a move</span></p> 
+                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator}<span style={{color:"whitesmoke"}}> made a move</span></p> 
                                 </div>
                                 <p className="m-0 mx-4" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
                             </>
@@ -305,7 +305,7 @@ export default function Transaction(props) {
                                             findOwner(transaction.drops[transactionID], transaction.roster_ids).avatar}`
                                         }/>
                                     </div>
-                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator}<span style={{color:"#cbcbcb"}}> released FA</span></p> 
+                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator}<span style={{color:"whitesmoke"}}> released FA</span></p> 
                                 </div>
                                 <p className="m-0 mx-4" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p> 
                             </>
@@ -360,7 +360,7 @@ export default function Transaction(props) {
                                             findOwner(transaction.adds[transactionID], transaction.roster_ids).avatar}`
                                         }/>
                                     </div>
-                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator} <span style={{color:"#cbcbcb"}}>signed</span></p> 
+                                    <p className="m-0 mx-1 text-truncate" style={{fontSize:"14px"}}>{transaction.creator} <span style={{color:"whitesmoke"}}>signed</span></p> 
                                 </div>
                                 <p className="m-0 mx-4" style={{fontSize:"11px", color:"#b0b0b2"}}>{toDateTime(transaction.created)}</p>
                             </>

@@ -16,9 +16,9 @@ export default function PowerRankings(props) {
         setIsOpen(false)
     }
     return (
-        <div id="scrollBar" style={{height:"883.7px", maxWidth:"100%", overflow:"auto"}}>
+        <div>
         { rosters.totalRoster.map((roster, i) => 
-            <div key={i} className="mt-3">
+            <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                 <div className="d-flex team" onClick={() => powerModal(roster)}>
                     <div className="col-md-9 d-flex">
                         <div className="displayOwnerLogoMD">

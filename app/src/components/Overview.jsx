@@ -18,9 +18,12 @@ export default function Overview(props) {
         <>
             <div className="d-flex">
                 <div className="col">
-                    <div className="pt-2">
+                    <div className="pt-3">
                         <div className="d-flex justify-content-between align-items-center mx-2 mb-2">
-                            <p className="m-0" style={{fontSize:".95rem"}}>League Activity</p>
+                            <div className="d-flex align-items-center">
+                                <Icon icon="fe:activity" style={{color:"#a9dfd8",fontSize:"1.5rem"}}/>
+                                <p className="m-0 mx-1 bold" style={{}}>League Activity</p>
+                            </div>
                             <div className="">
                                 <Icon icon="akar-icons:more-horizontal" style={{fontSize:"1.5rem", color:"#b0b0b2"}}/>
                             </div>
