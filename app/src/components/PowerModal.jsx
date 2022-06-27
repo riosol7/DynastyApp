@@ -50,9 +50,24 @@ export default function PowerModal(props) {
             <div id="scrollBar" className="py-2" style={{height:"555px", overflow:"auto", background:"#111111"}}>
                 <div>
                     <p className="m-0 bold" style={{fontSize:"13px", color:"#dbdbde"}}>Starters</p>
-                { findTotalRoster.starters.filter(player => player.position === "QB").map((player, i) =>
+                { findTotalRoster.starters.filter(player => player.position === "QB").map((playerQB, i) =>
                     <div key={i}>
-                        <p className="m-0">{player.full_name}</p>
+                        <p className="m-0">{playerQB.full_name}</p>
+                    </div>
+                )}
+                { findTotalRoster.starters.filter(player => player.position === "RB").map((playerRB, i) =>
+                    <div key={i}>
+                        <p className="m-0">{playerRB.full_name}</p>
+                    </div>
+                )}
+                { findTotalRoster.starters.filter(player => player.position === "WR").map((playerWR, i) =>
+                    <div key={i}>
+                        <p className="m-0">{playerWR.full_name}</p>
+                    </div>
+                )}
+                { findTotalRoster.starters.filter(player => player.position === "TE").map((playerTE, i) =>
+                    <div key={i}>
+                        <p className="m-0">{playerTE.full_name}</p>
                     </div>
                 )}
                 </div>
