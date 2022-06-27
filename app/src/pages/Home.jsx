@@ -68,12 +68,12 @@ export default function Home () {
 
     return (
         <>
-            <div className="d-flex" style={{height:"100vh"}}>
+            <div className="d-flex">
                 {/* Menu */}
                 <div className="" style={{minWidth:"4rem", marginRight:".8em"}}>
                     <Tabs/>
                 </div>
-            { loadRosters && loadLeague && loadTransactions? <div style={{height:"100vh"}}></div>:
+            { loadRosters? <div style={{height:"100vh"}}></div>:
                 <div className="d-flex" style={{width:"1840px", background:"black"}}>
                     <div className="col-sm-10 px-3 pt-3">
                         <div className="">
@@ -145,6 +145,8 @@ export default function Home () {
                     </div>
                     <div className="col-sm-2">
                         <Rankings
+                            loadLeague={loadLeague}
+                            league={league}
                             rosters={rosters}
                             loadRosters={loadRosters}
                         />

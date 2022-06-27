@@ -72,7 +72,7 @@ playerController.get("/rosters", async (req, res) => {
         let mappedRosters = parsedRosters.map(async (roster) => {
             const foundPlayers = await Player.find({"player_id": roster.players}, filtered)
             const kctRankings = await KCT.find({"player_id": roster.players})
-            const foundStarters = await KCT.find({"player_id": roster.starters})
+            const foundStarters = await Player.find({"player_id": roster.starters}, filtered)
             const foundReserve = await Player.find({"player_id": roster.reserve}, filtered)
             const foundTaxi = await Player.find({"player_id": roster.taxi}, filtered)
 

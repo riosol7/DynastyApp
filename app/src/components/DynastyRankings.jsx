@@ -4,6 +4,8 @@ import Modal from "./Modal";
 export default function DynastyRankings(props) {
     const rosters = props.rosters
     const loadRosters = props.loadRosters
+    const loadLeague = props.loadLeague
+    const league = props.league
     const filter = props.filter
 
     const [team, setTeam] = useState({})
@@ -201,6 +203,8 @@ export default function DynastyRankings(props) {
             onClose={() => closeModal()}
             team={team}
             rosters={rosters}
+            loadLeague={loadLeague}
+            league={league}
             tab={"Dynasty"}
         />
         </>

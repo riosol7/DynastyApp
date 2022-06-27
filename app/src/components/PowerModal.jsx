@@ -3,8 +3,10 @@ import { Icon } from '@iconify/react';
 
 export default function PowerModal(props) {
     const roster = props.roster
-    console.log(roster)
-    // const rosters = props.rosters
+    const rosters = props.rosters
+
+    const findTotalRoster = rosters.totalRoster.filter(team => team.owner_id.display_name === roster.kct.owner.display_name)[0]
+    console.log(findTotalRoster)
 
     return (
         <div style={{background:"#111111"}}>
@@ -44,6 +46,18 @@ export default function PowerModal(props) {
                     </div>
                 </div>
             </div>
+
+            <div id="scrollBar" className="py-2" style={{height:"555px", overflow:"auto", background:"#111111"}}>
+                <div>
+                    <p className="m-0 bold" style={{fontSize:"13px", color:"#dbdbde"}}>Starters</p>
+                { findTotalRoster.starters.filter(player => player.position === "QB").map((player, i) =>
+                    <div key={i}>
+                        <p className="m-0">{player.full_name}</p>
+                    </div>
+                )}
+                </div>
+            </div>
+
         </div>
     )
 }

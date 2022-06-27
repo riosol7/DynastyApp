@@ -5,6 +5,9 @@ import { Icon } from '@iconify/react';
 
 export default function PowerRankings(props) {
     const rosters = props.rosters
+    const loadLeague = props.loadLeague
+    const league = props.league
+
     const [team, setTeam] = useState({})
     const [isOpen, setIsOpen] = useState(false)
     const powerModal = (data) => {
@@ -65,6 +68,8 @@ export default function PowerRankings(props) {
                 onClose={() => closeModal()}
                 team={team}
                 rosters={rosters}
+                loadLeague={loadLeague}
+                league={league}
                 tab={"Power"}
             />
         </div>

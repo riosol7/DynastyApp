@@ -21,6 +21,8 @@ const MODAL_STYLES = {
 export default function Rankings(props) {
     const rosters = props.rosters
     const loadRosters = props.loadRosters
+    const loadLeague = props.loadLeague
+    const league = props.league
     
     const [rankings, setRankings] = useState("Dynasty")
     const [filter, setFilter] = useState("Team")
@@ -79,6 +81,8 @@ export default function Rankings(props) {
                         loadRosters={loadRosters}
                         rosters={rosters}
                         filter={filter}
+                        loadLeague={loadLeague}
+                        league={league}
                     />
                 :
                     <div className="">
@@ -86,6 +90,8 @@ export default function Rankings(props) {
                             loadRosters={loadRosters}
                             rosters={rosters}
                             filter={filter}
+                            loadLeague={loadLeague}
+                            league={league}
                         />
                     </div>
                 }
