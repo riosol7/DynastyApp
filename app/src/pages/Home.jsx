@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import LeagueWidget from "../components/LeagueWidget";
-import DynastyRankings from "../components/DynastyRankings";
-import Tabs from "../components/Tabs";
-import PowerRankings from "../components/PowerRankings";
 import Overview from "../components/Overview";
+import Analytics from "../components/Analytics";
+import Tabs from "../components/Tabs";
 
 import { Icon } from '@iconify/react';
-import Analytics from "../components/Analytics";
+import Rankings from "../components/Rankings";
 
 export default function Home () {
     const [dashboard, setDashboard] = useState("Overview")
@@ -20,8 +19,6 @@ export default function Home () {
     
     const [transactions, setTransactions] = useState([])
     const [loadTransactions, setLoadTransactions] = useState(true)
-
-    const [rankings, setRankings] = useState("Dynasty")
 
     let round = 1
 
@@ -147,39 +144,10 @@ export default function Home () {
                         </div>
                     </div>
                     <div className="col-sm-2">
-                        <div className="px-2">
-                            <div className="d-flex align-items-center justify-content-between my-3">
-                                <div className={rankings ==="Dynasty"? "btnAction" : "btnOff"} onClick={() => setRankings("Dynasty")}>
-                                    <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
-                                        <Icon icon="akar-icons:crown" style={{marginRight:"5px", fontSize:"1rem"}}/>
-                                        DYNASTY
-                                    </p>
-                                </div>
-                                <div className={rankings ==="Power"? "btnAction" : "btnOff"} onClick={() => setRankings("Power")}>
-                                    <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
-                                        <Icon icon="ic:outline-offline-bolt" style={{marginRight:"5px", fontSize:"1.3rem"}}/>
-                                        POWER
-                                    </p>
-                                </div>
-                                <Icon icon="akar-icons:more-vertical" style={{color:"#b0b0b2", fontSize:"1.5rem"}}/>
-                            </div>
-                            <div className="">
-                            {/* <div id="scrollBar" style={{height:"851.5px", maxWidth:"100%", overflow:"auto"}}> */}
-                            { rankings === "Dynasty"?
-                                <DynastyRankings
-                                    loadRosters={loadRosters}
-                                    rosters={rosters}
-                                />
-                            :
-                                <div className="">
-                                    <PowerRankings
-                                        loadRosters={loadRosters}
-                                        rosters={rosters}
-                                    />
-                                </div>
-                            }
-                            </div>
-                        </div>
+                        <Rankings
+                            rosters={rosters}
+                            loadRosters={loadRosters}
+                        />
                     </div>
                 </div>
             }

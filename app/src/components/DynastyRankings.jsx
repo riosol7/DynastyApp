@@ -4,35 +4,12 @@ import Modal from "./Modal";
 export default function DynastyRankings(props) {
     const rosters = props.rosters
     const loadRosters = props.loadRosters
+    const filter = props.filter
 
-    const [filter, setFilter] = useState("Team")
     const [team, setTeam] = useState({})
     const [isOpen, setIsOpen] = useState(false)
 
-    const qbRankings = () => {
-        if(filter === "QB"){
-            setFilter("Team")
-        } else
-        setFilter("QB")
-    }
-    const rbRankings = () => {
-        if(filter === "RB"){
-            setFilter("Team")
-        } else
-        setFilter("RB")
-    }
-    const wrRankings = () => {
-        if(filter === "WR"){
-            setFilter("Team")
-        } else
-        setFilter("WR")
-    }
-    const teRankings = () => {
-        if(filter === "TE"){
-            setFilter("Team")
-        } else
-        setFilter("TE")
-    }
+
     const dynastyModal = (data) => {
         setTeam(data)
         setIsOpen(true)
@@ -44,30 +21,11 @@ export default function DynastyRankings(props) {
 
     return (
         <>
-        {
-            loadRosters ? <p>Loading </p> :
+        { loadRosters ? <p>Loading </p> :
             <div className="" style={{maxWidth:"100%"}}>
-                <div className="d-flex align-items-center justify-content-center bold" style={{fontSize:"16px"}}>
-                    <p style={filter === "QB"?{color:"#f8296d"}:{color:"gray"}}
-                        onClick={qbRankings}
-                        className="pointer m-0 mx-3">QB
-                    </p>
-                    <p style={filter === "RB"?{color:"#36ceb8"}:{color:"gray"}}
-                        onClick={rbRankings}
-                        className="pointer m-0 mx-3">RB
-                    </p>
-                    <p style={filter === "WR"?{color:"#58a7ff"}:{color:"gray"}}
-                        onClick={wrRankings}
-                        className="pointer m-0 mx-3">WR
-                    </p>
-                    <p style={filter === "TE"?{color:"#faae58"}:{color:"gray"}}
-                        onClick={teRankings} 
-                        className="pointer m-0 mx-3">TE
-                    </p>
-                </div>
-                <div id="scrollBar" style={{height:"865.7px", maxWidth:"100%", overflow:"auto"}}>
+                <div id="scrollBar" style={{height:"883.7px", maxWidth:"100%", overflow:"auto"}}>
                 { filter === "QB" ? rosters.qbRank.map((roster, i) => 
-                    <div key={i} className="py-2">
+                    <div key={i} className="mt-3">
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
@@ -101,7 +59,7 @@ export default function DynastyRankings(props) {
                         </div>
                     </div>   
                     ) : filter === "RB" ? rosters.rbRank.map((roster, i) => 
-                    <div key={i} className="py-2">
+                    <div key={i} className="mt-3">
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
@@ -135,7 +93,7 @@ export default function DynastyRankings(props) {
                         </div>
                     </div>  
                     ) : filter === "WR" ? rosters.wrRank.map((roster, i) => 
-                    <div key={i} className="py-2">
+                    <div key={i} className="mt-3">
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
@@ -169,7 +127,7 @@ export default function DynastyRankings(props) {
                         </div>
                     </div>    
                     ) : filter === "TE" ? rosters.teRank.map((roster, i) => 
-                    <div key={i} className="py-2">
+                    <div key={i} className="mt-3">
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
@@ -203,7 +161,7 @@ export default function DynastyRankings(props) {
                         </div>
                     </div>    
                     ) : rosters.teamRank.map((roster, i) => 
-                    <div key={i} className="py-2">
+                    <div key={i} className="mt-3">
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
                                 <div className="displayOwnerLogoMD">
