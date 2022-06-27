@@ -17,8 +17,11 @@ export default function PowerRankings(props) {
     }
     return (
         <>
+        <div className="d-flex justify-content-center bold" style={{fontSize:"16px"}}>
+            <p className="m-0" style={{color:"black"}}>test</p>
+        </div>
         { rosters.totalRoster.map((roster, i) => 
-        <div key={i} className="mt-3">
+        <div key={i} className="py-2">
             <div className="d-flex team" onClick={() => powerModal(roster)}>
                 <div className="col-md-9 d-flex">
                     <div className="displayOwnerLogoMD">

@@ -77,8 +77,8 @@ export default function Home () {
                     <Tabs/>
                 </div>
             { loadRosters && loadLeague && loadTransactions? <div style={{height:"100vh"}}></div>:
-                <div className="d-flex py-3" style={{width:"1840px", background:"black"}}>
-                    <div className="col-sm-10 px-2">
+                <div className="d-flex" style={{width:"1840px", background:"black"}}>
+                    <div className="col-sm-10 px-2 pt-3">
                         <div className="">
                             <div className="d-flex align-items-center pb-2">
                                 <div className="col-sm-9">
@@ -148,7 +148,7 @@ export default function Home () {
                     </div>
                     <div className="col-sm-2">
                         <div className="px-2">
-                            <div className="d-flex align-items-center justify-content-between mb-3">
+                            <div className="d-flex align-items-center justify-content-between my-3">
                                 <div className={rankings ==="Dynasty"? "btnAction" : "btnOff"} onClick={() => setRankings("Dynasty")}>
                                     <p className="m-2 d-flex align-items-center bold" style={{fontSize:"13px"}}>
                                         <Icon icon="akar-icons:crown" style={{marginRight:"5px", fontSize:"1rem"}}/>
@@ -171,7 +171,7 @@ export default function Home () {
                                     rosters={rosters}
                                 />
                             :
-                                <div className="mt-4">
+                                <div className="">
                                     <PowerRankings
                                         loadRosters={loadRosters}
                                         rosters={rosters}

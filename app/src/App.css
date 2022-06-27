@@ -68,6 +68,9 @@
     height: 45px;
     border-radius: 2px;
 }
+select:focus{
+    outline: none;
+}
 .pointer{
     cursor:pointer
 }

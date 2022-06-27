@@ -8,7 +8,7 @@ export default function Standings(props) {
   const roundToHundredth = (value) => {
     return Number(value.toFixed(2));
 }
-  const [select,setSelect] = useState("Present")
+  const [select,setSelect] = useState(league.season)
 
   const handleSelect = (e) => {
     setSelect(e.target.value);
@@ -18,29 +18,11 @@ export default function Standings(props) {
   let division_2 = rosters.totalRoster && rosters.totalRoster.filter(roster => roster.settings.division === 2)
   //will need to sort by record W-L-T
 
-  // const allTimeStandingsPF = (id) => {
-  //   let weekOne = league.history.reduce((a,b) => a + b.matchups.weekOne.find(match => match.roster_id === id).points, 0)
-  //   let weekTwo = league.history.reduce((a,b) => a + b.matchups.weekTwo.find(match => match.roster_id === id).points, 0)
-  //   let weekThree = league.history.reduce((a,b) => a + b.matchups.weekThree.find(match => match.roster_id === id).points, 0)
-  //   let weekFour = league.history.reduce((a,b) => a + b.matchups.weekFour.find(match => match.roster_id === id).points, 0)
-  //   let weekFive = league.history.reduce((a,b) => a + b.matchups.weekFive.find(match => match.roster_id === id).points, 0)
-  //   let weekSix = league.history.reduce((a,b) => a + b.matchups.weekSix.find(match => match.roster_id === id).points, 0)
-  //   let weekSeven = league.history.reduce((a,b) => a + b.matchups.weekSeven.find(match => match.roster_id === id).points, 0)
-  //   let weekEight = league.history.reduce((a,b) => a + b.matchups.weekEight.find(match => match.roster_id === id).points, 0)
-  //   let weekNine = league.history.reduce((a,b) => a + b.matchups.weekNine.find(match => match.roster_id === id).points, 0)
-  //   let weekTen = league.history.reduce((a,b) => a + b.matchups.weekTen.find(match => match.roster_id === id).points, 0)
-  //   let weekEleven = league.history.reduce((a,b) => a + b.matchups.weekEleven.find(match => match.roster_id === id).points, 0)
-  //   let weekTwelve = league.history.reduce((a,b) => a + b.matchups.weekTwelve.find(match => match.roster_id === id).points, 0)
-  //   let weekThirteen = league.history.reduce((a,b) => a + b.matchups.weekThirteen.find(match => match.roster_id === id).points, 0)
-  //   let weekFourteen = league.history[1].matchups.weekFourteen.find(match => match.roster_id === id).points
-  //   return weekOne + weekTwo + weekThree + weekFour + weekFive + weekSix + weekSeven + weekEight + weekNine + weekTen + weekEleven + weekTwelve + weekThirteen + weekFourteen
-  // }
-
   const standings = league.owners.map(owner => {
     let id = owner.roster_id
 
-    let year2020 = league.history[0].rosters.find(roster => roster.roster_id === id).settings
-    let year2021 = league.history[1].rosters.find(roster => roster.roster_id === id).settings
+    let year2020 = league.history[1].rosters.find(roster => roster.roster_id === id).settings
+    let year2021 = league.history[0].rosters.find(roster => roster.roster_id === id).settings
 
     let fptsTotal2020 = year2020.fpts + "." + year2020.fpts_decimal
     let fptsTotal2021 = year2021.fpts + "." + year2021.fpts_decimal
@@ -65,14 +47,16 @@ export default function Standings(props) {
         record:(year2020.wins) + "-" + (year2020.losses),
         fpts:roundToHundredth(Number(fptsTotal2020)),
         ppts:roundToHundredth(Number(pptsTotal2020)),
-        fpts_against:roundToHundredth(Number(fpts_againstTotal2020))
+        fpts_against:roundToHundredth(Number(fpts_againstTotal2020)),
+        division:year2020.division
       },
       year_2021:{
         percentage:roundToHundredth((year2021.wins/(year2021.wins + year2021.losses))*100),
         record:(year2021.wins) + "-" + (year2021.losses),
         fpts:roundToHundredth(Number(fptsTotal2021)),
         ppts:roundToHundredth(Number(pptsTotal2021)),
-        fpts_against:roundToHundredth(Number(fpts_againstTotal2021))
+        fpts_against:roundToHundredth(Number(fpts_againstTotal2021)),
+        division:year2021.division
       }
     }
   }
@@ -116,7 +100,7 @@ export default function Standings(props) {
               <div className="col-sm-1">
                 <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>MAX PF</p>
               </div>
-              <div className="col-sm-1 d-flex justify-content-center">
+              <div className="col-sm-1">
                 <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PA</p>
               </div>
             </div>
@@ -162,7 +146,7 @@ export default function Standings(props) {
               <div className="col-sm-1">
                 <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
               </div>
-              <div className="col-sm-1 d-flex justify-content-center">
+              <div className="col-sm-1">
                 <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
               </div>
             </div>
@@ -184,7 +168,7 @@ export default function Standings(props) {
               <div className="col-sm-1">
                 <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>MAX PF</p>
               </div>
-              <div className="col-sm-1 d-flex justify-content-center">
+              <div className="col-sm-1">
                 <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PA</p>
               </div>
             </div>
@@ -205,9 +189,9 @@ export default function Standings(props) {
                   :
                     <p className="m-0 mx-1">{division.owner_id.display_name}</p>
                   }
-                      <div className="pb-2 mx-1">
-                  <p className="m-0" style={{fontSize:".6rem", color:"#7d91a6"}}>WAIVER {division.settings.waiver_position}</p>
-                </div>
+                    <div className="pb-2 mx-1">
+                      <p className="m-0" style={{fontSize:".6rem", color:"#7d91a6"}}>WAIVER {division.settings.waiver_position}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -230,22 +214,211 @@ export default function Standings(props) {
               <div className="col-sm-1">
                   <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
               </div>
-              <div className="col-sm-1 d-flex justify-content-center">
+              <div className="col-sm-1">
                   <p className="m-0" style={{fontSize:"12px", color:"white"}}>{division.settings.fpts}</p>
               </div>
             </div>
           )}
           </div>
         </div>
-      :
+      : select === "2021"?
         <div>
-        { standings.sort().map((owner, i) => 
-          <div key={i}>
-            <p className="m-0">{owner.all_time.record}</p>
+          {/* <div className="d-flex align-items-center mt-2">
+            <Icon icon="uim:layer-group" style={{fontSize:"1.35rem"}}/>
+            <p className="m-0 mx-2" style={{fontSize:"1rem"}}>{league.metadata ? league.metadata.division_2 : ""}</p>  
+          </div> */}
+          <div className="d-flex">
+            <div className="col-sm-7"> </div>
+            <div className="col-sm-2">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>Record</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PF</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>MAX PF</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PA</p>
+            </div>
           </div>
-        )
-        }
+        { standings.sort((a,b) => parseFloat(b.year_2021.percentage) - parseFloat(a.year_2021.percentage)).map((owner, i) => 
+          <div key={i} className="d-flex align-items-center" style={{fontSize:"14px"}}>
+            <div className="col-sm-7 text-truncate">
+              <div className="d-flex align-items-center">
+                <p className="m-0 mx-2 bold" style={{color:"#acb6c3", fontSize:".9rem"}}>{i + 1}</p>
+                <div className="">
+                  <img className="ownerLogo" style={{width:"24px"}} alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${owner.avatar}`}/>
+                </div>
+                <div>
+                { owner.metadata ?
+                  <p className="m-0 mx-1">{owner.metadata.team_name} 
+                    <span className="m-0 mx-1" style={{fontSize:"10px", color:"#cbcbcb"}}>{owner.display_name}</span>
+                  </p>
+                :
+                  <p className="m-0 mx-1">{owner.display_name}</p>
+                }
+                  <div className="pb-2 mx-1">
+                    <p className="m-0" style={{fontSize:".6rem", color:"#7d91a6"}}>WIN {owner.year_2021.percentage}%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-2 text-truncate">
+              <p className="m-0">{owner.year_2021.record}
+            {/* { division.metadata.streak.includes("W") === true ?
+              <span className="mx-1" style={{fontSize:".6rem"}}>
+                <Icon icon="bi:caret-up-fill" style={{color:"#368727", fontSize:".7rem"}}/>{division.metadata.streak}
+              </span>
+            :
+              <span className="mx-1" style={{fontSize:".6rem"}}>
+                <Icon icon="bi:caret-down-fill" style={{color:"#cc1d00", fontSize:".7rem"}}/>{division.metadata.streak}
+              </span>
+            } */}
+              </p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.year_2021.fpts}</p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.year_2021.ppts}</p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.year_2021.fpts_against}</p>
+            </div>
+          </div>
+        )}
         </div>
+      : select === "2020"?
+        <div>
+          <div className="d-flex">
+            <div className="col-sm-7"> </div>
+            <div className="col-sm-2">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>Record</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PF</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>MAX PF</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PA</p>
+            </div>
+          </div>
+        { standings.sort((a,b) => parseFloat(b.year_2020.percentage) - parseFloat(a.year_2020.percentage)).map((owner, i) => 
+          <div key={i} className="d-flex align-items-center" style={{fontSize:"14px"}}>
+            <div className="col-sm-7 text-truncate">
+              <div className="d-flex align-items-center">
+                <p className="m-0 mx-2 bold" style={{color:"#acb6c3", fontSize:".9rem"}}>{i + 1}</p>
+                <div className="">
+                  <img className="ownerLogo" style={{width:"24px"}} alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${owner.avatar}`}/>
+                </div>
+                <div>
+                { owner.metadata ?
+                  <p className="m-0 mx-1">{owner.metadata.team_name} 
+                    <span className="m-0 mx-1" style={{fontSize:"10px", color:"#cbcbcb"}}>{owner.display_name}</span>
+                  </p>
+                :
+                  <p className="m-0 mx-1">{owner.display_name}</p>
+                }
+                  <div className="pb-2 mx-1">
+                    <p className="m-0" style={{fontSize:".6rem", color:"#7d91a6"}}>WIN {owner.year_2020.percentage}%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-2 text-truncate">
+              <p className="m-0">{owner.year_2020.record}
+            {/* { division.metadata.streak.includes("W") === true ?
+              <span className="mx-1" style={{fontSize:".6rem"}}>
+                <Icon icon="bi:caret-up-fill" style={{color:"#368727", fontSize:".7rem"}}/>{division.metadata.streak}
+              </span>
+            :
+              <span className="mx-1" style={{fontSize:".6rem"}}>
+                <Icon icon="bi:caret-down-fill" style={{color:"#cc1d00", fontSize:".7rem"}}/>{division.metadata.streak}
+              </span>
+            } */}
+              </p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.year_2020.fpts}</p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.year_2020.ppts}</p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.year_2020.fpts_against}</p>
+            </div>
+          </div>
+        )}
+        </div>
+      : select === "All Time"?
+        <div>
+          <div className="d-flex">
+            <div className="col-sm-7"> </div>
+            <div className="col-sm-2">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>Record</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PF</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>MAX PF</p>
+            </div>
+            <div className="col-sm-1">
+              <p className="m-0" style={{fontSize:".7rem", color:"#7d91a6"}}>PA</p>
+            </div>
+          </div>
+        { standings.sort((a,b) => parseFloat(b.all_time.percentage) - parseFloat(a.all_time.percentage)).map((owner, i) => 
+          <div key={i} className="d-flex align-items-center" style={{fontSize:"14px"}}>
+            <div className="col-sm-7 text-truncate">
+              <div className="d-flex align-items-center">
+                <p className="m-0 mx-2 bold" style={{color:"#acb6c3", fontSize:".9rem"}}>{i + 1}</p>
+                <div className="">
+                  <img className="ownerLogo" style={{width:"24px"}} alt="avatar" src={`https://sleepercdn.com/avatars/thumbs/${owner.avatar}`}/>
+                </div>
+                <div>
+                { owner.metadata ?
+                  <p className="m-0 mx-1">{owner.metadata.team_name} 
+                    <span className="m-0 mx-1" style={{fontSize:"10px", color:"#cbcbcb"}}>{owner.display_name}</span>
+                  </p>
+                :
+                  <p className="m-0 mx-1">{owner.display_name}</p>
+                }
+                  <div className="pb-2 mx-1">
+                    <p className="m-0" style={{fontSize:".6rem", color:"#7d91a6"}}>WIN {owner.all_time.percentage}%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-2 text-truncate">
+              <p className="m-0">{owner.all_time.record}
+            {/* { division.metadata.streak.includes("W") === true ?
+              <span className="mx-1" style={{fontSize:".6rem"}}>
+                <Icon icon="bi:caret-up-fill" style={{color:"#368727", fontSize:".7rem"}}/>{division.metadata.streak}
+              </span>
+            :
+              <span className="mx-1" style={{fontSize:".6rem"}}>
+                <Icon icon="bi:caret-down-fill" style={{color:"#cc1d00", fontSize:".7rem"}}/>{division.metadata.streak}
+              </span>
+            } */}
+              </p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.all_time.fpts}</p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.all_time.ppts}</p>
+            </div>
+            <div className="col-sm-1">
+                <p className="m-0" style={{fontSize:"12px", color:"white"}}>{owner.all_time.fpts_against}</p>
+            </div>
+          </div>
+        )}
+        </div>
+      :
+      <></>
       }
       </div>
     }

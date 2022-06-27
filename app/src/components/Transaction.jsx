@@ -240,7 +240,7 @@ export default function Transaction(props) {
                                             <p className="bold m-0 text-center truncate text-center" style={{fontSize:"13.5px"}}> {getInitials(findPlayer("adds", transaction.playerDB, transactionID).player || findPlayer("adds", transaction.playerDB, transactionID).full_name)}</p>
                                             <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("adds", transaction.playerDB, transactionID).position} - {findPlayer("adds", transaction.playerDB, transactionID).team || "FA"}</p>
                                             <p className="m-0 d-flex align-items-center justify-content-center" style={{fontSize:"12px"}}>
-                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
+                                            <Icon icon="mdi:tag-plus-outline" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
                                             {findPlayer("adds", transaction.playerDB, transactionID).rating || 0}</p>  
                                         </div>
                                     </div>
@@ -279,7 +279,7 @@ export default function Transaction(props) {
                                             <p className="bold m-0 text-center truncate text-center" style={{fontSize:"13.5px"}}> {getInitials(findPlayer("drops", transaction.playerDB, transactionID).player || findPlayer("drops", transaction.playerDB, transactionID).full_name)}</p>
                                             <p className="m-0 text-center" style={{fontSize:"10px",color:"#cbcbcb"}}>{findPlayer("drops", transaction.playerDB, transactionID).position} - {findPlayer("drops", transaction.playerDB, transactionID).team || "FA"}</p>
                                             <p className="m-0 text-center" style={{fontSize:"12px"}}>
-                                            <Icon icon="fluent:tag-32-regular" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
+                                            <Icon icon="mdi:tag-minus-outline" style={{marginRight:"2px", color:"#a9dfd8", fontSize:"1.25em"}}/>
                                             {findPlayer("drops", transaction.playerDB, transactionID).rating || 0}</p>  
                                         </div>
                                     </div>
