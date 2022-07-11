@@ -31,23 +31,20 @@ export default function DynastyRankings(props) {
                     <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
-                                <div className="displayOwnerLogoMD">
+                                <div className="">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
                                 <div className="text-truncate mx-1" style={{width:"100%"}}>
-                                {
-                                    roster.kct.owner.team_name ?
-                                    <>
+                                { roster.kct.owner.team_name ?
                                         <div className="d-flex" style={{fontSize:"13px"}}>
-                                            <span className="m-0">{roster.rank}.</span>
+                                            <span className="m-0">{roster.rank}. </span>
                                             <div className="text-truncate mx-1">
                                                 <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                                 <p className="m-0 text-truncate" style={{fontSize:"11px",color:"#b0b0b2"}}>{roster.kct.owner.display_name}</p>
                                             </div> 
                                         </div>
-                                    </>
                                     :        
                                     <p className="m-0 text-truncate" style={{fontSize:"13px"}}>
                                         <span>{roster.rank}. </span> 
@@ -65,23 +62,20 @@ export default function DynastyRankings(props) {
                     <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
-                                <div className="displayOwnerLogoMD">
+                                <div className="">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
                                 <div className="text-truncate mx-1" style={{width:"100%"}}>
-                                {
-                                    roster.kct.owner.team_name ?
-                                    <>
+                                { roster.kct.owner.team_name ?
                                         <div className="d-flex" style={{fontSize:"13px"}}>
-                                            <span className="m-0">{roster.rank}.</span>
+                                            <span className="m-0">{roster.rank}. </span>
                                             <div className="text-truncate mx-1">
                                                 <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                                 <p className="m-0 text-truncate" style={{fontSize:"11px",color:"#b0b0b2"}}>{roster.kct.owner.display_name}</p>
                                             </div> 
                                         </div>
-                                    </>
                                     :        
                                     <p className="m-0 text-truncate" style={{fontSize:"13px"}}>
                                         <span>{roster.rank}. </span> 
@@ -99,23 +93,20 @@ export default function DynastyRankings(props) {
                     <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
-                                <div className="displayOwnerLogoMD">
+                                <div className="">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
                                 <div className="text-truncate mx-1" style={{width:"100%"}}>
-                                {
-                                    roster.kct.owner.team_name ?
-                                    <>
+                                { roster.kct.owner.team_name ?
                                         <div className="d-flex" style={{fontSize:"13px"}}>
-                                            <span className="m-0">{roster.rank}.</span>
+                                            <span className="m-0">{roster.rank}. </span>
                                             <div className="text-truncate mx-1">
                                                 <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                                 <p className="m-0 text-truncate" style={{fontSize:"11px",color:"#b0b0b2"}}>{roster.kct.owner.display_name}</p>
                                             </div> 
                                         </div>
-                                    </>
                                     :        
                                     <p className="m-0 text-truncate" style={{fontSize:"13px"}}>
                                         <span>{roster.rank}. </span> 
@@ -133,24 +124,21 @@ export default function DynastyRankings(props) {
                     <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
-                                <div className="displayOwnerLogoMD">
+                                <div className="">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
                                 </div>
                                 <div className="text-truncate mx-1" style={{width:"100%"}}>
-                                {
-                                    roster.kct.owner.team_name ?
-                                    <>
-                                        <div className="d-flex" style={{fontSize:"13px"}}>
-                                            <span className="m-0">{roster.rank}.</span>
-                                            <div className="text-truncate mx-1">
-                                                <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
-                                                <p className="m-0 text-truncate" style={{fontSize:"11px",color:"#b0b0b2"}}>{roster.kct.owner.display_name}</p>
-                                            </div> 
-                                        </div>
-                                    </>
-                                    :        
+                                { roster.kct.owner.team_name ?
+                                    <div className="d-flex" style={{fontSize:"13px"}}>
+                                        <span className="m-0">{roster.rank}. </span>
+                                        <div className="text-truncate mx-1">
+                                            <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
+                                            <p className="m-0 text-truncate" style={{fontSize:"11px",color:"#b0b0b2"}}>{roster.kct.owner.display_name}</p>
+                                        </div> 
+                                    </div>
+                                :        
                                     <p className="m-0 text-truncate" style={{fontSize:"13px"}}>
                                         <span>{roster.rank}. </span> 
                                         <span className="bold">{roster.kct.owner.display_name}</span>
@@ -167,7 +155,7 @@ export default function DynastyRankings(props) {
                     <div key={i} style={{marginTop:"1.1em", marginBottom:"1.1em"}}>
                         <div className="team d-flex" onClick={() => dynastyModal(roster)}>
                             <div className="col-sm-9 d-flex">
-                                <div className="displayOwnerLogoMD">
+                                <div className="">
                                     <div className="ownerLogoMD" style={{backgroundImage:`url(https://sleepercdn.com/avatars/thumbs/${
                                         roster.kct.owner.avatar})`}}>
                                     </div>
@@ -175,7 +163,7 @@ export default function DynastyRankings(props) {
                                 <div className="text-truncate mx-1" style={{width:"100%"}}>
                                 { roster.kct.owner.team_name ?
                                     <div className="d-flex" style={{fontSize:"13px"}}>
-                                        <span className="m-0">{roster.rank}.</span>
+                                        <span className="m-0">{roster.rank}. </span>
                                         <div className="text-truncate mx-1">
                                             <p className="m-0 bold text-truncate">{roster.kct.owner.team_name}</p>
                                             <p className="m-0 text-truncate" style={{fontSize:"11px",color:"#b0b0b2"}}>{roster.kct.owner.display_name}</p>
@@ -185,7 +173,7 @@ export default function DynastyRankings(props) {
                                     <p className="m-0 text-truncate" style={{fontSize:"13px"}}>
                                         <span>{roster.rank}. </span> 
                                         <span className="bold">{roster.kct.owner.display_name}</span>
-                                    </p>
+                                    </p>                                   
                                 }
                                 </div> 
                             </div>

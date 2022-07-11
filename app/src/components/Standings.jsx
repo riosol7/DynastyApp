@@ -340,7 +340,7 @@ export default function Standings(props) {
           <div>
             <div className="d-flex align-items-center mt-4">
               <Icon icon="uim:layer-group" style={{fontSize:"1.35rem"}}/>
-              <p className="m-0 mx-2" style={{fontSize:"15px"}}>All Divisions</p>  
+              <p className="m-0 mx-2" style={{fontSize:"15px"}}>Overall</p>  
             </div>
             <div className="d-flex">
               <div className="col-sm-7"> </div>
